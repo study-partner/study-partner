@@ -26,10 +26,6 @@ const NavBar = () => {
           <Nav className="me-auto justify-content-start">
             {currentUser ? (
               [
-                /*
-                <Nav.Link as={NavLink} id={ComponentIDs.addProjectMenuItem} to="/addProject" key="addP">Add Project</Nav.Link>,
-                <Nav.Link as={NavLink} id={ComponentIDs.filterMenuItem} to="/filter" key="filter">Filter</Nav.Link>,
-                */
                 <Nav.Link as={NavLink} to="">Profile</Nav.Link>,
                 <Nav.Link as={NavLink} to="">Calendar</Nav.Link>,
                 <Nav.Link as={NavLink} to="">Leaderboard</Nav.Link>,
@@ -37,9 +33,6 @@ const NavBar = () => {
             ) : ''}
             {currentUser && !Roles.userIsInRole(Meteor.userId(), 'admin') ? (
               <Nav.Link as={NavLink} to="">Contact Admin</Nav.Link>
-            ) : ''}
-            {Roles.userIsInRole(Meteor.userId(), 'admin') ? (
-              <Nav.Link as={NavLink} to="" key="admin">View Report</Nav.Link>
             ) : ''}
           </Nav>
           <Nav className="justify-content-end">
