@@ -23,11 +23,11 @@ const makeSchema = (allInterests, allProjects) => new SimpleSchema({
   firstName: { type: String, label: 'First', optional: true },
   lastName: { type: String, label: 'Last', optional: true },
   bio: { type: String, label: 'Biographical statement', optional: true },
-  title: { type: String, label: 'Title', optional: true },
+  title: { type: String, label: 'Class standing', optional: true },
   picture: { type: String, label: 'Picture URL', optional: true },
-  interests: { type: Array, label: 'Interests', optional: true },
+  interests: { type: Array, label: 'Classes you need help with', optional: true },
   'interests.$': { type: String, allowedValues: allInterests },
-  projects: { type: Array, label: 'Projects', optional: true },
+  projects: { type: Array, label: 'Classes you can help others with', optional: true },
   'projects.$': { type: String, allowedValues: allProjects },
 });
 
@@ -81,7 +81,7 @@ const Home = () => {
               </Row>
               <LongTextField id={ComponentIDs.homeFormBio} name="bio" placeholder="Write a little bit about yourself." />
               <Row>
-                <Col xs={6}><TextField name="title" showInlineError placeholder="Title" /></Col>
+                <Col xs={6}><TextField name="title" showInlineError placeholder="Class standing" /></Col>
                 <Col xs={6}><TextField name="picture" showInlineError placeholder="URL to picture" /></Col>
               </Row>
               <Row>
