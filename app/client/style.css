@@ -3,12 +3,12 @@
 
 /* Create some Bowfolio CSS variables. */
 :root {
-  --navbar-bg: #001399;
+  --navbar-bg: #6495ED;
   --navbar-bg-rgb: 0, 19, 153;
   --navbar-text: white;
   --navbar-highlight-text: var(--bs-gray-500);
 
-  --navbar-bg-admin: #C40233;
+  --navbar-bg-admin: #F08000;
   --navbar-bg-rgb-admin: 196, 2, 51;
 
 }
@@ -20,27 +20,38 @@ body {
   --bs-dark-rgb: var(--navbar-bg-rgb);
 }
 
-/* Color the light Brand and links with dark color */
-.bg-light span, .bg-light a {
-  color:  var(--navbar-bg);
+/* Color the navbar for admins */
+.admin span,
+.admin a {
+  color: var(--navbar-bg-admin);
 }
 
-/* When logged in we switch the NavBar to bg-dark so we need to override the styles to give light text. */
-.bg-dark span, .bg-dark a {
-  color: var(--navbar-text);
+/* Color the navbar for users */
+.user span,
+.user a {
+  color: var(--navbar-bg);
 }
 
-/* When logged in we highlight the selected route. */
-.bg-dark a.nav-link.active {
-  color: var(--navbar-highlight-text);
+footer.user {
+  background-color: var(--navbar-bg);
 }
 
-/* Landing page color blocking */
+footer.admin {
+  background-color: var(--navbar-bg-admin);
+}
+
 .landing-color-background {
   background-color: var(--navbar-bg);
   color: var(--navbar-text);
   padding-top: 20px;
 }
+
+.landing-color-background-admin {
+  background-color: var(--navbar-bg-admin);
+  color: var(--navbar-text);
+  padding-top: 20px;
+}
+
 
 .landing-white-background {
   background-color: var(--navbar-text);
