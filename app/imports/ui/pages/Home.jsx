@@ -17,7 +17,7 @@ const Home = () => (
     </div>
     <div className="landing-white-background">
       <Container className="justify-content-center text-center">
-        <h2 style={{ color: '#3C1874' }}>
+        <h2 style={{ color: '#001399' }}>
           Please make sure your profile is up to date.
         </h2>
         <Row md={1} lg={2}>
@@ -46,7 +46,7 @@ const Home = () => (
       </Container>
     </div>
     <div className="landing-white-background text-center">
-      <h2 style={{ color: '#3C1874' }}>
+      <h2 style={{ color: '#001399' }}>
         Earning points by... Feel free to take a look at Leaderboard rankings.
       </h2>
       <Container>

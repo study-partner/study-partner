@@ -17,7 +17,7 @@ const Landing = () => (
     </div>
     <div className="landing-white-background">
       <Container className="justify-content-center text-center">
-        <h2 style={{ color: '#3C1874' }}>Start by making your profile....</h2>
+        <h2 style={{ color: '#001399' }}>Start by making your profile....</h2>
         <Row md={1} lg={2}>
           <Col xs={6}>
             <Image src="/images/home-page.png" width={500} />
@@ -42,7 +42,7 @@ const Landing = () => (
       </Container>
     </div>
     <div className="landing-white-background text-center">
-      <h2 style={{ color: '#3C1874' }}>
+      <h2 style={{ color: '#001399' }}>
         Connect to people and projects with shared interests!
       </h2>
       <Container>
