@@ -19,14 +19,14 @@ const NavBar = () => {
     <Navbar expand="lg" style={menuStyle} className={navbarClassName}>
       <Container>
         <Navbar.Brand as={NavLink} to="/" className="align-items-center">
-          <span style={{ fontWeight: 800, fontSize: '24px' }}><Image src="/images/study-partner-logo.png" width={50} style={{ marginBottom: 3 }} /> Study Partner</span>
+          <span style={{ fontWeight: 800, fontSize: '24px' }}><Image src="/images/study-partner-logo.png" width={50} style={{ marginBottom: 3 }} />Study Partner</span>
         </Navbar.Brand>
         <Navbar.Toggle aria-controls={ComponentIDs.basicNavbarNav} />
         <Navbar.Collapse id={ComponentIDs.basicNavbarNav}>
           <Nav className="me-auto justify-content-start">
             {currentUser ? (
               [
-                <Nav.Link as={NavLink} to="">Profile</Nav.Link>,
+                <Nav.Link as={NavLink} to="/home">Profile</Nav.Link>,
                 <Nav.Link as={NavLink} to="">Calendar</Nav.Link>,
                 <Nav.Link as={NavLink} to="">Leaderboard</Nav.Link>,
               ]
