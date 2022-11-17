@@ -2,7 +2,6 @@ import React from 'react';
 import { Container, Col, Row, Image, Card, Button } from 'react-bootstrap';
 import { Meteor } from 'meteor/meteor';
 import { Roles } from 'meteor/alanning:roles';
-import { Container, Col, Row, Image, Card, Button } from 'react-bootstrap';
 import { PageIDs } from '../utilities/ids';
 
 /* Renders the Home Page: what appears after the user logs in. */
