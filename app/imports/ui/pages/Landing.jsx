@@ -20,7 +20,7 @@ const Landing = () => (
     <div className="landing-white-background">
       <Container className="justify-content-center text-center">
 
-        <h3 style={{ paddingBottom: '30px', color: '#376551' }}>
+        <h3 style={Roles.userIsInRole(Meteor.userId(), 'admin') ? { paddingBottom: '30px', color: '#F08000' } : { paddingBottom: '30px', color: '#6495ED' }}>
           <em>Study Partner is an application for UHM ICS students to self-organize face-to-face study groups around a course and/or specific homework or project topic.</em>
         </h3>
         <h2 style={Roles.userIsInRole(Meteor.userId(), 'admin') ? { color: '#F08000' } : { color: '#6495ED' }}>Start by making your profile....</h2>

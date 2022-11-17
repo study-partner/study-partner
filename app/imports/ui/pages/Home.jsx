@@ -37,7 +37,7 @@ const Home = () => (
         <h2 style={{ paddingBottom: '20px', color: 'white' }}>
           Schedule a study session or join one from the calendar.
         </h2>
-        <Row md={1} lg={2} style={{ color: '#001399' }}>
+        <Row md={1} lg={2} style={Roles.userIsInRole(Meteor.userId(), 'admin') ? { color: '#F08000' } : { color: '#6495ED' }}>
           <Col xs={6}>
             <Card style={{ paddingTop: '20px', marginBottom: '20px' }}>
               <Card.Title><h3>Schedule a future study session</h3></Card.Title>
