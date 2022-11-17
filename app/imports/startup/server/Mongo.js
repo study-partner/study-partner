@@ -34,7 +34,7 @@ function addProfile({ firstName, lastName, bio, title, interests, projects, pict
   // Add interests and projects.
   interests.map(interest => ProfilesInterests.collection.insert({ profile: email, interest }));
   projects.map(project => ProfilesProjects.collection.insert({ profile: email, project }));
-  // Make sure interests are defined in the Interests collection if they weren't already.
+  // Make sure interests are defined in the NeedHelpClasses collection if they weren't already.
   interests.map(interest => addInterest(interest));
 }
 
@@ -43,7 +43,7 @@ function addProject({ name, homepage, description, interests, picture }) {
   console.log(`Defining project ${name}`);
   Projects.collection.insert({ name, homepage, description, picture });
   interests.map(interest => ProjectsInterests.collection.insert({ project: name, interest }));
-  // Make sure interests are defined in the Interests collection if they weren't already.
+  // Make sure interests are defined in the NeedHelpClasses collection if they weren't already.
   interests.map(interest => addInterest(interest));
 }
 
