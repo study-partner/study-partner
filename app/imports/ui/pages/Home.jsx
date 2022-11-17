@@ -5,7 +5,7 @@ import { PageIDs } from '../utilities/ids';
 /* Renders the Home Page: what appears after the user logs in. */
 const Home = () => (
   <div id={PageIDs.homePage}>
-    <div className="landing-green-background">
+    <div className="landing-color-background">
       <Container className="text-center">
         <h1 style={{ paddingTop: '20px', color: 'white', fontSize: '36pt' }}>
           Welcome to Study Partner!
@@ -17,7 +17,7 @@ const Home = () => (
     </div>
     <div className="landing-white-background">
       <Container className="justify-content-center text-center">
-        <h2 style={{ color: '#376551' }}>
+        <h2 style={{ color: '#3C1874' }}>
           Please make sure your profile is up to date.
         </h2>
         <Row md={1} lg={2}>
@@ -30,7 +30,7 @@ const Home = () => (
         </Row>
       </Container>
     </div>
-    <div className="landing-green-background">
+    <div className="landing-color-background">
       <Container className="justify-content-center text-center">
         <h2 style={{ color: 'white' }}>
           Schedule a study session or join one from the calendar.
@@ -46,7 +46,7 @@ const Home = () => (
       </Container>
     </div>
     <div className="landing-white-background text-center">
-      <h2 style={{ color: '#376551' }}>
+      <h2 style={{ color: '#3C1874' }}>
         Earning points by... Feel free to take a look at Leaderboard rankings.
       </h2>
       <Container>
