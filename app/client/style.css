@@ -35,11 +35,6 @@ body {
   color: var(--navbar-highlight-text);
 }
 
-/* Override the color on the dropdown when logged in. */
-.bg-dark a.dropdown-item {
-  color: var(--navbar-bg);
-}
-
 /* Landing page color blocking */
 .landing-color-background {
   background-color: var(--navbar-bg);
@@ -50,6 +45,12 @@ body {
 .landing-white-background {
   background-color: var(--navbar-text);
   color: var(--navbar-bg);
+  padding-top: 20px;
+}
+
+.landing-color-background-admin {
+  background-color: var(--navbar-bg-admin);
+  color: var(--navbar-text);
   padding-top: 20px;
 }
 
