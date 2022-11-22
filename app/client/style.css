@@ -32,14 +32,6 @@ body {
   color: var(--navbar-bg);
 }
 
-footer.user {
-  background-color: var(--navbar-bg);
-}
-
-footer.admin {
-  background-color: var(--navbar-bg-admin);
-}
-
 .landing-color-background {
   background-color: var(--navbar-bg);
   color: var(--navbar-text);
@@ -92,4 +84,19 @@ footer.admin {
   margin: 5px;
   padding: 5px;
   width: 200px;
+}
+
+footer {
+  padding: 100px 0 50px 0;
+  color: white;
+  background-color: #141414;
+}
+
+footer p {
+  color: lightgray;
+}
+
+footer a {
+  text-decoration: none;
+  color: white;
 }
