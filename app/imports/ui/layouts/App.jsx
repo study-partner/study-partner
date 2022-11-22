@@ -17,6 +17,7 @@ import Home from '../pages/Home';
 import Filter from '../pages/Filter';
 import AddProject from '../pages/AddProject';
 import YourProfile from '../pages/YourProfile';
+import ContactAdmin from '../pages/ContactAdmin';
 
 /* Top-level layout component for this application. Called in imports/startup/client/startup.jsx. */
 const App = () => (
@@ -33,6 +34,7 @@ const App = () => (
         <Route path="/projects" element={<Projects />} />
         <Route path="/home" element={<ProtectedRoute><Home /></ProtectedRoute>} />
         <Route path="/yourprofile" element={<YourProfile />} />
+        <Route path="/contact-admin" element={<ContactAdmin />} />
         <Route path="/filter" element={<ProtectedRoute><Filter /></ProtectedRoute>} />
         <Route path="/addproject" element={<ProtectedRoute><AddProject /></ProtectedRoute>} />
         <Route path="/notauthorized" element={<NotAuthorized />} />
