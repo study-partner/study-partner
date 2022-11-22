@@ -19,13 +19,17 @@ import AddProject from '../pages/AddProject';
 import YourProfile from '../pages/YourProfile';
 import ContactAdmin from '../pages/ContactAdmin';
 
+function isLogged() {
+  return Meteor.userId() !== null;
+}
+
 /* Top-level layout component for this application. Called in imports/startup/client/startup.jsx. */
 const App = () => (
   <Router>
     <div className="d-flex flex-column min-vh-100">
       <NavBar />
       <Routes>
-        <Route exact path="/" element={<Landing />} />
+        <Route exact path="/" element={isLogged() ? <Navigate to="/home" /> : <Landing />} />
         <Route path="/signin" element={<SignIn />} />
         <Route path="/signup" element={<SignUp />} />
         <Route path="/signout" element={<SignOut />} />
@@ -50,10 +54,7 @@ const App = () => (
  * Checks for Meteor login before routing to the requested page, otherwise goes to signin page.
  * @param {any} { component: Component, ...rest }
  */
-const ProtectedRoute = ({ children }) => {
-  const isLogged = Meteor.userId() !== null;
-  return isLogged ? children : <Navigate to="/signin" />;
-};
+const ProtectedRoute = ({ children }) => (isLogged() ? children : <Navigate to="/signin" />);
 
 // Require a component and location to be passed to each ProtectedRoute.
 ProtectedRoute.propTypes = {
