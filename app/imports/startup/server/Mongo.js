@@ -7,6 +7,8 @@ import { Profiles } from '../../api/profiles/Profiles';
 import { ProfilesProjects } from '../../api/profiles/ProfilesProjects';
 import { ProfilesInterests } from '../../api/profiles/ProfilesInterests';
 import { Interests } from '../../api/interests/Interests';
+import { NeedHelpClasses } from '../../api/NeedHelpClasses/NeedHelpClasses';
+import { ProfilesNeedHelpClasses } from '../../api/profiles/ProfilesNeedHelpClasses';
 
 /* eslint-disable no-console */
 
@@ -24,8 +26,13 @@ function addInterest(interest) {
   Interests.collection.update({ name: interest }, { $set: { name: interest } }, { upsert: true });
 }
 
+/** Define a needHelpClass.  Has no effect if interest already exists. */
+function addNeedHelpClass(needHelpClass) {
+  NeedHelpClasses.collection.update({ name: needHelpClass }, { $set: { name: needHelpClass } }, { upsert: true });
+}
+
 /** Defines a new user and associated profile. Error if user already exists. */
-function addProfile({ firstName, lastName, bio, title, interests, projects, picture, email, role }) {
+function addProfile({ firstName, lastName, bio, title, interests, projects, needHelpClasses, picture, email, role }) {
   console.log(`Defining profile ${email}`);
   // Define the user in the Meteor accounts package.
   createUser(email, role);
@@ -34,8 +41,12 @@ function addProfile({ firstName, lastName, bio, title, interests, projects, pict
   // Add interests and projects.
   interests.map(interest => ProfilesInterests.collection.insert({ profile: email, interest }));
   projects.map(project => ProfilesProjects.collection.insert({ profile: email, project }));
+  // Add needHelpClasses and helpWithClasses
+  needHelpClasses.map(needHelpClass => ProfilesNeedHelpClasses.collection.insert({ profile: email, needHelpClass }));
   // Make sure interests are defined in the NeedHelpClasses collection if they weren't already.
   interests.map(interest => addInterest(interest));
+  // Make sure needHelpClasses are defined in the NeedHelpClasses collection if they weren't already.
+  needHelpClasses.map(needHelpClass => addNeedHelpClass(needHelpClass));
 }
 
 /** Define a new project. Error if project already exists.  */

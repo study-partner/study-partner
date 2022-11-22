@@ -16,15 +16,19 @@ import { updateProfileMethod } from '../../startup/both/Methods';
 import LoadingSpinner from '../components/LoadingSpinner';
 import { pageStyle } from './pageStyles';
 import { ComponentIDs, PageIDs } from '../utilities/ids';
+import { NeedHelpClasses } from '../../api/NeedHelpClasses/NeedHelpClasses';
+import { ProfilesNeedHelpClasses } from '../../api/profiles/ProfilesNeedHelpClasses';
 
 /* Create a schema to specify the structure of the data to appear in the form. */
-const makeSchema = (allInterests, allProjects) => new SimpleSchema({
+const makeSchema = (allInterests, allProjects, allNeedHelpClasses) => new SimpleSchema({
   email: { type: String, label: 'Email', optional: true },
   firstName: { type: String, label: 'First', optional: true },
   lastName: { type: String, label: 'Last', optional: true },
   bio: { type: String, label: 'Biographical statement', optional: true },
   title: { type: String, label: 'Class standing', optional: true },
   picture: { type: String, label: 'Picture URL', optional: true },
+  needHelpClasses: { type: Array, label: 'Classes you need help with', optional: true },
+  'needHelpClasses.$': { type: String, allowedValues: allNeedHelpClasses },
   interests: { type: Array, label: 'Classes you need help with', optional: true },
   'interests.$': { type: String, allowedValues: allInterests },
   projects: { type: Array, label: 'Classes you can help others with', optional: true },
@@ -52,21 +56,25 @@ const YourProfile = () => {
     const sub3 = Meteor.subscribe(ProfilesInterests.userPublicationName);
     const sub4 = Meteor.subscribe(ProfilesProjects.userPublicationName);
     const sub5 = Meteor.subscribe(Projects.userPublicationName);
+    const sub6 = Meteor.subscribe(NeedHelpClasses.userPublicationName);
+    const sub7 = Meteor.subscribe(ProfilesNeedHelpClasses.userPublicationName);
     return {
-      ready: sub1.ready() && sub2.ready() && sub3.ready() && sub4.ready() && sub5.ready(),
+      ready: sub1.ready() && sub2.ready() && sub3.ready() && sub4.ready() && sub5.ready() && sub6.ready() && sub7.ready(),
       email: Meteor.user()?.username,
     };
   }, []);
   // Create the form schema for uniforms. Need to determine all interests and projects for muliselect list.
   const allInterests = _.pluck(Interests.collection.find().fetch(), 'name');
   const allProjects = _.pluck(Projects.collection.find().fetch(), 'name');
-  const formSchema = makeSchema(allInterests, allProjects);
+  const allNeedHelpClasses = _.pluck(NeedHelpClasses.collection.find().fetch(), 'name');
+  const formSchema = makeSchema(allInterests, allProjects, allNeedHelpClasses);
   const bridge = new SimpleSchema2Bridge(formSchema);
   // Now create the model with all the user information.
   const projects = _.pluck(ProfilesProjects.collection.find({ profile: email }).fetch(), 'project');
   const interests = _.pluck(ProfilesInterests.collection.find({ profile: email }).fetch(), 'interest');
+  const needHelpClasses = _.pluck(ProfilesNeedHelpClasses.collection.find({ profile: email }).fetch(), 'needHelpClass');
   const profile = Profiles.collection.findOne({ email });
-  const model = _.extend({}, profile, { interests, projects });
+  const model = _.extend({}, profile, { interests, projects, needHelpClasses });
   return ready ? (
     <Container id={PageIDs.homePage} className="justify-content-center" style={pageStyle}>
       <Col>
@@ -87,6 +95,9 @@ const YourProfile = () => {
               <Row>
                 <Col xs={6}><SelectField name="interests" showInlineError multiple /></Col>
                 <Col xs={6}><SelectField name="projects" showInlineError multiple /></Col>
+              </Row>
+              <Row>
+                <Col xs={6}><SelectField name="needHelpClasses" showInlineError multiple /></Col>
               </Row>
               <SubmitField id={ComponentIDs.homeFormSubmit} value="Update" />
             </Card.Body>
