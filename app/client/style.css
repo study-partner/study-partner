@@ -69,3 +69,35 @@ footer.admin {
   margin-top: 0;
   margin-bottom: 0;
 }
+
+.landing-main {
+  height: 95vh;
+  display: flex;
+}
+
+.landing-main-left {
+  width: 45%;
+  text-align: center;
+  padding: 200px 50px;
+}
+
+.landing-main-right {
+  position: relative;
+  padding-top: 30px;
+  width: 55%;
+}
+
+.landing-main button {
+  background-color: var(--navbar-bg);
+  color: white;
+  border: none;
+  border-radius: 5px;
+  margin: 5px;
+  padding: 5px;
+  width: 200px;
+}
+
+.landing-background {
+  background-image: url("/images/charlesdeluvio-Lks7vei-eAg-unsplash.jpg");
+  background-size: cover;
+}
