@@ -56,14 +56,14 @@ body {
 }
 
 .landing-main {
-  height: 95vh;
   display: flex;
+  padding-bottom: 30px;
 }
 
 .landing-main-left {
   width: 45%;
   text-align: center;
-  padding: 200px 100px;
+  padding: 200px 70px 200px 100px;
 }
 
 .landing-main-left * {
@@ -99,4 +99,9 @@ footer p {
 footer a {
   text-decoration: none;
   color: white;
+}
+
+#signUpPage,
+#signInPage {
+  height: 95vh;
 }
