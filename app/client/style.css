@@ -100,3 +100,8 @@ footer a {
   text-decoration: none;
   color: white;
 }
+
+#signUpPage,
+#signInPage {
+  height: 95vh;
+}
