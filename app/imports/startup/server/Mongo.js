@@ -9,6 +9,8 @@ import { ProfilesInterests } from '../../api/profiles/ProfilesInterests';
 import { Interests } from '../../api/interests/Interests';
 import { NeedHelpClasses } from '../../api/NeedHelpClasses/NeedHelpClasses';
 import { ProfilesNeedHelpClasses } from '../../api/profiles/ProfilesNeedHelpClasses';
+import { HelpOthersClasses } from '../../api/HelpOthersClasses/HelpOthersClasses';
+import { ProfilesHelpOthersClasses } from '../../api/profiles/ProfilesHelpOthersClasses';
 
 /* eslint-disable no-console */
 
@@ -31,8 +33,13 @@ function addNeedHelpClass(needHelpClass) {
   NeedHelpClasses.collection.update({ name: needHelpClass }, { $set: { name: needHelpClass } }, { upsert: true });
 }
 
+/** Define a helpOthersClass.  Has no effect if interest already exists. */
+function addHelpOthersClass(helpOthersClass) {
+  HelpOthersClasses.collection.update({ name: helpOthersClass }, { $set: { name: helpOthersClass } }, { upsert: true });
+}
+
 /** Defines a new user and associated profile. Error if user already exists. */
-function addProfile({ firstName, lastName, bio, title, interests, projects, needHelpClasses, picture, email, role }) {
+function addProfile({ firstName, lastName, bio, title, interests, projects, needHelpClasses, helpOthersClasses, picture, email, role }) {
   console.log(`Defining profile ${email}`);
   // Define the user in the Meteor accounts package.
   createUser(email, role);
@@ -41,12 +48,15 @@ function addProfile({ firstName, lastName, bio, title, interests, projects, need
   // Add interests and projects.
   interests.map(interest => ProfilesInterests.collection.insert({ profile: email, interest }));
   projects.map(project => ProfilesProjects.collection.insert({ profile: email, project }));
-  // Add needHelpClasses and helpWithClasses
+  // Add needHelpClasses and helpOthersClasses
   needHelpClasses.map(needHelpClass => ProfilesNeedHelpClasses.collection.insert({ profile: email, needHelpClass }));
-  // Make sure interests are defined in the NeedHelpClasses collection if they weren't already.
+  helpOthersClasses.map(helpOthersClass => ProfilesHelpOthersClasses.collection.insert({ profile: email, helpOthersClass }));
+  // Make sure interests are defined in the Interests collection if they weren't already.
   interests.map(interest => addInterest(interest));
   // Make sure needHelpClasses are defined in the NeedHelpClasses collection if they weren't already.
   needHelpClasses.map(needHelpClass => addNeedHelpClass(needHelpClass));
+  // Make sure helpOthersClasses are defined in the HelpOthersClasses collection if they weren't already.
+  helpOthersClasses.map(helpOthersClass => addHelpOthersClass(helpOthersClass));
 }
 
 /** Define a new project. Error if project already exists.  */
@@ -54,7 +64,7 @@ function addProject({ name, homepage, description, interests, picture }) {
   console.log(`Defining project ${name}`);
   Projects.collection.insert({ name, homepage, description, picture });
   interests.map(interest => ProjectsInterests.collection.insert({ project: name, interest }));
-  // Make sure interests are defined in the NeedHelpClasses collection if they weren't already.
+  // Make sure interests are defined in the Interests collection if they weren't already.
   interests.map(interest => addInterest(interest));
 }
 

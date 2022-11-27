@@ -18,9 +18,11 @@ import { pageStyle } from './pageStyles';
 import { ComponentIDs, PageIDs } from '../utilities/ids';
 import { NeedHelpClasses } from '../../api/NeedHelpClasses/NeedHelpClasses';
 import { ProfilesNeedHelpClasses } from '../../api/profiles/ProfilesNeedHelpClasses';
+import { HelpOthersClasses } from '../../api/HelpOthersClasses/HelpOthersClasses';
+import { ProfilesHelpOthersClasses } from '../../api/profiles/ProfilesHelpOthersClasses';
 
 /* Create a schema to specify the structure of the data to appear in the form. */
-const makeSchema = (allInterests, allProjects, allNeedHelpClasses) => new SimpleSchema({
+const makeSchema = (allInterests, allProjects, allNeedHelpClasses, allHelpOthersClasses) => new SimpleSchema({
   email: { type: String, label: 'Email', optional: true },
   firstName: { type: String, label: 'First', optional: true },
   lastName: { type: String, label: 'Last', optional: true },
@@ -29,6 +31,8 @@ const makeSchema = (allInterests, allProjects, allNeedHelpClasses) => new Simple
   picture: { type: String, label: 'Picture URL', optional: true },
   needHelpClasses: { type: Array, label: 'Classes you need help with', optional: true },
   'needHelpClasses.$': { type: String, allowedValues: allNeedHelpClasses },
+  helpOthersClasses: { type: Array, label: 'Classes you can help others with', optional: true },
+  'helpOthersClasses.$': { type: String, allowedValues: allHelpOthersClasses },
   interests: { type: Array, label: 'Classes you need help with', optional: true },
   'interests.$': { type: String, allowedValues: allInterests },
   projects: { type: Array, label: 'Classes you can help others with', optional: true },
@@ -58,8 +62,10 @@ const YourProfile = () => {
     const sub5 = Meteor.subscribe(Projects.userPublicationName);
     const sub6 = Meteor.subscribe(NeedHelpClasses.userPublicationName);
     const sub7 = Meteor.subscribe(ProfilesNeedHelpClasses.userPublicationName);
+    const sub8 = Meteor.subscribe(HelpOthersClasses.userPublicationName);
+    const sub9 = Meteor.subscribe(ProfilesHelpOthersClasses.userPublicationName);
     return {
-      ready: sub1.ready() && sub2.ready() && sub3.ready() && sub4.ready() && sub5.ready() && sub6.ready() && sub7.ready(),
+      ready: sub1.ready() && sub2.ready() && sub3.ready() && sub4.ready() && sub5.ready() && sub6.ready() && sub7.ready() && sub8.ready() && sub9.ready(),
       email: Meteor.user()?.username,
     };
   }, []);
@@ -67,14 +73,16 @@ const YourProfile = () => {
   const allInterests = _.pluck(Interests.collection.find().fetch(), 'name');
   const allProjects = _.pluck(Projects.collection.find().fetch(), 'name');
   const allNeedHelpClasses = _.pluck(NeedHelpClasses.collection.find().fetch(), 'name');
-  const formSchema = makeSchema(allInterests, allProjects, allNeedHelpClasses);
+  const allHelpOthersClasses = _.pluck(HelpOthersClasses.collection.find().fetch(), 'name');
+  const formSchema = makeSchema(allInterests, allProjects, allNeedHelpClasses, allHelpOthersClasses);
   const bridge = new SimpleSchema2Bridge(formSchema);
   // Now create the model with all the user information.
   const projects = _.pluck(ProfilesProjects.collection.find({ profile: email }).fetch(), 'project');
   const interests = _.pluck(ProfilesInterests.collection.find({ profile: email }).fetch(), 'interest');
   const needHelpClasses = _.pluck(ProfilesNeedHelpClasses.collection.find({ profile: email }).fetch(), 'needHelpClass');
+  const helpOthersClasses = _.pluck(ProfilesHelpOthersClasses.collection.find({ profile: email }).fetch(), 'helpOthersClass');
   const profile = Profiles.collection.findOne({ email });
-  const model = _.extend({}, profile, { interests, projects, needHelpClasses });
+  const model = _.extend({}, profile, { interests, projects, needHelpClasses, helpOthersClasses });
   return ready ? (
     <Container id={PageIDs.homePage} className="justify-content-center" style={pageStyle}>
       <Col>
@@ -98,6 +106,7 @@ const YourProfile = () => {
               </Row>
               <Row>
                 <Col xs={6}><SelectField name="needHelpClasses" showInlineError multiple /></Col>
+                <Col xs={6}><SelectField name="helpOthersClasses" showInlineError multiple /></Col>
               </Row>
               <SubmitField id={ComponentIDs.homeFormSubmit} value="Update" />
             </Card.Body>
