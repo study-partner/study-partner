@@ -9,12 +9,17 @@ import { ProjectsInterests } from '../../api/projects/ProjectsInterests';
 import { NeedHelpClasses } from '../../api/NeedHelpClasses/NeedHelpClasses';
 import { ProfilesNeedHelpClasses } from '../../api/profiles/ProfilesNeedHelpClasses';
 import { Reports } from '../../api/report/Reports';
+import { HelpOthersClasses } from '../../api/HelpOthersClasses/HelpOthersClasses';
+import { ProfilesHelpOthersClasses } from '../../api/profiles/ProfilesHelpOthersClasses';
 
 /** Define a publication to publish all interests. */
 Meteor.publish(Interests.userPublicationName, () => Interests.collection.find());
 
 /** Define a publication to publish all needHelpClasses. (new) */
 Meteor.publish(NeedHelpClasses.userPublicationName, () => NeedHelpClasses.collection.find());
+
+/** Define a publication to publish all helpOthersClasses. (new) */
+Meteor.publish(HelpOthersClasses.userPublicationName, () => HelpOthersClasses.collection.find());
 
 /** Define a publication to publish all profiles. */
 Meteor.publish(Profiles.userPublicationName, () => Profiles.collection.find());
@@ -27,6 +32,9 @@ Meteor.publish(ProfilesProjects.userPublicationName, () => ProfilesProjects.coll
 
 /** Define a publication to publish this collection. (new) */
 Meteor.publish(ProfilesNeedHelpClasses.userPublicationName, () => ProfilesNeedHelpClasses.collection.find());
+
+/** Define a publication to publish this collection. (new) */
+Meteor.publish(ProfilesHelpOthersClasses.userPublicationName, () => ProfilesHelpOthersClasses.collection.find());
 
 /** Define a publication to publish all projects. */
 Meteor.publish(Projects.userPublicationName, () => Projects.collection.find());
