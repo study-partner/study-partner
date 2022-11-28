@@ -139,5 +139,9 @@
       "picture": "https://www.hawaii.edu/its/wp-content/uploads/sites/2/2019/01/LAVAlogo-300x192-300x192.png"
     }
   ],
+  "defaultSessions": [
+    { "course": "ICS321", "time": "12:55", "role": "admin" },
+    { "course": "ICS111", "time": "10:55"}
+  ],
   "loadAssetsFile":  false
 }

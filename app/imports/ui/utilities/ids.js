@@ -45,4 +45,6 @@ export const PageIDs = {
   signInPage: 'signInPage',
   signOutPage: 'signOutPage',
   signUpPage: 'signUpPage',
+  createSession: 'createSession',
+  joinSession: 'joinSession',
 };
