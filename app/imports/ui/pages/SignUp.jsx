@@ -6,6 +6,7 @@ import SimpleSchema from 'simpl-schema';
 import SimpleSchema2Bridge from 'uniforms-bridge-simple-schema-2';
 import { AutoForm, ErrorsField, SubmitField, TextField } from 'uniforms-bootstrap5';
 import { ComponentIDs, PageIDs } from '../utilities/ids';
+import { Profiles } from '../../api/profiles/Profiles';
 
 /*
  * SignUp component is similar to signin component, but we create a new user instead.
@@ -31,6 +32,8 @@ const SignUp = () => {
         setRedirectToRef(true);
       }
     });
+    // Create the profile.
+    Profiles.collection.insert({ firstName: '', lastName: '', bio: '', title: '', picture: '', email });
   };
 
   // if correct authentication, redirect to from: page instead of signup screen
