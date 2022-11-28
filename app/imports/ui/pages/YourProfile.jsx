@@ -101,10 +101,6 @@ const YourProfile = () => {
                 <Col xs={6}><TextField name="picture" showInlineError placeholder="URL to picture" /></Col>
               </Row>
               <Row>
-                <Col xs={6}><SelectField name="interests" showInlineError multiple /></Col>
-                <Col xs={6}><SelectField name="projects" showInlineError multiple /></Col>
-              </Row>
-              <Row>
                 <Col xs={6}><SelectField name="needHelpClasses" showInlineError multiple /></Col>
                 <Col xs={6}><SelectField name="helpOthersClasses" showInlineError multiple /></Col>
               </Row>
