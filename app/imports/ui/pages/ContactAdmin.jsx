@@ -9,10 +9,11 @@ import { Reports } from '../../api/report/Reports';
 
 // Create a schema to specify the structure of the data to appear in the form.
 const formSchema = new SimpleSchema({
-  firstName: String,
-  lastName: String,
+  firstName: { type: String, label: 'First Name' },
+  lastName: { type: String, label: 'Last Name' },
+  email: { type: String, optional: true },
   subject: String,
-  description: String,
+  description: { type: String, label: 'Message' },
 });
 
 const bridge = new SimpleSchema2Bridge(formSchema);
@@ -22,15 +23,15 @@ const ContactAdmin = () => {
 
   // On submit, insert the data.
   const submit = (data, formRef) => {
-    const { firstName, lastName, subject, description } = data;
+    const { firstName, lastName, email, subject, description } = data;
     const owner = Meteor.user().username;
     Reports.collection.insert(
-      { firstName, lastName, subject, description, owner },
+      { firstName, lastName, email, subject, description, owner },
       (error) => {
         if (error) {
           swal('Error', error.message, 'error');
         } else {
-          swal('Success', 'Item added successfully', 'success');
+          swal('Success', 'Report is filed successfully', 'success');
           formRef.reset();
         }
       },
@@ -51,7 +52,7 @@ const ContactAdmin = () => {
                   <Col xs={6}><TextField name="firstName" showInlineError /></Col>
                   <Col xs={6}><TextField name="lastName" showInlineError /></Col>
                 </Row>
-                <Card.Text>Email: {Meteor.user().username}</Card.Text>
+                <TextField name="email" placeholder={Meteor.user().username} showInlineError disabled />
                 <TextField name="subject" showInlineError />
                 <LongTextField name="description" showInlineError />
                 <SubmitField value="Submit" />

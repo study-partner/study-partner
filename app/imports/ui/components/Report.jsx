@@ -7,10 +7,10 @@ const Report = ({ report }) => (
   <Card className="h-100">
     <Card.Header>
       <Card.Title>{report.firstName} {report.lastName}</Card.Title>
-      <Card.Text>{report.owner}</Card.Text>
+      <Card.Text>From: {report.owner}</Card.Text>
     </Card.Header>
     <Card.Body>
-      <Card.Text>{report.subject}</Card.Text>
+      <Card.Text>Subject: {report.subject}</Card.Text>
       <Card.Text>{report.description}</Card.Text>
     </Card.Body>
   </Card>
