@@ -1,5 +1,5 @@
 import React from 'react';
-import { AutoForm, TextField, SubmitField } from 'uniforms-bootstrap5';
+import { AutoForm, TextField, LongTextField, SelectField, SubmitField } from 'uniforms-bootstrap5';
 import { Container, Col, Card, Row } from 'react-bootstrap';
 import swal from 'sweetalert';
 import SimpleSchema2Bridge from 'uniforms-bridge-simple-schema-2';
@@ -20,14 +20,14 @@ import { ComponentIDs, PageIDs } from '../utilities/ids';
 /* Create a schema to specify the structure of the data to appear in the form. */
 const makeSchema = (allInterests, allProjects) => new SimpleSchema({
   email: { type: String, label: 'Email', optional: true },
-  firstName: { type: String, label: 'First', optional: true },
+  firstName: { type: String, label: 'Course', optional: true },
   lastName: { type: String, label: 'Last', optional: true },
   bio: { type: String, label: 'Time', optional: true },
-  title: { type: String, label: 'Course', optional: true },
+  title: { type: String, label: 'Class standing', optional: true },
   picture: { type: String, label: 'Picture URL', optional: true },
-  interests: { type: Array, label: 'Course', optional: true },
+  interests: { type: Array, label: 'Classes you need help with', optional: true },
   'interests.$': { type: String, allowedValues: allInterests },
-  projects: { type: Array, label: 'Time', optional: true },
+  projects: { type: Array, label: 'Classes you can help others with', optional: true },
   'projects.$': { type: String, allowedValues: allProjects },
 });
 
@@ -70,15 +70,15 @@ const CreateSession = () => {
   return ready ? (
     <Container id={PageIDs.homePage} className="justify-content-center" style={pageStyle}>
       <Col>
-        <Col className="justify-content-center text-center"><h2>Create Sessions</h2></Col>
+        <Col className="justify-content-center text-center"><h2>Jion Session</h2></Col>
         <AutoForm model={model} schema={bridge} onSubmit={data => submit(data)}>
           <Card>
             <Card.Body>
               <Row>
-                <TextField name="title" showInlineError placeholder="Your Course.." />
+                <TextField name="firstName" showInlineError placeholder="Create Course" />
               </Row>
-              <Col><TextField id={ComponentIDs.homeFormBio} name="bio" placeholder="Enter your time.." /></Col>
-              <SubmitField id={ComponentIDs.homeFormSubmit} value="Schedule Session" />
+              <TextField id={ComponentIDs.homeFormBio} name="bio" placeholder="Time" />
+              <SubmitField id={ComponentIDs.homeFormSubmit} value="Update" />
             </Card.Body>
           </Card>
         </AutoForm>

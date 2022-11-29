@@ -3,7 +3,7 @@ import SimpleSchema from 'simpl-schema';
 import { Tracker } from 'meteor/tracker';
 
 /** Encapsulates state and variable values for this collection. */
-class SessionCollection {
+class ProjectsCollection {
   constructor() {
     // The name of this collection.
     this.name = 'ProjectsCollection';
@@ -11,8 +11,10 @@ class SessionCollection {
     this.collection = new Mongo.Collection(this.name);
     // Define the structure of each document in the collection.
     this.schema = new SimpleSchema({
-      course: { type: String, index: true, unique: true },
-      time: { type: String, optional: true },
+      name: { type: String, index: true, unique: true },
+      homepage: { type: String, optional: true },
+      description: { type: String, optional: true },
+      picture: { type: String, optional: true },
     }, { tracker: Tracker });
     // Ensure collection documents obey schema.
     this.collection.attachSchema(this.schema);
@@ -22,4 +24,4 @@ class SessionCollection {
   }
 }
 
-export const Session = new SessionCollection();
+export const Session = new ProjectsCollection();

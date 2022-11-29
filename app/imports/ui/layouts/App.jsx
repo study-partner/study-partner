@@ -35,8 +35,8 @@ const App = () => (
         <Route path="/projects" element={<Projects />} />
         <Route path="/home" element={<ProtectedRoute><Home /></ProtectedRoute>} />
         <Route path="/yourprofile" element={<YourProfile />} />
-        <Route path="/createsession" element={<ProtectedRoute><CreateSession /></ProtectedRoute>} />
-        <Route path="/joinsession" element={<ProtectedRoute><JionSession /></ProtectedRoute>} />
+        <Route path="/createsession" element={<CreateSession />} />
+        <Route path="/jionsession" element={<JionSession />} />
         <Route path="/filter" element={<ProtectedRoute><Filter /></ProtectedRoute>} />
         <Route path="/addproject" element={<ProtectedRoute><AddProject /></ProtectedRoute>} />
         <Route path="/notauthorized" element={<NotAuthorized />} />

@@ -1,5 +1,5 @@
 import React from 'react';
-import { AutoForm, SelectField, SubmitField } from 'uniforms-bootstrap5';
+import { AutoForm, TextField, LongTextField, SelectField, SubmitField } from 'uniforms-bootstrap5';
 import { Container, Col, Card, Row } from 'react-bootstrap';
 import swal from 'sweetalert';
 import SimpleSchema2Bridge from 'uniforms-bridge-simple-schema-2';
@@ -25,9 +25,9 @@ const makeSchema = (allInterests, allProjects) => new SimpleSchema({
   bio: { type: String, label: 'Biographical statement', optional: true },
   title: { type: String, label: 'Class standing', optional: true },
   picture: { type: String, label: 'Picture URL', optional: true },
-  interests: { type: Array, label: 'Course', optional: true },
+  interests: { type: Array, label: 'Classes you need help with', optional: true },
   'interests.$': { type: String, allowedValues: allInterests },
-  projects: { type: Array, label: 'Time', optional: true },
+  projects: { type: Array, label: 'Classes you can help others with', optional: true },
   'projects.$': { type: String, allowedValues: allProjects },
 });
 
@@ -70,17 +70,26 @@ const JionSession = () => {
   return ready ? (
     <Container id={PageIDs.homePage} className="justify-content-center" style={pageStyle}>
       <Col>
-        <Col className="justify-content-center text-center"><h2>Join Sessions</h2></Col>
+        <Col className="justify-content-center text-center"><h2>Your Profile</h2></Col>
         <AutoForm model={model} schema={bridge} onSubmit={data => submit(data)}>
           <Card>
             <Card.Body>
               <Row>
-                <Col><SelectField name="interests" showInlineError multiple /></Col>
+                <Col xs={4}><TextField id={ComponentIDs.homeFormFirstName} name="firstName" showInlineError placeholder="First Name" /></Col>
+                <Col xs={4}><TextField id={ComponentIDs.homeFormLastName} name="lastName" showInlineError placeholder="Last Name" /></Col>
+                <Col xs={4}><TextField name="email" showInlineError placeholder="email" disabled /></Col>
               </Row>
-              <Col><SelectField name="projects" showInlineError multiple /></Col>
-              <Col><SelectField label="People Attending: " name="interests" showInlineError multiple /></Col>
+              <LongTextField id={ComponentIDs.homeFormBio} name="bio" placeholder="Write a little bit about yourself." />
+              <Row>
+                <Col xs={6}><TextField name="title" showInlineError placeholder="Class standing" /></Col>
+                <Col xs={6}><TextField name="picture" showInlineError placeholder="URL to picture" /></Col>
+              </Row>
+              <Row>
+                <Col xs={6}><SelectField name="interests" showInlineError multiple /></Col>
+                <Col xs={6}><SelectField name="projects" showInlineError multiple /></Col>
+              </Row>
+              <SubmitField id={ComponentIDs.homeFormSubmit} value="Update" />
             </Card.Body>
-            <SubmitField id={ComponentIDs.homeFormSubmit} value="Join Session" />
           </Card>
         </AutoForm>
       </Col>
