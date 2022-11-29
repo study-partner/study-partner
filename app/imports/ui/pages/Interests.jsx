@@ -45,7 +45,7 @@ MakeCard.propTypes = {
   }).isRequired,
 };
 
-/* Renders the NeedHelpClasses as a set of Cards. */
+/* Renders the Interests as a set of Cards. */
 const InterestsPage = () => {
 
   /* If the subscription(s) have been received, render the page, otherwise show a loading icon. */

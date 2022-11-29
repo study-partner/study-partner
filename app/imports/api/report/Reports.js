@@ -3,16 +3,19 @@ import SimpleSchema from 'simpl-schema';
 import { Tracker } from 'meteor/tracker';
 
 /** Encapsulates state and variable values for this collection. */
-class ProfilesNeedHelpClassesCollection {
+class ReportsCollection {
   constructor() {
     // The name of this collection.
-    this.name = 'ProfilesNeedHelpClassesCollection';
+    this.name = 'ReportsCollection';
     // Define the Mongo collection.
     this.collection = new Mongo.Collection(this.name);
     // Define the structure of each document in the collection.
     this.schema = new SimpleSchema({
-      profile: String,
-      needHelpClass: String,
+      firstName: { type: String, optional: true },
+      lastName: { type: String, optional: true },
+      email: { type: String, optional: true },
+      subject: { type: String, optional: true },
+      description: { type: String, optional: true },
     }, { tracker: Tracker });
     // Ensure collection documents obey schema.
     this.collection.attachSchema(this.schema);
@@ -22,4 +25,4 @@ class ProfilesNeedHelpClassesCollection {
   }
 }
 
-export const ProfilesNeedHelpClasses = new ProfilesNeedHelpClassesCollection();
+export const Reports = new ReportsCollection();

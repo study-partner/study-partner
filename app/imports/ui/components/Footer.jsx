@@ -1,35 +1,26 @@
 import React from 'react';
-import { Col, Container } from 'react-bootstrap';
-import { Meteor } from 'meteor/meteor';
-import { Roles } from 'meteor/alanning:roles';
-import { useTracker } from 'meteor/react-meteor-data';
+import { Col, Container, Row, Image } from 'react-bootstrap';
 
 /* The Footer appears at the bottom of every page. Rendered by the App Layout component. */
-const Footer = () => {
-  const { currentUser } = useTracker(() => ({
-    currentUser: Meteor.user() ? Meteor.user().username : '',
-    loggedIn: !!Meteor.user(),
-  }), []);
-  const isAdmin = currentUser && Roles.userIsInRole(Meteor.userId(), 'admin');
-  const footerClass = isAdmin ? 'footer mt-auto py-3 admin' : 'footer mt-auto py-3 user';
-
-  return (
-    <footer className={footerClass}>
-      <Container>
-        <Col className="text-center" style={{ color: 'white' }}>
-          The Study Partner Project
-          {' '}
-          <br />
-          University of Hawaii
-          <br />
-          Honolulu, HI 96822
-          {' '}
-          <br />
-          <a style={{ color: 'white' }} href="https://study-partner.github.io/">https://study-partner.github.io/</a>
+const Footer = () => (
+  <footer>
+    <Container>
+      <Row>
+        <Col sm={2} className="d-flex justify-content-center">
+          <Image src="https://manoa.hawaii.edu/speakers/wp-content/uploads/logo-1.png" width={140} />
         </Col>
-      </Container>
-    </footer>
-  );
-};
+        <Col sm={5}>
+          <h2>The Study Partner Project</h2>
+          <p>Study Partner is an application for UHM ICS students to self-organize face-to-face study groups around a course and/or specific homework or project topic.</p>
+        </Col>
+      </Row>
+      <br />
+      <Row>
+        <hr />
+        <a href="https://study-partner.github.io/">View project home page</a>
+      </Row>
+    </Container>
+  </footer>
+);
 
 export default Footer;
