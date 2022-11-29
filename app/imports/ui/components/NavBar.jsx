@@ -27,7 +27,7 @@ const NavBar = () => {
             {currentUser ? (
               [
                 <Nav.Link as={NavLink} to="/yourprofile">Profile</Nav.Link>,
-                <Nav.Link as={NavLink} to="">Calendar</Nav.Link>,
+                <Nav.Link as={NavLink} to="/calendar">Calendar</Nav.Link>,
                 <Nav.Link as={NavLink} to="">Leaderboard</Nav.Link>,
               ]
             ) : ''}
