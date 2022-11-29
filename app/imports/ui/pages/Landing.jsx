@@ -7,7 +7,7 @@ import { PageIDs } from '../utilities/ids';
 
 /* A simple static component to render some text for the landing page. */
 const Landing = () => (
-  <div id={PageIDs.landingPage}>
+  <div id={PageIDs.landingPage} className="page">
     <div className="landing-main">
       <div className="landing-main-left">
         <h1 className="align-content-center justify-content-center" style={{ fontSize: '3.5rem', fontWeight: 'bold' }}>Schedule Study Sessions</h1>
