@@ -49,11 +49,11 @@ const ContactAdmin = () => {
             <Card>
               <Card.Body>
                 <Row>
-                  <Col xs={6}><TextField name="firstName" showInlineError placeholder="First Name" /></Col>
-                  <Col xs={6}><TextField name="lastName" showInlineError placeholder="Last Name" /></Col>
+                  <Col xs={6}><TextField name="firstName" showInlineError /></Col>
+                  <Col xs={6}><TextField name="lastName" showInlineError /></Col>
                 </Row>
-                <TextField name="email" showInlineError placeholder="email" disabled />
-                <TextField name="subject" showInlineError placeholder="Subject" />
+                <TextField name="email" showInlineError placeholder={Meteor.user().username} disabled />
+                <TextField name="subject" showInlineError />
                 <LongTextField name="description" />
                 <SubmitField value="Submit" />
                 <ErrorsField />
