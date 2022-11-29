@@ -93,7 +93,7 @@ const YourProfile = () => {
               <Row>
                 <Col xs={4}><TextField id={ComponentIDs.homeFormFirstName} name="firstName" showInlineError placeholder="First Name" /></Col>
                 <Col xs={4}><TextField id={ComponentIDs.homeFormLastName} name="lastName" showInlineError placeholder="Last Name" /></Col>
-                <Col xs={4}><TextField name="email" showInlineError placeholder="email" disabled /></Col>
+                <Col xs={4}><TextField name="email" showInlineError placeholder={Meteor.user().username} disabled /></Col>
               </Row>
               <LongTextField id={ComponentIDs.homeFormBio} name="bio" placeholder="Write a little bit about yourself." />
               <Row>
