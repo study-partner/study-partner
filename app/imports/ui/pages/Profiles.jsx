@@ -1,25 +1,22 @@
 import React from 'react';
 import { Meteor } from 'meteor/meteor';
-import { Badge, Container, Card, Image, Row, Col } from 'react-bootstrap';
+import { Container, Card, Image, Row, Col } from 'react-bootstrap';
 import { useTracker } from 'meteor/react-meteor-data';
 import PropTypes from 'prop-types';
 import { _ } from 'meteor/underscore';
 import { Profiles } from '../../api/profiles/Profiles';
-import { ProfilesInterests } from '../../api/profiles/ProfilesInterests';
-import { ProfilesProjects } from '../../api/profiles/ProfilesProjects';
-import { Projects } from '../../api/projects/Projects';
 import LoadingSpinner from '../components/LoadingSpinner';
 import { pageStyle } from './pageStyles';
 import { PageIDs } from '../utilities/ids';
+import { ProfilesHelpOthersClasses } from '../../api/profiles/ProfilesHelpOthersClasses';
+import { ProfilesNeedHelpClasses } from '../../api/profiles/ProfilesNeedHelpClasses';
 
 /* Returns the Profile and associated Sessions and HelpWithClasses associated with the passed user email. */
 function getProfileData(email) {
   const data = Profiles.collection.findOne({ email });
-  const interests = _.pluck(ProfilesInterests.collection.find({ profile: email }).fetch(), 'interest');
-  const projects = _.pluck(ProfilesProjects.collection.find({ profile: email }).fetch(), 'project');
-  const projectPictures = projects.map(project => Projects.collection.findOne({ name: project })?.picture);
-  // console.log(_.extend({ }, data, { interests, projects: projectPictures }));
-  return _.extend({}, data, { interests, projects: projectPictures });
+  const needHelpClasses = _.pluck(ProfilesNeedHelpClasses.collection.find({ profile: email }).fetch(), 'needHelpClass');
+  const helpOtherClasses = _.pluck(ProfilesHelpOthersClasses.collection.find({ profile: email }).fetch(), 'helpOthersClass');
+  return _.extend({}, data, { needHelpClasses, helpOtherClasses });
 }
 
 /* Component for layout out a Profile Card. */
@@ -35,11 +32,14 @@ const MakeCard = ({ profile }) => (
         <Card.Text>
           {profile.bio}
         </Card.Text>
-        <Card.Text>
-          {profile.interests.map((interest, index) => <Badge key={index} bg="info">{interest}</Badge>)}
-        </Card.Text>
-        <h5>Projects</h5>
-        {profile.projects.map((project, index) => <Image key={index} src={project} width={50} />)}
+        <span>Can help with:</span>
+        <ul>
+          {profile.helpOtherClasses.map((helpOtherClasses) => <li>{helpOtherClasses}</li>)}
+        </ul>
+        <span>Need help with:</span>
+        <ul>
+          {profile.needHelpClasses.map((needHelpClasses) => <li>{needHelpClasses}</li>)}
+        </ul>
       </Card.Body>
     </Card>
   </Col>
@@ -54,6 +54,8 @@ MakeCard.propTypes = {
     title: PropTypes.string,
     interests: PropTypes.arrayOf(PropTypes.string),
     projects: PropTypes.arrayOf(PropTypes.string),
+    needHelpClasses: PropTypes.arrayOf(PropTypes.string),
+    helpOtherClasses: PropTypes.arrayOf(PropTypes.string),
   }).isRequired,
 };
 
@@ -63,11 +65,10 @@ const ProfilesPage = () => {
   const { ready } = useTracker(() => {
     // Ensure that minimongo is populated with all collections prior to running render().
     const sub1 = Meteor.subscribe(Profiles.userPublicationName);
-    const sub2 = Meteor.subscribe(ProfilesInterests.userPublicationName);
-    const sub3 = Meteor.subscribe(ProfilesProjects.userPublicationName);
-    const sub4 = Meteor.subscribe(Projects.userPublicationName);
+    const sub2 = Meteor.subscribe(ProfilesNeedHelpClasses.userPublicationName);
+    const sub3 = Meteor.subscribe(ProfilesHelpOthersClasses.userPublicationName);
     return {
-      ready: sub1.ready() && sub2.ready() && sub3.ready() && sub4.ready(),
+      ready: sub1.ready() && sub2.ready() && sub3.ready(),
     };
   }, []);
   const emails = _.pluck(Profiles.collection.find().fetch(), 'email');
