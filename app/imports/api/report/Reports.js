@@ -13,7 +13,6 @@ class ReportsCollection {
     this.schema = new SimpleSchema({
       firstName: { type: String, optional: true },
       lastName: { type: String, optional: true },
-      email: { type: String, optional: true },
       subject: { type: String, optional: true },
       description: { type: String, optional: true },
     }, { tracker: Tracker });

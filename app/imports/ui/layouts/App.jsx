@@ -18,6 +18,7 @@ import Filter from '../pages/Filter';
 import AddProject from '../pages/AddProject';
 import YourProfile from '../pages/YourProfile';
 import ContactAdmin from '../pages/ContactAdmin';
+import ViewReports from '../pages/ViewReports';
 
 function isLogged() {
   return Meteor.userId() !== null;
@@ -39,6 +40,7 @@ const App = () => (
         <Route path="/home" element={<ProtectedRoute><Home /></ProtectedRoute>} />
         <Route path="/yourprofile" element={<YourProfile />} />
         <Route path="/contact-admin" element={<ContactAdmin />} />
+        <Route path="/view-reports" element={<ViewReports />} />
         <Route path="/filter" element={<ProtectedRoute><Filter /></ProtectedRoute>} />
         <Route path="/addproject" element={<ProtectedRoute><AddProject /></ProtectedRoute>} />
         <Route path="/notauthorized" element={<NotAuthorized />} />

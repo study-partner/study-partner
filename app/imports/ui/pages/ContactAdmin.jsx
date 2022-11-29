@@ -11,7 +11,6 @@ import { Reports } from '../../api/report/Reports';
 const formSchema = new SimpleSchema({
   firstName: String,
   lastName: String,
-  email: String,
   subject: String,
   description: String,
 });
@@ -23,10 +22,10 @@ const ContactAdmin = () => {
 
   // On submit, insert the data.
   const submit = (data, formRef) => {
-    const { firstName, lastName, email, subject, description } = data;
+    const { firstName, lastName, subject, description } = data;
     const owner = Meteor.user().username;
     Reports.collection.insert(
-      { firstName, lastName, email, subject, description, owner },
+      { firstName, lastName, subject, description, owner },
       (error) => {
         if (error) {
           swal('Error', error.message, 'error');
@@ -52,9 +51,9 @@ const ContactAdmin = () => {
                   <Col xs={6}><TextField name="firstName" showInlineError /></Col>
                   <Col xs={6}><TextField name="lastName" showInlineError /></Col>
                 </Row>
-                <TextField name="email" showInlineError placeholder={Meteor.user().username} disabled />
+                <Card.Text>Email: {Meteor.user().username}</Card.Text>
                 <TextField name="subject" showInlineError />
-                <LongTextField name="description" />
+                <LongTextField name="description" showInlineError />
                 <SubmitField value="Submit" />
                 <ErrorsField />
               </Card.Body>
