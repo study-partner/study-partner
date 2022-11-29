@@ -42,7 +42,7 @@ const SignIn = () => {
   }
   // Otherwise return the Login form.
   return (
-    <Container id={PageIDs.signInPage}>
+    <Container id={PageIDs.signInPage} className="page">
       <Row className="justify-content-center">
         <Col xs={9}>
           <Col className="text-center">

@@ -41,7 +41,7 @@ const ContactAdmin = () => {
   // Render the form. Use Uniforms: https://github.com/vazco/uniforms
   let fRef = null;
   return (
-    <Container className="py-3">
+    <Container className="py-3 page">
       <Row className="justify-content-center">
         <Col xs={10}>
           <Col className="text-center"><h2>Contact Admin</h2></Col>

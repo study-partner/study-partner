@@ -101,7 +101,6 @@ footer a {
   color: white;
 }
 
-#signUpPage,
-#signInPage {
-  height: 95vh;
+.page {
+  min-height: 85vh;
 }

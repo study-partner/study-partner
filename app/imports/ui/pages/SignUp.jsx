@@ -41,7 +41,7 @@ const SignUp = () => {
     return (<Navigate to="/home" />);
   }
   return (
-    <Container id={PageIDs.signUpPage}>
+    <Container id={PageIDs.signUpPage} className="page">
       <Row className="justify-content-center">
         <Col xs={9}>
           <Col className="text-center">

@@ -75,7 +75,7 @@ const ProfilesPage = () => {
   // Need to ensure that getProfileData doesn't throw an error on line 18.
   const profileData = emails.map(email => getProfileData(email));
   return ready ? (
-    <Container id={PageIDs.profilesPage} style={pageStyle}>
+    <Container id={PageIDs.profilesPage} style={pageStyle} className="page">
       <Row xs={1} md={2} lg={4} className="g-2">
         {profileData.map((profile, index) => <MakeCard key={index} profile={profile} />)}
       </Row>
