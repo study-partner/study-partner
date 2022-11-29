@@ -12,7 +12,7 @@ import LoadingSpinner from '../components/LoadingSpinner';
 import { pageStyle } from './pageStyles';
 import { PageIDs } from '../utilities/ids';
 
-/* Returns the Profile and associated Session and NeedHelpClasses associated with the passed user email. */
+/* Returns the Profile and associated Projects and NeedHelpClasses associated with the passed user email. */
 function getProfileData(email) {
   const data = Profiles.collection.findOne({ email });
   const interests = _.pluck(ProfilesInterests.collection.find({ profile: email }).fetch(), 'interest');
