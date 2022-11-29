@@ -18,6 +18,14 @@ export const ComponentIDs = {
   homeFormBio: 'homeFormBio',
   homeFormSubmit: 'homeFormSubmit',
   homeMenuItem: 'homeMenuItem',
+
+  sessionCourse: 'sessionCourse',
+  sessionTime: 'sessionTime',
+  sessionMonth: 'sessionMonth',
+  sessionDay: 'sessionDay',
+  sessionYear: 'sessionYear',
+  sessionSubmit: 'sessionSubmit',
+
   interestsMenuItem: 'interestsMenuItem',
   loginDropdown: 'loginDropdown',
   loginDropdownSignIn: 'loginDropdownSignIn',

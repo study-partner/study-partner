@@ -36,7 +36,7 @@ const NavBar = () => {
               <Nav.Link as={NavLink} to="/contact-admin">Contact Admin</Nav.Link>
             ) : ''}
             {Roles.userIsInRole(Meteor.userId(), 'admin') ? (
-              <Nav.Link as={NavLink} to="" key="admin">View Report</Nav.Link>
+              <Nav.Link as={NavLink} to="/view-reports" key="admin">View Report</Nav.Link>
             ) : ''}
           </Nav>
           <Nav className="justify-content-end">
