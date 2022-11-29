@@ -26,13 +26,13 @@ const NavBar = () => {
           <Nav className="me-auto justify-content-start">
             {currentUser ? (
               [
-                <Nav.Link as={NavLink} to="/yourprofile">Profile</Nav.Link>,
-                <Nav.Link as={NavLink} to="">Calendar</Nav.Link>,
-                <Nav.Link as={NavLink} to="">Leaderboard</Nav.Link>,
+                <Nav.Link as={NavLink} to="/yourprofile" key="yourProfile">Profile</Nav.Link>,
+                <Nav.Link as={NavLink} to="" key="calendar">Calendar</Nav.Link>,
+                <Nav.Link as={NavLink} to="" key="leaderboard">Leaderboard</Nav.Link>,
               ]
             ) : ''}
             {currentUser && !Roles.userIsInRole(Meteor.userId(), 'admin') ? (
-              <Nav.Link as={NavLink} to="/contact-admin">Contact Admin</Nav.Link>
+              <Nav.Link as={NavLink} to="/contact-admin" key="contact-admin">Contact Admin</Nav.Link>
             ) : ''}
             {Roles.userIsInRole(Meteor.userId(), 'admin') ? (
               <Nav.Link as={NavLink} to="/view-reports" key="admin">View Report</Nav.Link>
@@ -40,13 +40,13 @@ const NavBar = () => {
           </Nav>
           <Nav className="justify-content-end">
             {currentUser === '' ? (
-              <NavDropdown id={ComponentIDs.loginDropdown} title="Login">
-                <NavDropdown.Item id={ComponentIDs.loginDropdownSignIn} as={NavLink} to="/signin">
+              <NavDropdown id={ComponentIDs.loginDropdown} title="Login" key="login">
+                <NavDropdown.Item id={ComponentIDs.loginDropdownSignIn} as={NavLink} to="/signin" key="signin">
                   <PersonFill />
                   Sign
                   in
                 </NavDropdown.Item>
-                <NavDropdown.Item id={ComponentIDs.loginDropdownSignUp} as={NavLink} to="/signup">
+                <NavDropdown.Item id={ComponentIDs.loginDropdownSignUp} as={NavLink} to="/signup" key="signup">
                   <PersonPlusFill />
                   Sign
                   up
@@ -54,7 +54,7 @@ const NavBar = () => {
               </NavDropdown>
             ) : (
               <NavDropdown id={ComponentIDs.currentUserDropdown} title={currentUser}>
-                <NavDropdown.Item id={ComponentIDs.currentUserDropdownSignOut} as={NavLink} to="/signout">
+                <NavDropdown.Item id={ComponentIDs.currentUserDropdownSignOut} as={NavLink} to="/signout" key="signout">
                   <BoxArrowRight />
                   {' '}
                   Sign
