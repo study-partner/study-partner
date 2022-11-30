@@ -10,7 +10,7 @@ import { interestsPage } from './interests.page'; */
 import { filterPage } from './filter.page'; */
 import { navBar } from './navbar.component';
 import { yourProfilePage } from './yourprofile.page';
-
+import { calendarPage } from './calendar.page';
 /* global fixture:false, test:false */
 
 /** Credentials for one of the sample users defined in settings.development.json. */
@@ -87,3 +87,12 @@ test('Test that profile page display and profile modification works', async (tes
   await filterPage.isDisplayed(testController);
   await filterPage.filter(testController);
 }); */
+
+test('Test that calendar page works', async (testController) => {
+  await navBar.ensureLogout(testController);
+  await navBar.gotoSignInPage(testController);
+  await signInPage.signin(testController, credentials.username, credentials.password);
+  await navBar.gotoCalendarPage(testController);
+  await calendarPage.isDisplayed(testController);
+  await calendarPage.hasCalendar(testController);
+});

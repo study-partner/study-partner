@@ -18,6 +18,7 @@ export const ComponentIDs = {
   homeFormBio: 'homeFormBio',
   homeFormSubmit: 'homeFormSubmit',
   homeMenuItem: 'homeMenuItem',
+  calendarMenuItem: 'calendarMenuItem',
 
   sessionCourse: 'sessionCourse',
   sessionTime: 'sessionTime',
@@ -47,6 +48,7 @@ export const ComponentIDs = {
 
 export const PageIDs = {
   addProjectPage: 'addProjectPage',
+  calendarPage: 'calendarPage',
   filterPage: 'filterPage',
   homePage: 'homePage',
   interestsPage: 'interestsPage',
