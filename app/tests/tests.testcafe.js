@@ -3,7 +3,7 @@ import { signInPage } from './signin.page';
 // import { signOutPage } from './signout.page';
 import { signupPage } from './signup.page';
 import { profilesPage } from './profiles.page';
-// import { homePage } from './home.page';
+import { homePage } from './home.page';
 import { navBar } from './navbar.component';
 import { yourProfilePage } from './yourprofile.page';
 import { calendarPage } from './calendar.page';
@@ -97,4 +97,15 @@ test('Test that admin view reports works', async (testController) => {
   await viewReportPage.isDisplayed(testController);
   await viewReportPage.hasReport(testController);
   await navBar.ensureLogout(testController);
+});
+
+test('Test that the home page displays', async (testController) => {
+  await navBar.ensureLogout(testController);
+  await navBar.gotoSignInPage(testController);
+  await signInPage.signin(testController, admin.username, admin.password);
+  await homePage.isDisplayed(testController);
+  await navBar.ensureLogout(testController);
+  await navBar.gotoSignInPage(testController);
+  await signInPage.signin(testController, credentials.username, credentials.password);
+  await homePage.isDisplayed(testController);
 });
