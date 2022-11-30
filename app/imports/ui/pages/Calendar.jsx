@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { DayPilot, DayPilotCalendar, DayPilotNavigator } from '@daypilot/daypilot-lite-react';
 import './CalendarStyles.css';
+import { PageIDs } from '../utilities/ids';
 
 const styles = {
   wrap: {
@@ -108,7 +109,7 @@ class Calendar extends Component {
     // This arrangement can be altered based on how we want the date's format to appear.
     const currentDate = `${year}-${month}-${day}`;
     return (
-      <div style={styles.wrap}>
+      <div style={styles.wrap} id={PageIDs.calendarPage} className="page">
         <div style={styles.left}>
           <DayPilotNavigator
             selectMode="week"
