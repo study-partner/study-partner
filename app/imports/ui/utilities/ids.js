@@ -18,6 +18,7 @@ export const ComponentIDs = {
   homeFormBio: 'homeFormBio',
   homeFormSubmit: 'homeFormSubmit',
   homeMenuItem: 'homeMenuItem',
+  calendarMenuItem: 'calendarMenuItem',
 
   sessionCourse: 'sessionCourse',
   sessionTime: 'sessionTime',
@@ -38,10 +39,12 @@ export const ComponentIDs = {
   signUpFormEmail: 'signUpFormEmail',
   signUpFormPassword: 'signUpFormPassword',
   signUpFormSubmit: 'signUpFormSubmit',
+
 };
 
 export const PageIDs = {
   addProjectPage: 'addProjectPage',
+  calendarPage: 'calendarPage',
   filterPage: 'filterPage',
   homePage: 'homePage',
   interestsPage: 'interestsPage',

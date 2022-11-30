@@ -44,7 +44,7 @@ const App = () => (
         <Route path="/yourprofile" element={<YourProfile />} />
         <Route path="/contact-admin" element={<ContactAdmin />} />
         <Route path="/view-reports" element={<ViewReports />} />
-        <Route path="/calendar" element={<Calendar />} />
+        <Route path="/calendar" element={<ProtectedRoute><Calendar /></ProtectedRoute>} />
         <Route path="/filter" element={<ProtectedRoute><Filter /></ProtectedRoute>} />
         <Route path="/addproject" element={<ProtectedRoute><AddProject /></ProtectedRoute>} />
         <Route path="/createsession" element={<ProtectedRoute><CreateSession /></ProtectedRoute>} />

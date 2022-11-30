@@ -125,7 +125,7 @@ class Calendar extends Component {
         </div>
         <div style={styles.main}>
           <DayPilotCalendar
-            /* eslint-disable react/jsx-props-no-spreading */
+            /* eslint-disable-next-line react/jsx-props-no-spreading */
             {...this.state}
             ref={this.calendarRef}
           />
