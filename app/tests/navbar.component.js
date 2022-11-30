@@ -26,6 +26,14 @@ class NavBar {
     await testController.click(`#${ComponentIDs.loginDropdownSignIn}`);
   }
 
+  async gotoYourProfilePage(testController) {
+    const visible = await Selector(`#${ComponentIDs.basicNavbarNav}`).visible;
+    if (!visible) {
+      await testController.click('button.navbar-toggler');
+    }
+    await testController.click(`#${ComponentIDs.yourProfileMenuItem}`);
+  }
+
   async gotoProfilesPage(testController) {
     const visible = await Selector(`#${ComponentIDs.basicNavbarNav}`).visible;
     if (!visible) {
@@ -64,6 +72,14 @@ class NavBar {
       await testController.click('button.navbar-toggler');
     }
     await testController.click(`#${ComponentIDs.filterMenuItem}`);
+  }
+
+  async gotoCalendarPage(testController) {
+    const visible = await Selector(`#${ComponentIDs.basicNavbarNav}`).visible;
+    if (!visible) {
+      await testController.click('button.navbar-toggler');
+    }
+    await testController.click(`#${ComponentIDs.calendarMenuItem}`);
   }
 
   /** Check that the specified user is currently logged in. */

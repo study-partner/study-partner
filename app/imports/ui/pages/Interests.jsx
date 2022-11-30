@@ -14,7 +14,7 @@ import LoadingSpinner from '../components/LoadingSpinner';
 import { pageStyle } from './pageStyles';
 import { PageIDs } from '../utilities/ids';
 
-/* Returns the Profiles and Projects associated with the passed Interest. */
+/* Returns the Profiles and Sessions associated with the passed Interest. */
 function getInterestData(name) {
   const profiles = _.pluck(ProfilesInterests.collection.find({ interest: name }).fetch(), 'profile');
   const profilePictures = profiles.map(profile => Profiles.collection.findOne({ email: profile }).picture);
@@ -45,7 +45,7 @@ MakeCard.propTypes = {
   }).isRequired,
 };
 
-/* Renders the NeedHelpClasses as a set of Cards. */
+/* Renders the Interests as a set of Cards. */
 const InterestsPage = () => {
 
   /* If the subscription(s) have been received, render the page, otherwise show a loading icon. */

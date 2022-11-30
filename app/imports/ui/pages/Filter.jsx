@@ -100,7 +100,7 @@ const Filter = () => {
       <AutoForm schema={bridge} onSubmit={data => submit(data)} model={{ interests }}>
         <Card>
           <Card.Body id={ComponentIDs.filterFormInterests}>
-            <SelectField name="interests" multiple placeholder="NeedHelpClasses" checkboxes transform={transform} />
+            <SelectField name="interests" multiple placeholder="Interests" checkboxes transform={transform} />
             <SubmitField id={ComponentIDs.filterFormSubmit} value="Submit" />
           </Card.Body>
         </Card>

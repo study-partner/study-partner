@@ -7,12 +7,16 @@ import { Profiles } from '../../api/profiles/Profiles';
 import { ProfilesProjects } from '../../api/profiles/ProfilesProjects';
 import { ProfilesInterests } from '../../api/profiles/ProfilesInterests';
 import { Interests } from '../../api/interests/Interests';
+import { NeedHelpClasses } from '../../api/NeedHelpClasses/NeedHelpClasses';
+import { ProfilesNeedHelpClasses } from '../../api/profiles/ProfilesNeedHelpClasses';
+import { HelpOthersClasses } from '../../api/HelpOthersClasses/HelpOthersClasses';
+import { ProfilesHelpOthersClasses } from '../../api/profiles/ProfilesHelpOthersClasses';
 
 /* eslint-disable no-console */
 
 /** Define a user in the Meteor accounts package. This enables login. Username is the email address. */
 function createUser(email, role) {
-  const userID = Accounts.createUser({ username: email, email, password: 'foo' });
+  const userID = Accounts.createUser({ username: email, email, password: 'changeme' });
   if (role === 'admin') {
     Roles.createRole(role, { unlessExists: true });
     Roles.addUsersToRoles(userID, 'admin');
@@ -24,8 +28,18 @@ function addInterest(interest) {
   Interests.collection.update({ name: interest }, { $set: { name: interest } }, { upsert: true });
 }
 
+/** Define a needHelpClass.  Has no effect if interest already exists. */
+function addNeedHelpClass(needHelpClass) {
+  NeedHelpClasses.collection.update({ name: needHelpClass }, { $set: { name: needHelpClass } }, { upsert: true });
+}
+
+/** Define a helpOthersClass.  Has no effect if interest already exists. */
+function addHelpOthersClass(helpOthersClass) {
+  HelpOthersClasses.collection.update({ name: helpOthersClass }, { $set: { name: helpOthersClass } }, { upsert: true });
+}
+
 /** Defines a new user and associated profile. Error if user already exists. */
-function addProfile({ firstName, lastName, bio, title, interests, projects, picture, email, role }) {
+function addProfile({ firstName, lastName, bio, title, interests, projects, needHelpClasses, helpOthersClasses, picture, email, role }) {
   console.log(`Defining profile ${email}`);
   // Define the user in the Meteor accounts package.
   createUser(email, role);
@@ -34,8 +48,15 @@ function addProfile({ firstName, lastName, bio, title, interests, projects, pict
   // Add interests and projects.
   interests.map(interest => ProfilesInterests.collection.insert({ profile: email, interest }));
   projects.map(project => ProfilesProjects.collection.insert({ profile: email, project }));
-  // Make sure interests are defined in the NeedHelpClasses collection if they weren't already.
+  // Add needHelpClasses and helpOthersClasses
+  needHelpClasses.map(needHelpClass => ProfilesNeedHelpClasses.collection.insert({ profile: email, needHelpClass }));
+  helpOthersClasses.map(helpOthersClass => ProfilesHelpOthersClasses.collection.insert({ profile: email, helpOthersClass }));
+  // Make sure interests are defined in the Interests collection if they weren't already.
   interests.map(interest => addInterest(interest));
+  // Make sure needHelpClasses are defined in the NeedHelpClasses collection if they weren't already.
+  needHelpClasses.map(needHelpClass => addNeedHelpClass(needHelpClass));
+  // Make sure helpOthersClasses are defined in the HelpOthersClasses collection if they weren't already.
+  helpOthersClasses.map(helpOthersClass => addHelpOthersClass(helpOthersClass));
 }
 
 /** Define a new project. Error if project already exists.  */
@@ -43,7 +64,7 @@ function addProject({ name, homepage, description, interests, picture }) {
   console.log(`Defining project ${name}`);
   Projects.collection.insert({ name, homepage, description, picture });
   interests.map(interest => ProjectsInterests.collection.insert({ project: name, interest }));
-  // Make sure interests are defined in the NeedHelpClasses collection if they weren't already.
+  // Make sure interests are defined in the Interests collection if they weren't already.
   interests.map(interest => addInterest(interest));
 }
 

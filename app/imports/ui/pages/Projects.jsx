@@ -12,7 +12,7 @@ import LoadingSpinner from '../components/LoadingSpinner';
 import { pageStyle } from './pageStyles';
 import { PageIDs } from '../utilities/ids';
 
-/* Gets the Project data as well as Profiles and NeedHelpClasses associated with the passed Project name. */
+/* Gets the Project data as well as Profiles and HelpWithClasses associated with the passed Project name. */
 function getProjectData(name) {
   const data = Projects.collection.findOne({ name });
   const interests = _.pluck(ProjectsInterests.collection.find({ project: name }).fetch(), 'interest');

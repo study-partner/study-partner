@@ -1,5 +1,5 @@
 import React from 'react';
-import { AutoForm, TextField, LongTextField, SelectField, SubmitField } from 'uniforms-bootstrap5';
+import { AutoForm, SubmitField, TextField } from 'uniforms-bootstrap5';
 import { Container, Col, Card, Row } from 'react-bootstrap';
 import swal from 'sweetalert';
 import SimpleSchema2Bridge from 'uniforms-bridge-simple-schema-2';
@@ -12,7 +12,7 @@ import { Profiles } from '../../api/profiles/Profiles';
 import { ProfilesInterests } from '../../api/profiles/ProfilesInterests';
 import { ProfilesProjects } from '../../api/profiles/ProfilesProjects';
 import { Projects } from '../../api/projects/Projects';
-import { updateProfileMethod } from '../../startup/both/Methods';
+import { addSessionMethod } from '../../startup/both/Methods';
 import LoadingSpinner from '../components/LoadingSpinner';
 import { pageStyle } from './pageStyles';
 import { ComponentIDs, PageIDs } from '../utilities/ids';
@@ -23,13 +23,19 @@ import { ProfilesHelpOthersClasses } from '../../api/profiles/ProfilesHelpOthers
 
 /* Create a schema to specify the structure of the data to appear in the form. */
 const makeSchema = (allInterests, allProjects, allNeedHelpClasses, allHelpOthersClasses) => new SimpleSchema({
+  course: { type: String, label: 'Courses', optional: true },
+  time: { type: String, label: 'Time', optional: true },
+  month: { type: String, label: 'Month', optional: true },
+  day: { type: String, label: 'Day', optional: true },
+  year: { type: String, label: 'Year', optional: true },
+
   email: { type: String, label: 'Email', optional: true },
   firstName: { type: String, label: 'First', optional: true },
   lastName: { type: String, label: 'Last', optional: true },
   bio: { type: String, label: 'Biographical statement', optional: true },
   title: { type: String, label: 'Class standing', optional: true },
   picture: { type: String, label: 'Picture URL', optional: true },
-  needHelpClasses: { type: Array, label: 'Classes you need help with', optional: true },
+  needHelpClasses: { type: Array, label: 'Courses', optional: true },
   'needHelpClasses.$': { type: String, allowedValues: allNeedHelpClasses },
   helpOthersClasses: { type: Array, label: 'Classes you can help others with', optional: true },
   'helpOthersClasses.$': { type: String, allowedValues: allHelpOthersClasses },
@@ -44,11 +50,11 @@ const YourProfile = () => {
 
   /* On submit, insert the data. */
   const submit = (data) => {
-    Meteor.call(updateProfileMethod, data, (error) => {
+    Meteor.call(addSessionMethod, data, (error) => {
       if (error) {
         swal('Error', error.message, 'error');
       } else {
-        swal('Success', 'Profile updated successfully', 'success');
+        swal('Success', 'Session updated successfully', 'success');
       }
     });
   };
@@ -84,27 +90,22 @@ const YourProfile = () => {
   const profile = Profiles.collection.findOne({ email });
   const model = _.extend({}, profile, { interests, projects, needHelpClasses, helpOthersClasses });
   return ready ? (
-    <Container id={PageIDs.yourProfilePage} className="justify-content-center page" style={pageStyle}>
+    <Container id={PageIDs.homePage} className="justify-content-center" style={pageStyle}>
       <Col>
-        <Col className="justify-content-center text-center"><h2>Your Profile</h2></Col>
+        <Col className="justify-content-center text-center"><h2>Create Sessions</h2></Col>
         <AutoForm model={model} schema={bridge} onSubmit={data => submit(data)}>
           <Card>
             <Card.Body>
               <Row>
-                <Col xs={4}><TextField id={ComponentIDs.yourProfileFormFirstName} name="firstName" showInlineError placeholder="First Name" /></Col>
-                <Col xs={4}><TextField id={ComponentIDs.yourProfileFormLastName} name="lastName" showInlineError placeholder="Last Name" /></Col>
-                <Col xs={4}><TextField name="email" showInlineError placeholder={Meteor.user().username} disabled /></Col>
-              </Row>
-              <LongTextField id={ComponentIDs.yourProfileFormBio} name="bio" placeholder="Write a little bit about yourself." />
-              <Row>
-                <Col xs={6}><TextField name="title" showInlineError placeholder="Class standing" /></Col>
-                <Col xs={6}><TextField name="picture" showInlineError placeholder="URL to picture" /></Col>
+                <Col xs={4}><TextField id={ComponentIDs.sessionCourse} name="course" showInlineError placeholder="Course" /></Col>
+                <Col xs={4}><TextField id={ComponentIDs.sessionTime} name="time" showInlineError placeholder="Time" /></Col>
               </Row>
               <Row>
-                <Col xs={6}><SelectField name="needHelpClasses" showInlineError multiple /></Col>
-                <Col xs={6}><SelectField name="helpOthersClasses" showInlineError multiple /></Col>
+                <Col xs={4}><TextField id={ComponentIDs.sessionMonth} name="month" showInlineError placeholder="Month" /></Col>
+                <Col xs={4}><TextField id={ComponentIDs.sessionDay} name="day" showInlineError placeholder="Day" /></Col>
+                <Col xs={4}><TextField id={ComponentIDs.sessionYear} name="year" showInlineError placeholder="Year" /></Col>
               </Row>
-              <SubmitField id={ComponentIDs.yourProfileFormSubmit} value="Update" />
+              <SubmitField id={ComponentIDs.sessionSubmit} className="justify-content-center text-center" value="Schedule Session" />
             </Card.Body>
           </Card>
         </AutoForm>

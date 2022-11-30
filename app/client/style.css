@@ -32,40 +32,75 @@ body {
   color: var(--navbar-bg);
 }
 
-footer.user {
-  background-color: var(--navbar-bg);
-}
-
-footer.admin {
-  background-color: var(--navbar-bg-admin);
-}
-
 .landing-color-background {
   background-color: var(--navbar-bg);
   color: var(--navbar-text);
-  padding-top: 20px;
+  padding: 40px 0;
 }
 
 .landing-color-background-admin {
   background-color: var(--navbar-bg-admin);
   color: var(--navbar-text);
-  padding-top: 20px;
+  padding: 40px 0;
 }
-
 
 .landing-white-background {
   background-color: var(--navbar-text);
   color: var(--navbar-bg);
-  padding-top: 20px;
-}
-
-.landing-color-background-admin {
-  background-color: var(--navbar-bg-admin);
-  color: var(--navbar-text);
-  padding-top: 20px;
+  padding: 40px 0;
 }
 
 .reset-margins {
   margin-top: 0;
   margin-bottom: 0;
+}
+
+.landing-main {
+  display: flex;
+  padding-bottom: 30px;
+}
+
+.landing-main-left {
+  width: 45%;
+  text-align: center;
+  padding: 200px 70px 200px 100px;
+}
+
+.landing-main-left * {
+  padding-bottom: 20px;
+}
+
+.landing-main-right {
+  position: relative;
+  padding-top: 30px;
+  width: 55%;
+}
+
+.landing-main button {
+  background-color: var(--navbar-bg);
+  color: white;
+  border: none;
+  border-radius: 5px;
+  margin: 5px;
+  padding: 5px;
+  width: 200px;
+}
+
+footer {
+  padding: 100px 0 50px 0;
+  color: white;
+  background-color: #141414;
+}
+
+footer p {
+  color: lightgray;
+}
+
+footer a {
+  text-decoration: none;
+  color: white;
+}
+
+.page {
+  min-height: 85vh;
 }

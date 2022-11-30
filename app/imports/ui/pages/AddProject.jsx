@@ -80,7 +80,7 @@ const AddProject = () => {
                 <LongTextField id={ComponentIDs.addProjectFormDescription} name="description" placeholder="Describe the project here" />
                 <Row>
                   <Col xs={6} id={ComponentIDs.addProjectFormInterests}>
-                    <SelectField name="interests" showInlineError placeholder="NeedHelpClasses" multiple checkboxes transform={transform} />
+                    <SelectField name="interests" showInlineError placeholder="HelpWithClasses" multiple checkboxes transform={transform} />
                   </Col>
                   <Col xs={6} id={ComponentIDs.addProjectFormParticipants}>
                     <SelectField name="participants" showInlineError placeholder="Participants" multiple checkboxes transform={transform} />

@@ -6,7 +6,7 @@ import { PageIDs } from '../utilities/ids';
 
 /* Renders the Home Page: what appears after the user logs in. */
 const Home = () => (
-  <div id={PageIDs.homePage}>
+  <div id={PageIDs.homePage} className="page">
     <div className={Roles.userIsInRole(Meteor.userId(), 'admin') ? 'landing-color-background-admin' : 'landing-color-background'}>
       <Container className="text-center">
         <h1 style={{ paddingTop: '20px', color: 'white', fontSize: '36pt' }}>
