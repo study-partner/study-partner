@@ -38,6 +38,11 @@ export const ComponentIDs = {
   signUpFormEmail: 'signUpFormEmail',
   signUpFormPassword: 'signUpFormPassword',
   signUpFormSubmit: 'signUpFormSubmit',
+  yourProfileMenuItem: 'yourProfileMenuItem',
+  yourProfileFormFirstName: 'yourProfileFormFirstName',
+  yourProfileFormLastName: 'yourProfileFormLastName',
+  yourProfileFormBio: 'yourProfileFormBio',
+  yourProfileFormSubmit: 'yourProfileFormSubmit',
 };
 
 export const PageIDs = {
@@ -53,4 +58,5 @@ export const PageIDs = {
   signInPage: 'signInPage',
   signOutPage: 'signOutPage',
   signUpPage: 'signUpPage',
+  yourProfilePage: 'yourProfilePage',
 };
