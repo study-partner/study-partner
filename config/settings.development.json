@@ -8,6 +8,11 @@
     { "email": "john@foo.com", "password": "changeme" }
   ],
 
+  "defaultSessions": [
+    { "course": "ICS 311", "time": "wqee", "month": "wqee", "day": "eqe", "year": "eqwe" },
+    { "course": "ICS 314", "time": "nidei", "month": "woshi", "day": "qwww", "year": "eeee" }
+  ],
+
   "defaultProfiles": [
     {
       "firstName": "John",
@@ -103,6 +108,7 @@
       "role": "admin"
     }
   ],
+
   "defaultProjects": [
     {
       "name": "Open Power Quality",
@@ -142,10 +148,6 @@
       ],
       "picture": "https://www.hawaii.edu/its/wp-content/uploads/sites/2/2019/01/LAVAlogo-300x192-300x192.png"
     }
-  ],
-  "defaultSessions": [
-    { "course": "ICS 101", "time": "12:30", "month": "9", "day": "21", "year": "2022" },
-    { "course": "ICS 111", "time": "11:50", "month": "9", "day": "21", "year": "2022" }
   ],
   "loadAssetsFile":  false
 }

@@ -11,7 +11,7 @@ import { PageIDs } from '../utilities/ids';
 import { ProfilesHelpOthersClasses } from '../../api/profiles/ProfilesHelpOthersClasses';
 import { ProfilesNeedHelpClasses } from '../../api/profiles/ProfilesNeedHelpClasses';
 
-/* Returns the Profile and associated Sessions and HelpWithClasses associated with the passed user email. */
+/* Returns the Profile and associated Projects and HelpWithClasses associated with the passed user email. */
 function getProfileData(email) {
   const data = Profiles.collection.findOne({ email });
   const needHelpClasses = _.pluck(ProfilesNeedHelpClasses.collection.find({ profile: email }).fetch(), 'needHelpClass');
