@@ -3,11 +3,7 @@ import { signInPage } from './signin.page';
 // import { signOutPage } from './signout.page';
 import { signupPage } from './signup.page';
 import { profilesPage } from './profiles.page';
-/* import { projectsPage } from './projects.page';
-import { interestsPage } from './interests.page'; */
 // import { homePage } from './home.page';
-/* import { addProjectPage } from './addproject.page';
-import { filterPage } from './filter.page'; */
 import { navBar } from './navbar.component';
 import { yourProfilePage } from './yourprofile.page';
 import { calendarPage } from './calendar.page';
@@ -49,18 +45,6 @@ test('Test that profiles page displays', async (testController) => {
   await profilesPage.hasDefaultProfiles(testController);
 });
 
-/* test('Test that interests page displays', async (testController) => {
-  await navBar.gotoInterestsPage(testController);
-  await interestsPage.isDisplayed(testController);
-  await interestsPage.hasDefaultInterests(testController);
-});
-
-test('Test that projects page displays', async (testController) => {
-  await navBar.gotoProjectsPage(testController);
-  await projectsPage.isDisplayed(testController);
-  await projectsPage.hasDefaultProjects(testController);
-}); */
-
 test('Test that profile page display and profile modification works', async (testController) => {
   await navBar.ensureLogout(testController);
   await navBar.gotoSignInPage(testController);
@@ -69,24 +53,6 @@ test('Test that profile page display and profile modification works', async (tes
   await yourProfilePage.updateProfile(testController, credentials.firstName);
   await navBar.ensureLogout(testController);
 });
-
-/* test('Test that addProject page works', async (testController) => {
-  await navBar.ensureLogout(testController);
-  await navBar.gotoSignInPage(testController);
-  await signInPage.signin(testController, credentials.username, credentials.password);
-  await navBar.gotoAddProjectPage(testController);
-  await addProjectPage.isDisplayed(testController);
-  await addProjectPage.addProject(testController);
-}); */
-
-/* test('Test that filter page works', async (testController) => {
-  await navBar.ensureLogout(testController);
-  await navBar.gotoSignInPage(testController);
-  await signInPage.signin(testController, credentials.username, credentials.password);
-  await navBar.gotoFilterPage(testController);
-  await filterPage.isDisplayed(testController);
-  await filterPage.filter(testController);
-}); */
 
 test('Test that calendar page works', async (testController) => {
   await navBar.ensureLogout(testController);
