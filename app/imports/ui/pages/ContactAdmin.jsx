@@ -6,6 +6,7 @@ import { Meteor } from 'meteor/meteor';
 import SimpleSchema2Bridge from 'uniforms-bridge-simple-schema-2';
 import SimpleSchema from 'simpl-schema';
 import { Reports } from '../../api/report/Reports';
+import { ComponentIDs, PageIDs } from '../utilities/ids';
 
 // Create a schema to specify the structure of the data to appear in the form.
 const formSchema = new SimpleSchema({
@@ -41,7 +42,7 @@ const ContactAdmin = () => {
   // Render the form. Use Uniforms: https://github.com/vazco/uniforms
   let fRef = null;
   return (
-    <Container className="py-3 page">
+    <Container id={PageIDs.contactAdminPage} className="py-3 page">
       <Row className="justify-content-center">
         <Col xs={10}>
           <Col className="text-center"><h2>Contact Admin</h2></Col>
@@ -49,13 +50,13 @@ const ContactAdmin = () => {
             <Card>
               <Card.Body>
                 <Row>
-                  <Col xs={6}><TextField name="firstName" showInlineError /></Col>
-                  <Col xs={6}><TextField name="lastName" showInlineError /></Col>
+                  <Col xs={6}><TextField id={ComponentIDs.contactAdminFormFirstName} name="firstName" showInlineError /></Col>
+                  <Col xs={6}><TextField id={ComponentIDs.contactAdminFormLastName} name="lastName" showInlineError /></Col>
                 </Row>
                 <TextField name="email" placeholder={Meteor.user().username} showInlineError disabled />
-                <TextField name="subject" showInlineError />
-                <LongTextField name="description" showInlineError />
-                <SubmitField value="Submit" />
+                <TextField name="subject" id={ComponentIDs.contactAdminFormSubject} showInlineError />
+                <LongTextField name="description" id={ComponentIDs.contactAdminFormDescription} showInlineError />
+                <SubmitField id={ComponentIDs.contactAdminFormSubmit} value="Submit" />
                 <ErrorsField />
               </Card.Body>
             </Card>

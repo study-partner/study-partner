@@ -5,6 +5,7 @@ import { useTracker } from 'meteor/react-meteor-data';
 import LoadingSpinner from '../components/LoadingSpinner';
 import Report from '../components/Report';
 import { Reports } from '../../api/report/Reports';
+import { PageIDs } from '../utilities/ids';
 
 /* Renders a table containing all of the Stuff documents. Use <StuffItem> to render each row. */
 const ViewReports = () => {
@@ -25,7 +26,7 @@ const ViewReports = () => {
   }, []);
 
   return (ready ? (
-    <Container className="py-3">
+    <Container id={PageIDs.viewReportPage} className="py-3">
       <Row className="justify-content-center">
         <Col>
           <Col className="text-center">

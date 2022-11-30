@@ -19,6 +19,8 @@ export const ComponentIDs = {
   homeFormSubmit: 'homeFormSubmit',
   homeMenuItem: 'homeMenuItem',
   calendarMenuItem: 'calendarMenuItem',
+  contactAdminMenuItem: 'contactAdminMenuItem',
+  viewReportMenuItem: 'viewReportMenuItem',
 
   sessionCourse: 'sessionCourse',
   sessionTime: 'sessionTime',
@@ -44,6 +46,12 @@ export const ComponentIDs = {
   yourProfileFormLastName: 'yourProfileFormLastName',
   yourProfileFormBio: 'yourProfileFormBio',
   yourProfileFormSubmit: 'yourProfileFormSubmit',
+
+  contactAdminFormFirstName: 'contactAdminFormFirstName',
+  contactAdminFormLastName: 'contactAdminFormLastName',
+  contactAdminFormSubject: 'contactAdminFormSubject',
+  contactAdminFormDescription: 'contactAdminFormDescription',
+  contactAdminFormSubmit: 'contactAdminFormSubmit',
 };
 
 export const PageIDs = {
@@ -61,4 +69,6 @@ export const PageIDs = {
   signOutPage: 'signOutPage',
   signUpPage: 'signUpPage',
   yourProfilePage: 'yourProfilePage',
+  contactAdminPage: 'contactAdminPage',
+  viewReportPage: 'viewReportPage',
 };

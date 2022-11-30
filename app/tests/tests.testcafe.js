@@ -7,10 +7,22 @@ import { profilesPage } from './profiles.page';
 import { navBar } from './navbar.component';
 import { yourProfilePage } from './yourprofile.page';
 import { calendarPage } from './calendar.page';
+import { contactAdminPage } from './contactadmin.page';
+import { viewReportPage } from './viewreport.page';
 /* global fixture:false, test:false */
 
 /** Credentials for one of the sample users defined in settings.development.json. */
-const credentials = { username: 'john@foo.com', password: 'changeme', firstName: 'John', lastName: 'Foo' };
+const credentials = {
+  username: 'john@foo.com',
+  password: 'changeme',
+  firstName: 'John',
+  lastName: 'Foo',
+  subject: 'File a report.',
+  description: 'Sending a testing file report to admin and see if received',
+};
+
+/** Credentials for one of the admin users defined in settings.development.json. */
+const admin = { username: 'admin@foo.com', password: 'changeme' };
 
 fixture('Study Partner localhost test with default db')
   .page('http://localhost:3000');
@@ -65,4 +77,24 @@ test('Test that calendar page works', async (testController) => {
   await navBar.gotoCalendarPage(testController);
   await calendarPage.isDisplayed(testController);
   await calendarPage.hasCalendar(testController);
+});
+
+test('Test that contact admin page works', async (testController) => {
+  await navBar.ensureLogout(testController);
+  await navBar.gotoSignInPage(testController);
+  await signInPage.signin(testController, credentials.username, credentials.password);
+  await navBar.gotoContactAdminPage(testController);
+  await contactAdminPage.isDisplayed(testController);
+  await contactAdminPage.fileReport(testController, credentials.firstName, credentials.lastName, credentials.subject, credentials.description);
+  await navBar.ensureLogout(testController);
+});
+
+test('Test that admin view reports works', async (testController) => {
+  await navBar.ensureLogout(testController);
+  await navBar.gotoSignInPage(testController);
+  await signInPage.signin(testController, admin.username, admin.password);
+  await navBar.gotoViewReportPage(testController);
+  await viewReportPage.isDisplayed(testController);
+  await viewReportPage.hasReport(testController);
+  await navBar.ensureLogout(testController);
 });
