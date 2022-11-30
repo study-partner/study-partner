@@ -49,6 +49,7 @@ test('Test that profile page display and profile modification works', async (tes
   await navBar.ensureLogout(testController);
   await navBar.gotoSignInPage(testController);
   await signInPage.signin(testController, credentials.username, credentials.password);
+  await navBar.gotoYourProfilePage(testController);
   await yourProfilePage.isDisplayed(testController);
   await yourProfilePage.updateProfile(testController, credentials.firstName);
   await navBar.ensureLogout(testController);
