@@ -11,11 +11,10 @@ class SessionsCollection {
     this.collection = new Mongo.Collection(this.name);
     // Define the structure of each document in the collection.
     this.schema = new SimpleSchema({
-      course: String,
-      time: String,
-      month: String,
-      day: String,
-      year: String,
+      id: Number,
+      text: String,
+      start: String,
+      end: String,
     }, { tracker: Tracker });
     // Ensure collection documents obey schema.
     this.collection.attachSchema(this.schema);

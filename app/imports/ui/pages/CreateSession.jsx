@@ -11,19 +11,28 @@ import { ComponentIDs, PageIDs } from '../utilities/ids';
 
 /* Create a schema to specify the structure of the data to appear in the form. */
 const makeSchema = new SimpleSchema({
-  course: String,
-  time: String,
-  month: String,
-  day: String,
-  year: String,
+  text: String,
+  startD: String,
+  startT: String,
+  endD: String,
+  endT: String,
 });
+let idCount = 0;
+const getNextID = () => {
+  idCount += 1;
+  return idCount;
+};
+
 const bridge = new SimpleSchema2Bridge(makeSchema);
 /* Renders the YourProfile Page: what appears after the user logs in. */
 const AddSession = () => {
 
   /* On submit, insert the data. */
   const submit = (data, formRef) => {
-    Meteor.call(addSessionMethod, data, (error) => {
+    const doc = data;
+    doc.id = getNextID();
+    console.log(doc);
+    Meteor.call(addSessionMethod, doc, (error) => {
       if (error) {
         swal('Error', error.message, 'error');
       } else {
@@ -41,13 +50,15 @@ const AddSession = () => {
           <Card>
             <Card.Body>
               <Row>
-                <Col xs={4}><TextField id={ComponentIDs.addSessionFormCourse} name="course" showInlineError placeholder="Course" /></Col>
-                <Col xs={4}><TextField id={ComponentIDs.addSessionFormTime} name="time" showInlineError placeholder="Time" /></Col>
+                <Col xs={4}><TextField id={ComponentIDs.addSessionFormCourse} name="text" label="Course" showInlineError placeholder="Course" /></Col>
               </Row>
               <Row>
-                <Col xs={4}><TextField id={ComponentIDs.addSessionFormMonth} name="month" showInlineError placeholder="Month" /></Col>
-                <Col xs={4}><TextField id={ComponentIDs.addSessionFormDay} name="day" showInlineError placeholder="Day" /></Col>
-                <Col xs={4}><TextField id={ComponentIDs.addSessionFormYear} name="year" showInlineError placeholder="Year" /></Col>
+                <Col xs={4}><TextField id={ComponentIDs.addSessionStartdate} name="startD" label="Start Date" placeholder="YYYY-MM-DD" /></Col>
+                <Col xs={4}><TextField id={ComponentIDs.addSessionStarttime} name="startT" label="Start Time" showInlineError placeholder="XX:XX:XX" /></Col>
+              </Row>
+              <Row>
+                <Col xs={4}><TextField id={ComponentIDs.addSessionEnddate} name="endD" label="End Date" showInlineError placeholder="YYYY-MM-DD" /></Col>
+                <Col xs={4}><TextField id={ComponentIDs.addSessionEndtime} name="endT" label="End Time" showInlineError placeholder="XX:XX:XX" /></Col>
               </Row>
               <SubmitField id={ComponentIDs.addSessionFormSubmit} className="justify-content-center text-center" value="Schedule Session" />
             </Card.Body>
