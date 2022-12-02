@@ -1,13 +1,12 @@
 import { Meteor } from 'meteor/meteor';
-import { Projects } from '../../api/projects/Projects';
 import { Profiles } from '../../api/profiles/Profiles';
 import { ProfilesInterests } from '../../api/profiles/ProfilesInterests';
 import { ProfilesProjects } from '../../api/profiles/ProfilesProjects';
-import { ProjectsInterests } from '../../api/projects/ProjectsInterests';
 import { ProfilesNeedHelpClasses } from '../../api/profiles/ProfilesNeedHelpClasses';
 import { ProfilesHelpOthersClasses } from '../../api/profiles/ProfilesHelpOthersClasses';
 import { Sessions } from '../../api/sessions/Sessions';
-import { SessionsCourses } from '../../api/sessions/SessionsCourses';
+import { Projects } from '../../api/projects/Projects';
+import { ProjectsInterests } from '../../api/projects/ProjectsInterests';
 
 /**
  * In Bowfolios, insecure mode is enabled, so it is possible to update the server's Mongo database by making
@@ -56,7 +55,7 @@ Meteor.methods({
 
 const addProjectMethod = 'Projects.add';
 
-/** Creates a new project in the Sessions collection, and also updates ProfilesProjects and SessionsCourses. */
+/** Creates a new project in the Projects collection, and also updates ProfilesProjects and SessionsCourses. */
 Meteor.methods({
   'Projects.add'({ name, description, picture, interests, participants, homepage }) {
     Projects.collection.insert({ name, description, picture, homepage });
@@ -74,23 +73,13 @@ Meteor.methods({
 });
 
 const addSessionMethod = 'Sessions.add';
-
-/** Creates a new project in the Sessions collection, and also updates ProfilesProjects and SessionsCourses. */
+/** Creates a new project in the Projects collection, and also updates ProfilesProjects and SessionsCourses. */
 Meteor.methods({
-  'Session.add'({ name, courses, participants, course, time, month, day, year }) {
-    Sessions.collection.insert({ course, time, month, day, year });
-    ProfilesProjects.collection.remove({ project: name });
-    SessionsCourses.collection.remove({ session: course });
-    if (courses) {
-      // eslint-disable-next-line no-shadow
-      courses.map((course) => SessionsCourses.collection.insert({ session: name, course }));
-    } else {
-      throw new Meteor.Error('At least one course is required.');
-    }
-    if (participants) {
-      participants.map((participant) => ProfilesProjects.collection.insert({ project: name, profile: participant }));
-    }
+  'Sessions.add'({ id, text, startD, startT, endD, endT }) {
+    const start = `${startD}T${startT}`;
+    const end = `${endD}T${endT}`;
+    Sessions.collection.insert({ id, text, start, end });
   },
 });
 
-export { updateProfileMethod, addProjectMethod, addSessionMethod };
+export { updateProfileMethod, addSessionMethod, addProjectMethod };
