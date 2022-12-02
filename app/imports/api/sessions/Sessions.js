@@ -1,6 +1,7 @@
 import { Mongo } from 'meteor/mongo';
 import SimpleSchema from 'simpl-schema';
 import { Tracker } from 'meteor/tracker';
+
 /** Encapsulates state and variable values for this collection. */
 class SessionsCollection {
   constructor() {
@@ -23,4 +24,5 @@ class SessionsCollection {
     this.adminPublicationName = `${this.name}.publication.admin`;
   }
 }
+
 export const Sessions = new SessionsCollection();
