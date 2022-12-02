@@ -9,6 +9,7 @@ import { yourProfilePage } from './yourprofile.page';
 import { calendarPage } from './calendar.page';
 import { contactAdminPage } from './contactadmin.page';
 import { viewReportPage } from './viewreport.page';
+import { addSessionPage } from './createsession.page';
 /* global fixture:false, test:false */
 
 /** Credentials for one of the sample users defined in settings.development.json. */
@@ -108,4 +109,13 @@ test('Test that the home page displays', async (testController) => {
   await navBar.gotoSignInPage(testController);
   await signInPage.signin(testController, credentials.username, credentials.password);
   await homePage.isDisplayed(testController);
+});
+
+test.only('Test that createSession page works', async (testController) => {
+  await navBar.ensureLogout(testController);
+  await navBar.gotoSignInPage(testController);
+  await signInPage.signin(testController, credentials.username, credentials.password);
+  await navBar.gotoAddSessionPage(testController);
+  await addSessionPage.isDisplayed(testController);
+  await addSessionPage.addSession(testController);
 });
