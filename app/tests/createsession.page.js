@@ -14,18 +14,18 @@ class AddSessionPage {
 
   /** Checks this page is displayed, then adds a new project */
   async addSession(testController) {
-    const text = 'ICS 211';
-    const startD = '2001-09-21';
-    const startT = '10:11:00';
-    const endD = '2001-09-22';
-    const endT = '11:11:00';
+    const course = 'ICS 211';
+    const time = '12:30';
+    const day = '21';
+    const month = '7';
+    const year = '2001';
     await this.isDisplayed(testController);
     // Define the new session
-    await testController.typeText(`#${ComponentIDs.addSessionFormCourse}`, text);
-    await testController.typeText(`#${ComponentIDs.addSessionStartdate}`, startD);
-    await testController.typeText(`#${ComponentIDs.addSessionStarttime}`, startT);
-    await testController.typeText(`#${ComponentIDs.addSessionEnddate}`, endD);
-    await testController.typeText(`#${ComponentIDs.addSessionEndtime}`, endT);
+    await testController.typeText(`#${ComponentIDs.addSessionFormCourse}`, course);
+    await testController.typeText(`#${ComponentIDs.addSessionFormTime}`, time);
+    await testController.typeText(`#${ComponentIDs.addSessionFormDay}`, day);
+    await testController.typeText(`#${ComponentIDs.addSessionFormMonth}`, month);
+    await testController.typeText(`#${ComponentIDs.addSessionFormYear}`, year);
 
     await testController.click(`#${ComponentIDs.addSessionFormSubmit} input.btn.btn-primary`);
     await testController.click(Selector('.swal-button--confirm'));
