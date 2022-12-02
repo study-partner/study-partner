@@ -11,6 +11,7 @@ import { NeedHelpClasses } from '../../api/NeedHelpClasses/NeedHelpClasses';
 import { ProfilesNeedHelpClasses } from '../../api/profiles/ProfilesNeedHelpClasses';
 import { HelpOthersClasses } from '../../api/HelpOthersClasses/HelpOthersClasses';
 import { ProfilesHelpOthersClasses } from '../../api/profiles/ProfilesHelpOthersClasses';
+import { Sessions } from '../../api/sessions/Sessions';
 
 /* eslint-disable no-console */
 
@@ -68,13 +69,18 @@ function addProject({ name, homepage, description, interests, picture }) {
   interests.map(interest => addInterest(interest));
 }
 
+function addSession({ id, text, start, end }) {
+  console.log(`Defining session ${text}`);
+  Sessions.collection.insert({ id, text, start, end });
+}
+
 /** Initialize DB if it appears to be empty (i.e. no users defined.) */
 if (Meteor.users.find().count() === 0) {
-  if (Meteor.settings.defaultProjects && Meteor.settings.defaultProfiles) {
+  if (Meteor.settings.defaultSessions && Meteor.settings.defaultProfiles) {
     console.log('Creating the default profiles');
     Meteor.settings.defaultProfiles.map(profile => addProfile(profile));
-    console.log('Creating the default projects');
-    Meteor.settings.defaultProjects.map(project => addProject(project));
+    console.log('Creating the default session');
+    Meteor.settings.defaultSessions.map(session => addSession(session));
   } else {
     console.log('Cannot initialize the database!  Please invoke meteor with a settings file.');
   }
@@ -94,4 +100,5 @@ if ((Meteor.settings.loadAssetsFile) && (Meteor.users.find().count() < 7)) {
   const jsonData = JSON.parse(Assets.getText(assetsFileName));
   jsonData.profiles.map(profile => addProfile(profile));
   jsonData.projects.map(project => addProject(project));
+  jsonData.sessions.map(session => addSession(session));
 }
