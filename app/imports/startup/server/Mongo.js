@@ -65,9 +65,9 @@ function addProfile({ firstName, lastName, bio, title, interests, projects, need
 //   interests.map(interest => addInterest(interest));
 // }
 
-function addSession({ id, text, start, end }) {
-  console.log(`Defining session ${text}`);
-  Sessions.collection.insert({ id, text, start, end });
+function addSession({ course, time, month, day, year }) {
+  console.log(`Defining session ${course}`);
+  Sessions.collection.insert({ course, time, month, day, year });
 }
 
 /** Initialize DB if it appears to be empty (i.e. no users defined.) */

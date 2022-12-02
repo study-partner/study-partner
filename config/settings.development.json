@@ -9,7 +9,8 @@
   ],
 
   "defaultSessions": [
-    { "id": 0, "text": "ICS 314", "start": "2001-12-10T-10:15:30", "end": "2001-12-11T-10:15:30"}
+    { "course": "ICS 311", "time": "wqee", "month": "wqee", "day": "eqe", "year": "eqwe" },
+    { "course": "ICS 314", "time": "nidei", "month": "woshi", "day": "qwww", "year": "eeee" }
   ],
 
   "defaultProfiles": [

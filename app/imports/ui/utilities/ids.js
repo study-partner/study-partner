@@ -21,13 +21,12 @@ export const ComponentIDs = {
   calendarMenuItem: 'calendarMenuItem',
   contactAdminMenuItem: 'contactAdminMenuItem',
   viewReportMenuItem: 'viewReportMenuItem',
-
   addSessionMenuItem: 'addSessionMenuItem',
   addSessionFormCourse: 'addSessionFormCourse',
-  addSessionStartdate: 'addSessionStartdate',
-  addSessionStarttime: 'addSessionStarttime',
-  addSessionEnddate: 'addSessionEnddate',
-  addSessionEndtime: 'addSessionEndtime',
+  addSessionFormTime: 'addSessionFormTime',
+  addSessionFormDay: 'addSessionFormDay',
+  addSessionFormMonth: 'addSessionFormMonth',
+  addSessionFormYear: 'addSessionFormYear',
   addSessionFormSubmit: 'addSessionFormSubmit',
 
   interestsMenuItem: 'interestsMenuItem',

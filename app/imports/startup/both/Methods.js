@@ -71,12 +71,11 @@ Meteor.methods({
 // });
 
 const addSessionMethod = 'Sessions.add';
+
 /** Creates a new project in the Projects collection, and also updates ProfilesProjects and SessionsCourses. */
 Meteor.methods({
-  'Sessions.add'({ id, text, startD, startT, endD, endT }) {
-    const start = `${startD}T${startT}`;
-    const end = `${endD}T${endT}`;
-    Sessions.collection.insert({ id, text, start, end });
+  'Sessions.add'({ course, time, month, day, year }) {
+    Sessions.collection.insert({ course, time, month, day, year });
   },
 });
 
