@@ -71,4 +71,5 @@ export const PageIDs = {
   yourProfilePage: 'yourProfilePage',
   contactAdminPage: 'contactAdminPage',
   viewReportPage: 'viewReportPage',
+  leaderboardPage: 'leaderboardPage',
 };
