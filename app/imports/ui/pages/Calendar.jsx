@@ -84,12 +84,15 @@ class Calendar extends Component {
     const doc_id = ['1'];
     const events = [];
 
-    for (let i = 0; i < doc_id.length; i++) {
-      console.log(`here is doc id: ${doc_id[i]}`);
-      events.push(Sessions.collection.find({ id: doc_id[i] }));
-      console.log(`here is events: ${events}`);
-      console.log(JSON.stringify(Sessions.collection.find({ id: doc_id[i] })));
-    }
+    // for (let i = 0; i < doc_id.length; i++) {
+    //   console.log(`here is doc id: ${doc_id[i]}`);
+    //   events.push(Sessions.collection.find({ id: doc_id[i] }).fetch());
+    //   console.log(`here is events: ${events}`);
+    //   console.log(JSON.stringify(Sessions.collection.find({ id: doc_id[i] }).fetch()));
+    // }
+    console.log('here is data: ');
+    console.log(Sessions.collection.find({ id: 1 }));
+
     const date = new Date();
 
     const month = String(date.getMonth() + 1).padStart(2, '0');
