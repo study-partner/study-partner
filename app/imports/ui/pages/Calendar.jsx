@@ -82,15 +82,13 @@ class Calendar extends Component {
 
     const date = new Date();
 
-    const day = date.getDate();
-    const month = date.getMonth() + 1;
+    const month = String(date.getMonth() + 1).padStart(2, '0');
+    const day = String(date.getDate()).padStart(2, '0');
     const year = date.getFullYear();
 
     // This arrangement can be altered based on how we want the date's format to appear.
     const currentDate = `${year}-${month}-${day}`;
-
     const startDate = currentDate;
-
     this.calendar.update({ startDate, events });
 
   }
@@ -102,8 +100,8 @@ class Calendar extends Component {
   render() {
     const date = new Date();
 
-    const day = date.getDate();
-    const month = date.getMonth() + 1;
+    const month = String(date.getMonth() + 1).padStart(2, '0');
+    const day = String(date.getDate()).padStart(2, '0');
     const year = date.getFullYear();
 
     // This arrangement can be altered based on how we want the date's format to appear.
