@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { DayPilot, DayPilotCalendar, DayPilotNavigator } from '@daypilot/daypilot-lite-react';
 import './CalendarStyles.css';
 import { PageIDs } from '../utilities/ids';
+import { Sessions } from '../../api/sessions/Sessions';
 
 const styles = {
   wrap: {
@@ -50,36 +51,45 @@ class Calendar extends Component {
 
   componentDidMount() {
 
-    const events = [
-      {
-        id: 1,
-        text: 'Event 1',
-        start: '2022-06-07T10:30:00',
-        end: '2022-06-07T13:00:00',
-      },
-      {
-        id: 2,
-        text: 'Event 2',
-        start: '2022-06-08T09:30:00',
-        end: '2022-06-08T11:30:00',
-        backColor: '#6aa84f',
-      },
-      {
-        id: 3,
-        text: 'Event 3',
-        start: '2022-06-08T09:30:00',
-        end: '2022-06-08T15:00:00',
-        backColor: '#f1c232',
-      },
-      {
-        id: 4,
-        text: 'Event 4',
-        start: '2022-06-06T11:30:00',
-        end: '2022-06-06T14:30:00',
-        backColor: '#cc4125',
-      },
-    ];
+    // const events = [
+    //   {
+    //     id: 1,
+    //     text: 'Event 1',
+    //     start: '2022-06-07T10:30:00',
+    //     end: '2022-06-07T13:00:00',
+    //   },
+    //   {
+    //     id: 2,
+    //     text: 'Event 2',
+    //     start: '2022-06-08T09:30:00',
+    //     end: '2022-06-08T11:30:00',
+    //     backColor: '#6aa84f',
+    //   },
+    //   {
+    //     id: 3,
+    //     text: 'Event 3',
+    //     start: '2022-06-08T09:30:00',
+    //     end: '2022-06-08T15:00:00',
+    //     backColor: '#f1c232',
+    //   },
+    //   {
+    //     id: 4,
+    //     text: 'Event 4',
+    //     start: '2022-06-06T11:30:00',
+    //     end: '2022-06-06T14:30:00',
+    //     backColor: '#cc4125',
+    //   },
+    // ];
 
+    const doc_id = ['1'];
+    const events = [];
+
+    for (let i = 0; i < doc_id.length; i++) {
+      console.log(`here is doc id: ${doc_id[i]}`);
+      events.push(Sessions.collection.find({ id: doc_id[i] }));
+      console.log(`here is events: ${events}`);
+      console.log(JSON.stringify(Sessions.collection.find({ id: doc_id[i] })));
+    }
     const date = new Date();
 
     const month = String(date.getMonth() + 1).padStart(2, '0');
