@@ -1,5 +1,5 @@
 import React from 'react';
-import { AutoForm, SubmitField, TextField } from 'uniforms-bootstrap5';
+import { AutoForm, DateField, SubmitField, TextField } from 'uniforms-bootstrap5';
 import { Container, Col, Card, Row } from 'react-bootstrap';
 import swal from 'sweetalert';
 import SimpleSchema2Bridge from 'uniforms-bridge-simple-schema-2';
@@ -12,10 +12,9 @@ import { ComponentIDs, PageIDs } from '../utilities/ids';
 /* Create a schema to specify the structure of the data to appear in the form. */
 const makeSchema = new SimpleSchema({
   text: String,
-  startD: String,
-  startT: String,
-  endD: String,
-  endT: String,
+  date: String,
+  startTime: String,
+  endTime: String,
 });
 let idCount = 0;
 const getNextID = () => {
@@ -32,13 +31,15 @@ const AddSession = () => {
     const doc = data;
     doc.id = getNextID();
     console.log(doc);
-    Meteor.call(addSessionMethod, doc, (error) => {
+
+    const alert = (error) => {
       if (error) {
         swal('Error', error.message, 'error');
       } else {
-        swal('Success', 'Project added successfully', 'success').then(() => formRef.reset());
+        swal('Success', 'Session added successfully', 'success').then(() => formRef.reset());
       }
-    });
+    };
+    Meteor.call(addSessionMethod, doc, alert);
   };
   /* Render the form. Use Uniforms: https://github.com/vazco/uniforms */
   let fRef = null;
@@ -50,15 +51,12 @@ const AddSession = () => {
           <Card>
             <Card.Body>
               <Row>
-                <Col xs={4}><TextField id={ComponentIDs.addSessionFormCourse} name="text" label="Course" showInlineError placeholder="Course" /></Col>
+                <Col xs={6}><TextField id={ComponentIDs.addSessionFormCourse} name="text" label="Course" showInlineError placeholder="Course" /></Col>
+                <Col xs={6}><DateField type="date" id={ComponentIDs.addSessionDate} name="date" label="Date" showInlineError /></Col>
               </Row>
               <Row>
-                <Col xs={4}><TextField id={ComponentIDs.addSessionStartdate} name="startD" label="Start Date" placeholder="YYYY-MM-DD" /></Col>
-                <Col xs={4}><TextField id={ComponentIDs.addSessionStarttime} name="startT" label="Start Time" showInlineError placeholder="XX:XX:XX" /></Col>
-              </Row>
-              <Row>
-                <Col xs={4}><TextField id={ComponentIDs.addSessionEnddate} name="endD" label="End Date" showInlineError placeholder="YYYY-MM-DD" /></Col>
-                <Col xs={4}><TextField id={ComponentIDs.addSessionEndtime} name="endT" label="End Time" showInlineError placeholder="XX:XX:XX" /></Col>
+                <Col xs={6}><DateField type="time" id={ComponentIDs.addSessionStartTime} name="startTime" label="Start Time" showInlineError /></Col>
+                <Col xs={6}><DateField type="time" id={ComponentIDs.addSessionEndTime} name="endTime" label="End Time" showInlineError /></Col>
               </Row>
               <SubmitField id={ComponentIDs.addSessionFormSubmit} className="justify-content-center text-center" value="Schedule Session" />
             </Card.Body>

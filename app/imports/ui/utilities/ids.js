@@ -24,10 +24,11 @@ export const ComponentIDs = {
 
   addSessionMenuItem: 'addSessionMenuItem',
   addSessionFormCourse: 'addSessionFormCourse',
+  addSessionDate: 'addSessionDate',
   addSessionStartdate: 'addSessionStartdate',
-  addSessionStarttime: 'addSessionStarttime',
+  addSessionStartTime: 'addSessionStarttime',
   addSessionEnddate: 'addSessionEnddate',
-  addSessionEndtime: 'addSessionEndtime',
+  addSessionEndTime: 'addSessionEndtime',
   addSessionFormSubmit: 'addSessionFormSubmit',
 
   interestsMenuItem: 'interestsMenuItem',

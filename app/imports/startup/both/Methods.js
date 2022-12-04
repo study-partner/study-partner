@@ -73,11 +73,18 @@ Meteor.methods({
 });
 
 const addSessionMethod = 'Sessions.add';
+
 /** Creates a new project in the Projects collection, and also updates ProfilesProjects and SessionsCourses. */
 Meteor.methods({
   'Sessions.add'({ id, text, startD, startT, endD, endT }) {
     const start = `${startD}T${startT}`;
     const end = `${endD}T${endT}`;
+    console.log(startT);
+    if (startT === 'a') {
+      console.log('they are the same');
+    } else {
+      throw new Meteor.Error('time is invalid');
+    }
     Sessions.collection.insert({ id, text, start, end });
   },
 });
