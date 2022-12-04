@@ -24,10 +24,8 @@ export const ComponentIDs = {
 
   addSessionMenuItem: 'addSessionMenuItem',
   addSessionFormCourse: 'addSessionFormCourse',
-  addSessionStartdate: 'addSessionStartdate',
-  addSessionStarttime: 'addSessionStarttime',
-  addSessionEnddate: 'addSessionEnddate',
-  addSessionEndtime: 'addSessionEndtime',
+  addSessionStartDate: 'addSessionDateAndTime',
+  addSessionDuration: 'addSessionDuration',
   addSessionFormSubmit: 'addSessionFormSubmit',
 
   interestsMenuItem: 'interestsMenuItem',
