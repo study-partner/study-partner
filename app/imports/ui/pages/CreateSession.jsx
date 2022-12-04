@@ -44,7 +44,9 @@ const AddSession = () => {
   return (
     <Container id={PageIDs.addSessionPage} className="justify-content-center page" style={pageStyle}>
       <Col>
-        <Col className="justify-content-center text-center"><h2>Create Sessions</h2></Col>
+        <Col className="justify-content-center text-center">
+          <h2>Create Session</h2>
+        </Col>
         <AutoForm ref={ref => { fRef = ref; }} schema={bridge} onSubmit={data => submit(data, fRef)}>
           <Card>
             <Card.Body>
