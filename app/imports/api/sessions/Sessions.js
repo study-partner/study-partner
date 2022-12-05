@@ -13,8 +13,8 @@ class SessionsCollection {
     this.schema = new SimpleSchema({
       id: Number,
       text: String,
-      startDate: Date,
-      endDate: Date,
+      start: String,
+      end: String,
     }, { tracker: Tracker });
     // Ensure collection documents obey schema.
     this.collection.attachSchema(this.schema);
