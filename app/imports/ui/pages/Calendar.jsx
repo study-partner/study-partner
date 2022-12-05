@@ -83,12 +83,12 @@ class Calendar extends Component {
     //   },
     // ];
 
-    const doc_id = ['0', '1'];
+    const event_id = ['0', '1', '2'];
     const events = [];
 
-    for (let i = 0; i < doc_id.length; i++) {
-      console.log(`--------here is doc id: ${doc_id[i]}`);
-      const event_data = Sessions.collection.findOne({ id: Number(doc_id[i]) });
+    for (let i = 0; i < event_id.length; i++) {
+      console.log(`--------here is doc id: ${event_id[i]}`);
+      const event_data = Sessions.collection.findOne({ id: Number(event_id[i]) });
       if (event_data != null) {
         delete event_data._id;
         events.push(event_data);
@@ -97,16 +97,6 @@ class Calendar extends Component {
     }
     console.log('here is events:');
     console.log(JSON.stringify(events));
-
-    // console.log('here is data: ');
-    // const test = Sessions.collection.findOne({ id: 1 });
-    // delete test._id;
-    // console.log(test);
-
-    // // console.log(`here is doc id: ${doc_id[0]}`);
-    // console.log(Sessions.collection.findOne({ id: 1 }));
-    // events.push(Sessions.collection.findOne({ id: 1 }));
-    // console.log(`here is events: ${events}`);
 
     // Get current date
     const date = new Date();
