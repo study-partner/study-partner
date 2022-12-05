@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Meteor } from 'meteor/meteor';
 import { DayPilot, DayPilotCalendar, DayPilotNavigator } from '@daypilot/daypilot-lite-react';
 import './CalendarStyles.css';
 import { PageIDs } from '../utilities/ids';
@@ -47,10 +48,11 @@ class Calendar extends Component {
         dp.events.update(e);
       },
     };
+    Meteor.subscribe(Sessions.userPublicationName);
   }
 
   componentDidMount() {
-
+    // Demo Events
     // const events = [
     //   {
     //     id: 1,
@@ -81,18 +83,32 @@ class Calendar extends Component {
     //   },
     // ];
 
-    const doc_id = ['1'];
+    const doc_id = ['0', '1'];
     const events = [];
 
-    // for (let i = 0; i < doc_id.length; i++) {
-    //   console.log(`here is doc id: ${doc_id[i]}`);
-    //   events.push(Sessions.collection.find({ id: doc_id[i] }).fetch());
-    //   console.log(`here is events: ${events}`);
-    //   console.log(JSON.stringify(Sessions.collection.find({ id: doc_id[i] }).fetch()));
-    // }
-    console.log('here is data: ');
-    console.log(Sessions.collection.find({ id: 1 }));
+    for (let i = 0; i < doc_id.length; i++) {
+      console.log(`--------here is doc id: ${doc_id[i]}`);
+      const event_data = Sessions.collection.findOne({ id: Number(doc_id[i]) });
+      if (event_data != null) {
+        delete event_data._id;
+        events.push(event_data);
+      }
+      console.log(event_data);
+    }
+    console.log('here is events:');
+    console.log(JSON.stringify(events));
 
+    // console.log('here is data: ');
+    // const test = Sessions.collection.findOne({ id: 1 });
+    // delete test._id;
+    // console.log(test);
+
+    // // console.log(`here is doc id: ${doc_id[0]}`);
+    // console.log(Sessions.collection.findOne({ id: 1 }));
+    // events.push(Sessions.collection.findOne({ id: 1 }));
+    // console.log(`here is events: ${events}`);
+
+    // Get current date
     const date = new Date();
 
     const month = String(date.getMonth() + 1).padStart(2, '0');
