@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Meteor } from 'meteor/meteor';
 import { DayPilot, DayPilotCalendar, DayPilotNavigator } from '@daypilot/daypilot-lite-react';
 import './CalendarStyles.css';
 import { PageIDs } from '../utilities/ids';
@@ -80,16 +81,18 @@ class Calendar extends Component {
     //     backColor: '#cc4125',
     //   },
     // ];
+    Meteor.subscribe(Sessions.userPublicationName);
 
     const doc_id = ['1'];
     const events = [];
-
-    for (let i = 0; i < doc_id.length; i++) {
+    console.log('data: ');
+    console.log(Sessions.collection.findOne({ id: 1 }));
+    /* for (let i = 0; i < doc_id.length; i++) {
       console.log(`here is doc id: ${doc_id[i]}`);
       events.push(Sessions.collection.find({ id: doc_id[i] }));
       console.log(`here is events: ${events}`);
-      console.log(JSON.stringify(Sessions.collection.find({ id: doc_id[i] })));
-    }
+      console.log(JSON.stringify(Sessions.collection.find({ id: doc_id[i] }).fetch()));
+    } */
     const date = new Date();
 
     const month = String(date.getMonth() + 1).padStart(2, '0');
