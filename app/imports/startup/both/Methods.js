@@ -83,7 +83,10 @@ Meteor.methods({
     if (duration < 1) {
       throw new Meteor.Error('Duration cannot be 0 or lower');
     } else {
-      Sessions.collection.insert({ id, text, startDate, endDate });
+      // Ex: 2001-12-10T-10:15:30
+      const start = startDate.toISOString().slice(0, -5);
+      const end = endDate.toISOString().slice(0, -5);
+      Sessions.collection.insert({ id, text, start, end });
     }
   },
 });

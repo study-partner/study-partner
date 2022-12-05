@@ -12,7 +12,7 @@ import { ComponentIDs, PageIDs } from '../utilities/ids';
 /* Create a schema to specify the structure of the data to appear in the form. */
 const makeSchema = new SimpleSchema({
   text: String,
-  startDate: Date,
+  startDate: String,
   duration: Number,
 });
 let idCount = 0;
