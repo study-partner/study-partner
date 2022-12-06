@@ -14,7 +14,6 @@ import { ProfilesInterests } from '../../api/profiles/ProfilesInterests';
 import { ProfilesProjects } from '../../api/profiles/ProfilesProjects';
 import { Projects } from '../../api/projects/Projects';
 import LoadingSpinner from '../components/LoadingSpinner';
-import { pageStyle } from './pageStyles';
 import { ComponentIDs, PageIDs } from '../utilities/ids';
 
 /* Create a schema to specify the structure of the data to appear in the form. */
@@ -65,7 +64,7 @@ const AddProject = () => {
   const transform = (label) => ` ${label}`;
   /* Render the form. Use Uniforms: https://github.com/vazco/uniforms */
   return ready ? (
-    <Container style={pageStyle}>
+    <Container>
       <Row id={PageIDs.addProjectPage} className="justify-content-center">
         <Col xs={10}>
           <Col className="text-center"><h2>Add Project</h2></Col>

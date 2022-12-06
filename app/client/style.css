@@ -103,4 +103,6 @@ footer a {
 
 .page {
   min-height: 85vh;
+  padding-top: 10px;
+  padding-bottom: 20px;
 }

@@ -6,7 +6,6 @@ import SimpleSchema2Bridge from 'uniforms-bridge-simple-schema-2';
 import SimpleSchema from 'simpl-schema';
 import { Meteor } from 'meteor/meteor';
 import { addSessionMethod } from '../../startup/both/Methods';
-import { pageStyle } from './pageStyles';
 import { ComponentIDs, PageIDs } from '../utilities/ids';
 
 /* Create a schema to specify the structure of the data to appear in the form. */
@@ -42,7 +41,7 @@ const AddSession = () => {
   /* Render the form. Use Uniforms: https://github.com/vazco/uniforms */
   let fRef = null;
   return (
-    <Container id={PageIDs.addSessionPage} className="justify-content-center page" style={pageStyle}>
+    <Container id={PageIDs.addSessionPage} className="justify-content-center page">
       <Col>
         <Col className="justify-content-center text-center">
           <h2>Create Session</h2>

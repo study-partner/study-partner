@@ -11,7 +11,6 @@ import { ProfilesProjects } from '../../api/profiles/ProfilesProjects';
 import { Projects } from '../../api/projects/Projects';
 import { ProjectsInterests } from '../../api/projects/ProjectsInterests';
 import LoadingSpinner from '../components/LoadingSpinner';
-import { pageStyle } from './pageStyles';
 import { PageIDs } from '../utilities/ids';
 
 /* Returns the Profiles and Sessions associated with the passed Interest. */
@@ -64,7 +63,7 @@ const InterestsPage = () => {
   const interests = _.pluck(Interests.collection.find().fetch(), 'name');
   const interestData = interests.map(interest => getInterestData(interest));
   return ready ? (
-    <Container id={PageIDs.interestsPage} style={pageStyle}>
+    <Container id={PageIDs.interestsPage}>
       <Row xs={1} md={2} lg={4} className="g-2">
         {interestData.map((interest, index) => <MakeCard key={index} interest={interest} />)}
       </Row>
