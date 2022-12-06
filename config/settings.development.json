@@ -87,7 +87,7 @@
 
       ],
       "needHelpClasses": [
-        "ICS 101"
+        "ICS 211"
       ],
       "helpOthersClasses": [
         "ICS 101"
@@ -107,10 +107,12 @@
 
       ],
       "needHelpClasses": [
-        "ICS 101"
+        "ICS 311"
       ],
       "helpOthersClasses": [
-        "ICS 101"
+        "ICS 101",
+        "ICS 111",
+        "ICS 211"
       ],
       "picture": "https://github.com/philipmjohnson.png",
       "email": "admin@foo.com",
