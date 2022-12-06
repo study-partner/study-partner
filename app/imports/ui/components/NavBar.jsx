@@ -27,9 +27,9 @@ const NavBar = () => {
             {currentUser ? (
               [
                 <Nav.Link as={NavLink} to="/yourprofile" id={ComponentIDs.yourProfileMenuItem} key="yourProfile">My Profile</Nav.Link>,
-                <Nav.Link as={NavLink} to="/profiles" id={ComponentIDs.profilesMenuItem} key="viewProfiles">View Other&apos;s Profiles</Nav.Link>,
-                <Nav.Link as={NavLink} to="/calendar" id={ComponentIDs.calendarMenuItem} key="calendar">Calendar</Nav.Link>,
                 <Nav.Link as={NavLink} to="/createsession" id={ComponentIDs.addSessionMenuItem} key="createSession">Create Session</Nav.Link>,
+                <Nav.Link as={NavLink} to="/calendar" id={ComponentIDs.calendarMenuItem} key="calendar">Calendar</Nav.Link>,
+                <Nav.Link as={NavLink} to="/profiles" id={ComponentIDs.profilesMenuItem} key="viewProfiles">All Profiles</Nav.Link>,
                 <Nav.Link as={NavLink} to="/leaderboard" key="leaderboard">Leaderboard</Nav.Link>,
               ]
             ) : ''}
