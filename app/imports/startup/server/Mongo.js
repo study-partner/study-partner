@@ -77,6 +77,9 @@ if (Meteor.users.find().count() === 0) {
   if (Meteor.settings.defaultProfiles && Meteor.settings.defaultSessions) {
     console.log('Creating the default profiles');
     Meteor.settings.defaultProfiles.map(profile => addProfile(profile));
+    console.log('Creating the default classes');
+    Meteor.settings.defaultNeedHelpClasses.map(needHelpClass => addNeedHelpClass(needHelpClass));
+    Meteor.settings.defaultHelpOthersClasses.map(helpOthersClass => addHelpOthersClass(helpOthersClass));
     // console.log('Creating the default projects');
     // Meteor.settings.defaultProjects.map(project => addProject(project));
     console.log('Creating the default session');
