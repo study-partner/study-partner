@@ -1,5 +1,5 @@
 {
-  "name": "study-partner",
+  "name": "meteor-application-template-react",
   "private": true,
   "dependencies": {
     "@aldabil/react-scheduler": "^2.5.13",
