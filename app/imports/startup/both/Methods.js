@@ -6,6 +6,7 @@ import { ProfilesHelpOthersClasses } from '../../api/profiles/ProfilesHelpOthers
 import { Sessions } from '../../api/sessions/Sessions';
 import { Projects } from '../../api/projects/Projects';
 import { ProjectsInterests } from '../../api/projects/ProjectsInterests';
+import { JoinSessions } from '../../api/profiles/JoinSessions';
 
 /**
  * In Bowfolios, insecure mode is enabled, so it is possible to update the server's Mongo database by making
@@ -48,6 +49,15 @@ Meteor.methods({
   },
 });
 
+const joinSessionMethod = 'Sessions.join';
+/** Updates a user's profile when they join a session */
+Meteor.methods({
+  'Sessions.join'({ email, sessions }) {
+    JoinSessions.collection.remove({ profile: email });
+    sessions.map((session) => JoinSessions.collection.insert({ profile: email, session }));
+  },
+});
+
 const addProjectMethod = 'Projects.add';
 
 /** Creates a new project in the Projects collection, and also updates ProfilesProjects and SessionsCourses. */
@@ -86,4 +96,4 @@ Meteor.methods({
   },
 });
 
-export { updateProfileMethod, addSessionMethod, addProjectMethod };
+export { joinSessionMethod, updateProfileMethod, addSessionMethod, addProjectMethod };

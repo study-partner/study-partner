@@ -92,6 +92,9 @@
       "helpOthersClasses": [
         "ICS 101"
       ],
+      "sessions": [
+        0
+      ],
       "picture": "https://github.com/philipmjohnson.png",
       "email": "john@foo.com"
     },
@@ -113,6 +116,9 @@
         "ICS 101",
         "ICS 111",
         "ICS 211"
+      ],
+      "sessions": [
+
       ],
       "picture": "https://github.com/philipmjohnson.png",
       "email": "admin@foo.com",

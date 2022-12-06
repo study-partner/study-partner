@@ -16,6 +16,8 @@ import { NeedHelpClasses } from '../../api/NeedHelpClasses/NeedHelpClasses';
 import { ProfilesNeedHelpClasses } from '../../api/profiles/ProfilesNeedHelpClasses';
 import { HelpOthersClasses } from '../../api/HelpOthersClasses/HelpOthersClasses';
 import { ProfilesHelpOthersClasses } from '../../api/profiles/ProfilesHelpOthersClasses';
+import { Sessions } from '../../api/sessions/Sessions';
+import { JoinSessions } from '../../api/profiles/JoinSessions';
 
 /* Create a schema to specify the structure of the data to appear in the form. */
 const makeSchema = (allNeedHelpClasses, allHelpOthersClasses) => new SimpleSchema({
@@ -52,8 +54,11 @@ const YourProfile = () => {
     const sub3 = Meteor.subscribe(ProfilesNeedHelpClasses.userPublicationName);
     const sub4 = Meteor.subscribe(HelpOthersClasses.userPublicationName);
     const sub5 = Meteor.subscribe(ProfilesHelpOthersClasses.userPublicationName);
+    // delete sub6 and sub7 later
+    const sub6 = Meteor.subscribe(Sessions.userPublicationName);
+    const sub7 = Meteor.subscribe(JoinSessions.userPublicationName);
     return {
-      ready: sub1.ready() && sub2.ready() && sub3.ready() && sub4.ready() && sub5.ready(),
+      ready: sub1.ready() && sub2.ready() && sub3.ready() && sub4.ready() && sub5.ready() && sub6.ready() && sub7.ready(),
       email: Meteor.user()?.username,
     };
   }, []);
