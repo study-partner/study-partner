@@ -4,6 +4,7 @@ import { DayPilot, DayPilotCalendar, DayPilotNavigator } from '@daypilot/daypilo
 import './CalendarStyles.css';
 import { PageIDs } from '../utilities/ids';
 import { Sessions } from '../../api/sessions/Sessions';
+import { JoinSessions } from '../../api/profiles/JoinSessions';
 
 const styles = {
   wrap: {
@@ -49,6 +50,7 @@ class Calendar extends Component {
       },
     };
     Meteor.subscribe(Sessions.userPublicationName);
+    Meteor.subscribe(JoinSessions.userPublicationName);
   }
 
   componentDidMount() {
