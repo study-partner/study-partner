@@ -52,8 +52,6 @@ MakeCard.propTypes = {
     bio: PropTypes.string,
     picture: PropTypes.string,
     title: PropTypes.string,
-    interests: PropTypes.arrayOf(PropTypes.string),
-    projects: PropTypes.arrayOf(PropTypes.string),
     needHelpClasses: PropTypes.arrayOf(PropTypes.string),
     helpOtherClasses: PropTypes.arrayOf(PropTypes.string),
   }).isRequired,
