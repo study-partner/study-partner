@@ -7,14 +7,9 @@ import SimpleSchema from 'simpl-schema';
 import { Meteor } from 'meteor/meteor';
 import { _ } from 'meteor/underscore';
 import { useTracker } from 'meteor/react-meteor-data';
-import { Interests } from '../../api/interests/Interests';
 import { Profiles } from '../../api/profiles/Profiles';
-import { ProfilesInterests } from '../../api/profiles/ProfilesInterests';
-import { ProfilesProjects } from '../../api/profiles/ProfilesProjects';
-import { Projects } from '../../api/projects/Projects';
 import { updateProfileMethod } from '../../startup/both/Methods';
 import LoadingSpinner from '../components/LoadingSpinner';
-import { pageStyle } from './pageStyles';
 import { ComponentIDs, PageIDs } from '../utilities/ids';
 import { NeedHelpClasses } from '../../api/NeedHelpClasses/NeedHelpClasses';
 import { ProfilesNeedHelpClasses } from '../../api/profiles/ProfilesNeedHelpClasses';
@@ -22,7 +17,7 @@ import { HelpOthersClasses } from '../../api/HelpOthersClasses/HelpOthersClasses
 import { ProfilesHelpOthersClasses } from '../../api/profiles/ProfilesHelpOthersClasses';
 
 /* Create a schema to specify the structure of the data to appear in the form. */
-const makeSchema = (allInterests, allProjects, allNeedHelpClasses, allHelpOthersClasses) => new SimpleSchema({
+const makeSchema = (allNeedHelpClasses, allHelpOthersClasses) => new SimpleSchema({
   email: { type: String, label: 'Email', optional: true },
   firstName: { type: String, label: 'First', optional: true },
   lastName: { type: String, label: 'Last', optional: true },
@@ -33,10 +28,6 @@ const makeSchema = (allInterests, allProjects, allNeedHelpClasses, allHelpOthers
   'needHelpClasses.$': { type: String, allowedValues: allNeedHelpClasses },
   helpOthersClasses: { type: Array, label: 'Classes you can help others with', optional: true },
   'helpOthersClasses.$': { type: String, allowedValues: allHelpOthersClasses },
-  interests: { type: Array, label: 'Classes you need help with', optional: true },
-  'interests.$': { type: String, allowedValues: allInterests },
-  projects: { type: Array, label: 'Classes you can help others with', optional: true },
-  'projects.$': { type: String, allowedValues: allProjects },
 });
 
 /* Renders the YourProfile Page: what appears after the user logs in. */
@@ -55,36 +46,31 @@ const YourProfile = () => {
 
   const { ready, email } = useTracker(() => {
     // Ensure that minimongo is populated with all collections prior to running render().
-    const sub1 = Meteor.subscribe(Interests.userPublicationName);
-    const sub2 = Meteor.subscribe(Profiles.userPublicationName);
-    const sub3 = Meteor.subscribe(ProfilesInterests.userPublicationName);
-    const sub4 = Meteor.subscribe(ProfilesProjects.userPublicationName);
-    const sub5 = Meteor.subscribe(Projects.userPublicationName);
-    const sub6 = Meteor.subscribe(NeedHelpClasses.userPublicationName);
-    const sub7 = Meteor.subscribe(ProfilesNeedHelpClasses.userPublicationName);
-    const sub8 = Meteor.subscribe(HelpOthersClasses.userPublicationName);
-    const sub9 = Meteor.subscribe(ProfilesHelpOthersClasses.userPublicationName);
+    const sub1 = Meteor.subscribe(Profiles.userPublicationName);
+    const sub2 = Meteor.subscribe(NeedHelpClasses.userPublicationName);
+    const sub3 = Meteor.subscribe(ProfilesNeedHelpClasses.userPublicationName);
+    const sub4 = Meteor.subscribe(HelpOthersClasses.userPublicationName);
+    const sub5 = Meteor.subscribe(ProfilesHelpOthersClasses.userPublicationName);
+    // delete sub6 and sub7 later
+    /* const sub6 = Meteor.subscribe(Sessions.userPublicationName);
+    const sub7 = Meteor.subscribe(JoinSessions.userPublicationName); */
     return {
-      ready: sub1.ready() && sub2.ready() && sub3.ready() && sub4.ready() && sub5.ready() && sub6.ready() && sub7.ready() && sub8.ready() && sub9.ready(),
+      ready: sub1.ready() && sub2.ready() && sub3.ready() && sub4.ready() && sub5.ready(),
       email: Meteor.user()?.username,
     };
   }, []);
-  // Create the form schema for uniforms. Need to determine all interests and projects for muliselect list.
-  const allInterests = _.pluck(Interests.collection.find().fetch(), 'name');
-  const allProjects = _.pluck(Projects.collection.find().fetch(), 'name');
+  // Create the form schema for uniforms. Need to determine all classes for muliselect list.
   const allNeedHelpClasses = _.pluck(NeedHelpClasses.collection.find().fetch(), 'name');
   const allHelpOthersClasses = _.pluck(HelpOthersClasses.collection.find().fetch(), 'name');
-  const formSchema = makeSchema(allInterests, allProjects, allNeedHelpClasses, allHelpOthersClasses);
+  const formSchema = makeSchema(allNeedHelpClasses, allHelpOthersClasses);
   const bridge = new SimpleSchema2Bridge(formSchema);
   // Now create the model with all the user information.
-  const projects = _.pluck(ProfilesProjects.collection.find({ profile: email }).fetch(), 'project');
-  const interests = _.pluck(ProfilesInterests.collection.find({ profile: email }).fetch(), 'interest');
   const needHelpClasses = _.pluck(ProfilesNeedHelpClasses.collection.find({ profile: email }).fetch(), 'needHelpClass');
   const helpOthersClasses = _.pluck(ProfilesHelpOthersClasses.collection.find({ profile: email }).fetch(), 'helpOthersClass');
   const profile = Profiles.collection.findOne({ email });
-  const model = _.extend({}, profile, { interests, projects, needHelpClasses, helpOthersClasses });
+  const model = _.extend({}, profile, { needHelpClasses, helpOthersClasses });
   return ready ? (
-    <Container id={PageIDs.yourProfilePage} className="justify-content-center page" style={pageStyle}>
+    <Container id={PageIDs.yourProfilePage} className="justify-content-center page">
       <Col>
         <Col className="justify-content-center text-center"><h2>Your Profile</h2></Col>
         <AutoForm model={model} schema={bridge} onSubmit={data => submit(data)}>

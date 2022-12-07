@@ -3,9 +3,75 @@
     "appId": "4nBm4Htue7mptpPwy",
     "appSecret": "11a61145-8b77-4f16-86de-45d2e24c45c7"
   },
-    "defaultAccounts": [
+  "defaultAccounts": [
     { "email": "admin@foo.com", "password": "changeme", "role": "admin" },
     { "email": "john@foo.com", "password": "changeme" }
+  ],
+
+  "defaultSessions": [
+    { "id": 0,
+      "text": "ICS 314 (Demo)",
+      "start": "2022-12-06T10:15:30",
+      "end": "2022-12-06T12:20:30"
+    }
+  ],
+
+  "defaultNeedHelpClasses": [
+    "ICS 101",
+    "ICS 110P",
+    "ICS 111",
+    "ICS 141",
+    "ICS 211",
+    "ICS 212",
+    "ICS 222",
+    "ICS 235",
+    "ICS 241",
+    "ICS 311",
+    "ICS 313",
+    "ICS 314",
+    "ICS 321",
+    "ICS 331",
+    "ICS 332",
+    "ICS 390",
+    "ICS 414",
+    "ICS 426",
+    "ICS 428",
+    "ICS 432",
+    "ICS 438",
+    "ICS 451",
+    "ICS 461",
+    "ICS 483",
+    "ICS 484",
+    "ICS 486"
+  ],
+
+  "defaultHelpOthersClasses": [
+    "ICS 101",
+    "ICS 110P",
+    "ICS 111",
+    "ICS 141",
+    "ICS 211",
+    "ICS 212",
+    "ICS 222",
+    "ICS 235",
+    "ICS 241",
+    "ICS 311",
+    "ICS 313",
+    "ICS 314",
+    "ICS 321",
+    "ICS 331",
+    "ICS 332",
+    "ICS 390",
+    "ICS 414",
+    "ICS 426",
+    "ICS 428",
+    "ICS 432",
+    "ICS 438",
+    "ICS 451",
+    "ICS 461",
+    "ICS 483",
+    "ICS 484",
+    "ICS 486"
   ],
 
   "defaultProfiles": [
@@ -15,17 +81,19 @@
       "bio": "I am a Professor and like to paddle outrigger canoes.",
       "title": "Professor",
       "interests": [
-        "ICS 101"
+
       ],
       "projects":[
-        "RadGrad",
-        "Open Power Quality"
+
       ],
       "needHelpClasses": [
-        "ICS 101"
+        "ICS 211"
       ],
       "helpOthersClasses": [
         "ICS 101"
+      ],
+      "sessions": [
+        0
       ],
       "picture": "https://github.com/philipmjohnson.png",
       "email": "john@foo.com"
@@ -36,73 +104,28 @@
       "bio": "I am a Professor and like to paddle outrigger canoes.",
       "title": "Professor",
       "interests": [
-        "ICS 101"
+
       ],
       "projects":[
-        "RadGrad",
-        "Open Power Quality"
+
       ],
       "needHelpClasses": [
-        "ICS 101",
-        "ICS 110P",
-        "ICS 111",
-        "ICS 141",
-        "ICS 211",
-        "ICS 212",
-        "ICS 222",
-        "ICS 235",
-        "ICS 241",
-        "ICS 311",
-        "ICS 313",
-        "ICS 314",
-        "ICS 321",
-        "ICS 331",
-        "ICS 332",
-        "ICS 390",
-        "ICS 414",
-        "ICS 426",
-        "ICS 428",
-        "ICS 432",
-        "ICS 438",
-        "ICS 451",
-        "ICS 461",
-        "ICS 483",
-        "ICS 484",
-        "ICS 486"
+        "ICS 311"
       ],
       "helpOthersClasses": [
         "ICS 101",
-        "ICS 110P",
         "ICS 111",
-        "ICS 141",
-        "ICS 211",
-        "ICS 212",
-        "ICS 222",
-        "ICS 235",
-        "ICS 241",
-        "ICS 311",
-        "ICS 313",
-        "ICS 314",
-        "ICS 321",
-        "ICS 331",
-        "ICS 332",
-        "ICS 390",
-        "ICS 414",
-        "ICS 426",
-        "ICS 428",
-        "ICS 432",
-        "ICS 438",
-        "ICS 451",
-        "ICS 461",
-        "ICS 483",
-        "ICS 484",
-        "ICS 486"
+        "ICS 211"
+      ],
+      "sessions": [
+
       ],
       "picture": "https://github.com/philipmjohnson.png",
       "email": "admin@foo.com",
       "role": "admin"
     }
   ],
+
   "defaultProjects": [
     {
       "name": "Open Power Quality",
@@ -142,10 +165,6 @@
       ],
       "picture": "https://www.hawaii.edu/its/wp-content/uploads/sites/2/2019/01/LAVAlogo-300x192-300x192.png"
     }
-  ],
-  "defaultSessions": [
-    { "course": "ICS 101", "time": "12:30", "month": "9", "day": "21", "year": "2022" },
-    { "course": "ICS 111", "time": "11:50", "month": "9", "day": "21", "year": "2022" }
   ],
   "loadAssetsFile":  false
 }

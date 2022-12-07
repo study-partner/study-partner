@@ -14,7 +14,6 @@ import { ProfilesProjects } from '../../api/profiles/ProfilesProjects';
 import { Projects } from '../../api/projects/Projects';
 import { addSessionMethod } from '../../startup/both/Methods';
 import LoadingSpinner from '../components/LoadingSpinner';
-import { pageStyle } from './pageStyles';
 import { ComponentIDs, PageIDs } from '../utilities/ids';
 import { NeedHelpClasses } from '../../api/NeedHelpClasses/NeedHelpClasses';
 import { ProfilesNeedHelpClasses } from '../../api/profiles/ProfilesNeedHelpClasses';
@@ -90,7 +89,7 @@ const YourProfile = () => {
   const profile = Profiles.collection.findOne({ email });
   const model = _.extend({}, profile, { interests, projects, needHelpClasses, helpOthersClasses });
   return ready ? (
-    <Container id={PageIDs.homePage} className="justify-content-center" style={pageStyle}>
+    <Container id={PageIDs.homePage} className="justify-content-center page">
       <Col>
         <Col className="justify-content-center text-center"><h2>Join Sessions</h2></Col>
         <AutoForm model={model} schema={bridge} onSubmit={data => submit(data)}>
