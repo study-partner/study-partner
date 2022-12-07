@@ -13,15 +13,13 @@ const makeSchema = new SimpleSchema({
   text: String,
   startDate: String,
   duration: Number,
-  attendees: Array,
-  'attendees.$': String,
 });
-let idCount = 0;
+// TODO: change idCount to the number of sessions
+let idCount = 2;
 const getNextID = () => {
   idCount += 1;
   return idCount;
 };
-
 const bridge = new SimpleSchema2Bridge(makeSchema);
 /* Renders the YourProfile Page: what appears after the user logs in. */
 const AddSession = () => {
