@@ -1,116 +1,70 @@
 import React from 'react';
-import { AutoForm, SubmitField, TextField } from 'uniforms-bootstrap5';
-import { Container, Col, Card, Row } from 'react-bootstrap';
-import swal from 'sweetalert';
-import SimpleSchema2Bridge from 'uniforms-bridge-simple-schema-2';
-import SimpleSchema from 'simpl-schema';
 import { Meteor } from 'meteor/meteor';
-import { _ } from 'meteor/underscore';
+import { Container, Card, Row, Col, Button } from 'react-bootstrap';
 import { useTracker } from 'meteor/react-meteor-data';
-import { Interests } from '../../api/interests/Interests';
-import { Profiles } from '../../api/profiles/Profiles';
-import { ProfilesInterests } from '../../api/profiles/ProfilesInterests';
-import { ProfilesProjects } from '../../api/profiles/ProfilesProjects';
-import { Projects } from '../../api/projects/Projects';
-import { addSessionMethod } from '../../startup/both/Methods';
+import PropTypes from 'prop-types';
+import { _ } from 'meteor/underscore';
 import LoadingSpinner from '../components/LoadingSpinner';
-import { ComponentIDs, PageIDs } from '../utilities/ids';
-import { NeedHelpClasses } from '../../api/NeedHelpClasses/NeedHelpClasses';
-import { ProfilesNeedHelpClasses } from '../../api/profiles/ProfilesNeedHelpClasses';
-import { HelpOthersClasses } from '../../api/HelpOthersClasses/HelpOthersClasses';
-import { ProfilesHelpOthersClasses } from '../../api/profiles/ProfilesHelpOthersClasses';
+import { PageIDs } from '../utilities/ids';
+import { Sessions } from '../../api/sessions/Sessions';
 
-/* Create a schema to specify the structure of the data to appear in the form. */
-const makeSchema = (allInterests, allProjects, allNeedHelpClasses, allHelpOthersClasses) => new SimpleSchema({
-  course: { type: String, label: 'Courses', optional: true },
-  time: { type: String, label: 'Time', optional: true },
-  month: { type: String, label: 'Month', optional: true },
-  day: { type: String, label: 'Day', optional: true },
-  year: { type: String, label: 'Year', optional: true },
+/* Gets the Project data as well as Profiles and HelpWithClasses associated with the passed Project name. */
+function getSessionData(text) {
+  const data = Sessions.collection.findOne({ text });
+  const evenId = _.pluck(Sessions.collection.find({ session: text }).fetch(), 'id');
+  const startDate = _.pluck(Sessions.collection.find({ session: text }).fetch(), 'star');
+  const endDate = _.pluck(Sessions.collection.find({ session: text }).fetch(), 'end');
+  return _.extend({}, data, { evenId, text, startDate, endDate });
+}
 
-  email: { type: String, label: 'Email', optional: true },
-  firstName: { type: String, label: 'First', optional: true },
-  lastName: { type: String, label: 'Last', optional: true },
-  bio: { type: String, label: 'Biographical statement', optional: true },
-  title: { type: String, label: 'Class standing', optional: true },
-  picture: { type: String, label: 'Picture URL', optional: true },
-  needHelpClasses: { type: Array, label: 'Courses', optional: true },
-  'needHelpClasses.$': { type: String, allowedValues: allNeedHelpClasses },
-  helpOthersClasses: { type: Array, label: 'Classes you can help others with', optional: true },
-  'helpOthersClasses.$': { type: String, allowedValues: allHelpOthersClasses },
-  interests: { type: Array, label: 'Classes you need help with', optional: true },
-  'interests.$': { type: String, allowedValues: allInterests },
-  projects: { type: Array, label: 'Classes you can help others with', optional: true },
-  'projects.$': { type: String, allowedValues: allProjects },
-});
+/* Component for layout out a Project Card. */
+const MakeCard = ({ session }) => (
+  <Col>
+    <Card className="h-100">
+      <Card.Body>
+        <Card.Title style={{ marginTop: '0px' }}>{session.text}</Card.Title>
+        <Card.Subtitle>
+          id: <span className="date">{session.id}</span>
+        </Card.Subtitle>
+      </Card.Body>
+      <hr size="10" color="#0D6EFD" className="hrstyle" />
+      <Card.Body>
+        Start Date: {session.start}
+        <br />
+        End Date: {session.end}
+      </Card.Body>
+      <Button>Join Session</Button>
+    </Card>
+  </Col>
+);
 
-/* Renders the YourProfile Page: what appears after the user logs in. */
-const YourProfile = () => {
+MakeCard.propTypes = {
+  session: PropTypes.shape({
+    id: PropTypes.number,
+    text: PropTypes.string,
+    start: PropTypes.string,
+    end: PropTypes.string,
+  }).isRequired,
+};
 
-  /* On submit, insert the data. */
-  const submit = (data) => {
-    Meteor.call(addSessionMethod, data, (error) => {
-      if (error) {
-        swal('Error', error.message, 'error');
-      } else {
-        swal('Success', 'Session updated successfully', 'success');
-      }
-    });
-  };
-
-  const { ready, email } = useTracker(() => {
+/* Renders the Project Collection as a set of Cards. */
+const JoinSession = () => {
+  const { ready } = useTracker(() => {
     // Ensure that minimongo is populated with all collections prior to running render().
-    const sub1 = Meteor.subscribe(Interests.userPublicationName);
-    const sub2 = Meteor.subscribe(Profiles.userPublicationName);
-    const sub3 = Meteor.subscribe(ProfilesInterests.userPublicationName);
-    const sub4 = Meteor.subscribe(ProfilesProjects.userPublicationName);
-    const sub5 = Meteor.subscribe(Projects.userPublicationName);
-    const sub6 = Meteor.subscribe(NeedHelpClasses.userPublicationName);
-    const sub7 = Meteor.subscribe(ProfilesNeedHelpClasses.userPublicationName);
-    const sub8 = Meteor.subscribe(HelpOthersClasses.userPublicationName);
-    const sub9 = Meteor.subscribe(ProfilesHelpOthersClasses.userPublicationName);
+    const sub1 = Meteor.subscribe(Sessions.userPublicationName);
     return {
-      ready: sub1.ready() && sub2.ready() && sub3.ready() && sub4.ready() && sub5.ready() && sub6.ready() && sub7.ready() && sub8.ready() && sub9.ready(),
-      email: Meteor.user()?.username,
+      ready: sub1.ready(),
     };
   }, []);
-  // Create the form schema for uniforms. Need to determine all interests and projects for muliselect list.
-  const allInterests = _.pluck(Interests.collection.find().fetch(), 'name');
-  const allProjects = _.pluck(Projects.collection.find().fetch(), 'name');
-  const allNeedHelpClasses = _.pluck(NeedHelpClasses.collection.find().fetch(), 'name');
-  const allHelpOthersClasses = _.pluck(HelpOthersClasses.collection.find().fetch(), 'name');
-  const formSchema = makeSchema(allInterests, allProjects, allNeedHelpClasses, allHelpOthersClasses);
-  const bridge = new SimpleSchema2Bridge(formSchema);
-  // Now create the model with all the user information.
-  const projects = _.pluck(ProfilesProjects.collection.find({ profile: email }).fetch(), 'project');
-  const interests = _.pluck(ProfilesInterests.collection.find({ profile: email }).fetch(), 'interest');
-  const needHelpClasses = _.pluck(ProfilesNeedHelpClasses.collection.find({ profile: email }).fetch(), 'needHelpClass');
-  const helpOthersClasses = _.pluck(ProfilesHelpOthersClasses.collection.find({ profile: email }).fetch(), 'helpOthersClass');
-  const profile = Profiles.collection.findOne({ email });
-  const model = _.extend({}, profile, { interests, projects, needHelpClasses, helpOthersClasses });
+  const sessions = _.pluck(Sessions.collection.find().fetch(), 'text');
+  const sessionData = sessions.map(session => getSessionData(session));
   return ready ? (
-    <Container id={PageIDs.homePage} className="justify-content-center page">
-      <Col>
-        <Col className="justify-content-center text-center"><h2>Join Sessions</h2></Col>
-        <AutoForm model={model} schema={bridge} onSubmit={data => submit(data)}>
-          <Card>
-            <Card.Body>
-              <Row>
-                <Col xs={4}><TextField id={ComponentIDs.sessionCourse} name="course" showInlineError placeholder="Course" disabled /></Col>
-                <Col xs={4}><TextField id={ComponentIDs.sessionTime} name="time" showInlineError placeholder="Time" disabled /></Col>
-              </Row>
-              <Row>
-                <Col xs={4}><TextField id={ComponentIDs.sessionMonth} name="month" showInlineError placeholder="Month" disabled /></Col>
-                <Col xs={4}><TextField id={ComponentIDs.sessionDay} name="day" showInlineError placeholder="Day" disabled /></Col>
-                <Col xs={4}><TextField id={ComponentIDs.sessionYear} name="year" showInlineError placeholder="Year" disabled /></Col>
-              </Row>
-              <SubmitField id={ComponentIDs.sessionSubmit} className="justify-content-center text-center" value="Join Session" />
-            </Card.Body>
-          </Card>
-        </AutoForm>
-      </Col>
+    <Container id={PageIDs.joinSessionsPage}>
+      <Row xs={1} md={2} lg={4} className="g-2">
+        {sessionData.map((session, index) => <MakeCard key={index} session={session} />)}
+      </Row>
     </Container>
   ) : <LoadingSpinner />;
 };
 
-export default YourProfile;
+export default JoinSession;
