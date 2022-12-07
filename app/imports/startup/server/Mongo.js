@@ -72,9 +72,9 @@ function addProject({ name, homepage, description, interests, picture }) {
   interests.map(interest => addInterest(interest));
 }
 
-function addSession({ id, text, start, end }) {
+function addSession({ id, text, start, end, attendees }) {
   console.log(`Defining session ${text}`);
-  Sessions.collection.insert({ id, text, start, end });
+  Sessions.collection.insert({ id, text, start, end, attendees });
 }
 
 /** Initialize DB if it appears to be empty (i.e. no users defined.) */

@@ -12,7 +12,14 @@
     { "id": 0,
       "text": "ICS 314 (Demo)",
       "start": "2022-12-06T10:15:30",
-      "end": "2022-12-06T12:20:30"
+      "end": "2022-12-06T12:20:30",
+      "attendees": ["admin@foo.com", "john@foo.com"]
+    },
+    { "id": 1,
+      "text": "ICS 311 HW 5",
+      "start": "2022-13-06T10:15:30",
+      "end": "2022-13-06T12:20:30",
+      "attendees": ["firstname@foo.com"]
     }
   ],
 

@@ -15,6 +15,8 @@ class SessionsCollection {
       text: String,
       start: String,
       end: String,
+      attendees: Array, // This will contain an array of the students' emails attending the session
+      'attendees.$': String,
     }, { tracker: Tracker });
     // Ensure collection documents obey schema.
     this.collection.attachSchema(this.schema);
