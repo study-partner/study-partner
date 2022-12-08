@@ -7,6 +7,8 @@ import { _ } from 'meteor/underscore';
 import LoadingSpinner from '../components/LoadingSpinner';
 import { PageIDs } from '../utilities/ids';
 import { Sessions } from '../../api/sessions/Sessions';
+import { JoinSessions } from '../../api/profiles/JoinSessions';
+import { Profiles } from '../../api/profiles/Profiles';
 
 /* Gets the Project data as well as Profiles and HelpWithClasses associated with the passed Project name. */
 function getSessionData(text) {
@@ -14,7 +16,9 @@ function getSessionData(text) {
   const evenId = _.pluck(Sessions.collection.find({ session: text }).fetch(), 'id');
   const startDate = _.pluck(Sessions.collection.find({ session: text }).fetch(), 'star');
   const endDate = _.pluck(Sessions.collection.find({ session: text }).fetch(), 'end');
-  return _.extend({}, data, { evenId, text, startDate, endDate });
+  const profiles = _.pluck(JoinSessions.collection.find({ session: text }).fetch(), 'profile');
+  const profilePictures = profiles.map(profile => Profiles.collection.findOne({ email: profile })?.picture);
+  return _.extend({}, data, { evenId, text, startDate, endDate, participants: profilePictures });
 }
 
 /* Component for layout out a Project Card. */
@@ -22,14 +26,12 @@ const MakeCard = ({ session }) => (
   <Col>
     <Card className="h-100">
       <Card.Body>
+        <Card.Img src={session.picture} width={50} />
         <Card.Title style={{ marginTop: '0px' }}>{session.text}</Card.Title>
-        <Card.Subtitle>
-          <br />
+        <Card.Subtitle className="mb-2 text-muted">
           ID: <span className="date">{session.id}</span>
         </Card.Subtitle>
-      </Card.Body>
-      <hr size="10" color="#0D6EFD" className="hrstyle" />
-      <Card.Body>
+        <hr size="10" color="#0D6EFD" className="hrstyle" />
         <Row>
           <Col>
             <h5>START DATE:</h5> {session.start.slice(0, 10)}
@@ -46,9 +48,14 @@ const MakeCard = ({ session }) => (
             <h5>END DATE:</h5> {session.end.slice(11, 20)}
           </Col>
         </Row>
-        Attend
+        <h5>Attendees:</h5> {session.attendees}
       </Card.Body>
-      <Button size="sm">Join Session</Button>
+      <Card.Body>
+        <Row>
+          <Col><Button variant="primary">Join</Button></Col>
+          <Col><Button variant="primary">Attendees</Button></Col>
+        </Row>
+      </Card.Body>
     </Card>
   </Col>
 );
@@ -59,6 +66,8 @@ MakeCard.propTypes = {
     text: PropTypes.string,
     start: PropTypes.string,
     end: PropTypes.string,
+    attendees: PropTypes.arrayOf(PropTypes.string),
+    picture: PropTypes.string,
   }).isRequired,
 };
 
