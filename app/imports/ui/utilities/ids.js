@@ -26,6 +26,7 @@ export const ComponentIDs = {
   addSessionFormCourse: 'addSessionFormCourse',
   addSessionStartDate: 'addSessionDateAndTime',
   addSessionDuration: 'addSessionDuration',
+  addSessionFormPicture: 'addSessionFormPicture',
   addSessionFormSubmit: 'addSessionFormSubmit',
   joinSessionMenuItem: 'joinSessionMenuItem',
   joinSessionFormSubmit: 'joinSessionFormSubmit',
