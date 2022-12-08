@@ -27,9 +27,6 @@ export const ComponentIDs = {
   addSessionStartDate: 'addSessionDateAndTime',
   addSessionDuration: 'addSessionDuration',
   addSessionFormSubmit: 'addSessionFormSubmit',
-  joinSessionMenuItem: 'joinSessionMenuItem',
-  joinSessionFormSubmit: 'joinSessionFormSubmit',
-  joinSessionSubmit: 'joinSessionSubmit',
 
   interestsMenuItem: 'interestsMenuItem',
   loginDropdown: 'loginDropdown',
@@ -57,7 +54,6 @@ export const ComponentIDs = {
 };
 
 export const PageIDs = {
-  joinSessionsPage: 'joinSessionsPage',
   addProjectPage: 'addProjectPage',
   addSessionPage: 'addSessionPage',
   calendarPage: 'calendarPage',
