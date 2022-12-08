@@ -14,7 +14,6 @@ import { ProfilesProjects } from '../../api/profiles/ProfilesProjects';
 import { Projects } from '../../api/projects/Projects';
 import LoadingSpinner from '../components/LoadingSpinner';
 import { useStickyState } from '../utilities/StickyState';
-import { pageStyle } from './pageStyles';
 import { ComponentIDs, PageIDs } from '../utilities/ids';
 
 /* Create a schema to specify the structure of the data to appear in the form. */
@@ -96,7 +95,7 @@ const Filter = () => {
   const transform = (label) => ` ${label}`;
 
   return ready ? (
-    <Container id={PageIDs.filterPage} style={pageStyle}>
+    <Container id={PageIDs.filterPage}>
       <AutoForm schema={bridge} onSubmit={data => submit(data)} model={{ interests }}>
         <Card>
           <Card.Body id={ComponentIDs.filterFormInterests}>

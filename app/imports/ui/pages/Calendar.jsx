@@ -1,7 +1,10 @@
 import React, { Component } from 'react';
+import { Meteor } from 'meteor/meteor';
 import { DayPilot, DayPilotCalendar, DayPilotNavigator } from '@daypilot/daypilot-lite-react';
 import './CalendarStyles.css';
 import { PageIDs } from '../utilities/ids';
+import { Sessions } from '../../api/sessions/Sessions';
+import { JoinSessions } from '../../api/profiles/JoinSessions';
 
 const styles = {
   wrap: {
@@ -46,51 +49,67 @@ class Calendar extends Component {
         dp.events.update(e);
       },
     };
+    Meteor.subscribe(Sessions.userPublicationName);
+    Meteor.subscribe(JoinSessions.userPublicationName);
   }
 
   componentDidMount() {
+    // Demo Events
+    // const events = [
+    //   {
+    //     id: 1,
+    //     text: 'Event 1',
+    //     start: '2022-06-07T10:30:00',
+    //     end: '2022-06-07T13:00:00',
+    //   },
+    //   {
+    //     id: 2,
+    //     text: 'Event 2',
+    //     start: '2022-06-08T09:30:00',
+    //     end: '2022-06-08T11:30:00',
+    //     backColor: '#6aa84f',
+    //   },
+    //   {
+    //     id: 3,
+    //     text: 'Event 3',
+    //     start: '2022-06-08T09:30:00',
+    //     end: '2022-06-08T15:00:00',
+    //     backColor: '#f1c232',
+    //   },
+    //   {
+    //     id: 4,
+    //     text: 'Event 4',
+    //     start: '2022-06-06T11:30:00',
+    //     end: '2022-06-06T14:30:00',
+    //     backColor: '#cc4125',
+    //   },
+    // ];
 
-    const events = [
-      {
-        id: 1,
-        text: 'Event 1',
-        start: '2022-06-07T10:30:00',
-        end: '2022-06-07T13:00:00',
-      },
-      {
-        id: 2,
-        text: 'Event 2',
-        start: '2022-06-08T09:30:00',
-        end: '2022-06-08T11:30:00',
-        backColor: '#6aa84f',
-      },
-      {
-        id: 3,
-        text: 'Event 3',
-        start: '2022-06-08T09:30:00',
-        end: '2022-06-08T15:00:00',
-        backColor: '#f1c232',
-      },
-      {
-        id: 4,
-        text: 'Event 4',
-        start: '2022-06-06T11:30:00',
-        end: '2022-06-06T14:30:00',
-        backColor: '#cc4125',
-      },
-    ];
+    const event_id = ['0', '1', '2'];
+    const events = [];
 
+    for (let i = 0; i < event_id.length; i++) {
+      console.log(`--------here is doc id: ${event_id[i]}`);
+      const event_data = Sessions.collection.findOne({ id: Number(event_id[i]) });
+      if (event_data != null) {
+        delete event_data._id;
+        events.push(event_data);
+      }
+      console.log(event_data);
+    }
+    console.log('here is events:');
+    console.log(JSON.stringify(events));
+
+    // Get current date
     const date = new Date();
 
-    const day = date.getDate();
-    const month = date.getMonth() + 1;
+    const month = String(date.getMonth() + 1).padStart(2, '0');
+    const day = String(date.getDate()).padStart(2, '0');
     const year = date.getFullYear();
 
     // This arrangement can be altered based on how we want the date's format to appear.
     const currentDate = `${year}-${month}-${day}`;
-
     const startDate = currentDate;
-
     this.calendar.update({ startDate, events });
 
   }
@@ -102,8 +121,8 @@ class Calendar extends Component {
   render() {
     const date = new Date();
 
-    const day = date.getDate();
-    const month = date.getMonth() + 1;
+    const month = String(date.getMonth() + 1).padStart(2, '0');
+    const day = String(date.getDate()).padStart(2, '0');
     const year = date.getFullYear();
 
     // This arrangement can be altered based on how we want the date's format to appear.

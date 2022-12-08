@@ -1,13 +1,12 @@
 import { Meteor } from 'meteor/meteor';
-import { Projects } from '../../api/projects/Projects';
 import { Profiles } from '../../api/profiles/Profiles';
-import { ProfilesInterests } from '../../api/profiles/ProfilesInterests';
 import { ProfilesProjects } from '../../api/profiles/ProfilesProjects';
-import { ProjectsInterests } from '../../api/projects/ProjectsInterests';
 import { ProfilesNeedHelpClasses } from '../../api/profiles/ProfilesNeedHelpClasses';
 import { ProfilesHelpOthersClasses } from '../../api/profiles/ProfilesHelpOthersClasses';
 import { Sessions } from '../../api/sessions/Sessions';
-import { SessionsCourses } from '../../api/sessions/SessionsCourses';
+import { Projects } from '../../api/projects/Projects';
+import { ProjectsInterests } from '../../api/projects/ProjectsInterests';
+import { JoinSessions } from '../../api/profiles/JoinSessions';
 
 /**
  * In Bowfolios, insecure mode is enabled, so it is possible to update the server's Mongo database by making
@@ -41,22 +40,27 @@ const updateProfileMethod = 'Profiles.update';
  * updated situation specified by the user.
  */
 Meteor.methods({
-  'Profiles.update'({ email, firstName, lastName, bio, title, picture, interests, projects, needHelpClasses, helpOthersClasses }) {
+  'Profiles.update'({ email, firstName, lastName, bio, title, picture, needHelpClasses, helpOthersClasses }) {
     Profiles.collection.update({ email }, { $set: { email, firstName, lastName, bio, title, picture } });
-    ProfilesInterests.collection.remove({ profile: email });
-    ProfilesProjects.collection.remove({ profile: email });
     ProfilesNeedHelpClasses.collection.remove({ profile: email });
     ProfilesHelpOthersClasses.collection.remove({ profile: email });
-    interests.map((interest) => ProfilesInterests.collection.insert({ profile: email, interest }));
-    projects.map((project) => ProfilesProjects.collection.insert({ profile: email, project }));
     needHelpClasses.map((needHelpClass) => ProfilesNeedHelpClasses.collection.insert({ profile: email, needHelpClass }));
     helpOthersClasses.map((helpOthersClass) => ProfilesHelpOthersClasses.collection.insert({ profile: email, helpOthersClass }));
   },
 });
 
+const joinSessionMethod = 'Sessions.join';
+/** Updates a user's profile when they join a session */
+Meteor.methods({
+  'Sessions.join'({ email, sessions }) {
+    JoinSessions.collection.remove({ profile: email });
+    sessions.map((session) => JoinSessions.collection.insert({ profile: email, session }));
+  },
+});
+
 const addProjectMethod = 'Projects.add';
 
-/** Creates a new project in the Sessions collection, and also updates ProfilesProjects and SessionsCourses. */
+/** Creates a new project in the Projects collection, and also updates ProfilesProjects and SessionsCourses. */
 Meteor.methods({
   'Projects.add'({ name, description, picture, interests, participants, homepage }) {
     Projects.collection.insert({ name, description, picture, homepage });
@@ -75,22 +79,21 @@ Meteor.methods({
 
 const addSessionMethod = 'Sessions.add';
 
-/** Creates a new project in the Sessions collection, and also updates ProfilesProjects and SessionsCourses. */
+/** Creates a new project in the Projects collection, and also updates ProfilesProjects and SessionsCourses. */
 Meteor.methods({
-  'Session.add'({ name, courses, participants, course, time, month, day, year }) {
-    Sessions.collection.insert({ course, time, month, day, year });
-    ProfilesProjects.collection.remove({ project: name });
-    SessionsCourses.collection.remove({ session: course });
-    if (courses) {
-      // eslint-disable-next-line no-shadow
-      courses.map((course) => SessionsCourses.collection.insert({ session: name, course }));
+  'Sessions.add'({ id, text, picture, startDate, duration, attendees }) {
+    const endDate = new Date();
+    const durationMinutesInMillis = duration * 60 * 1000;
+    endDate.setTime(startDate.getTime() + durationMinutesInMillis);
+    if (duration < 1) {
+      throw new Meteor.Error('Duration cannot be 0 or lower');
     } else {
-      throw new Meteor.Error('At least one course is required.');
-    }
-    if (participants) {
-      participants.map((participant) => ProfilesProjects.collection.insert({ project: name, profile: participant }));
+      // Ex: 2001-12-10T-10:15:30
+      const start = startDate.toISOString().slice(0, -5);
+      const end = endDate.toISOString().slice(0, -5);
+      Sessions.collection.insert({ id, text, start, end, picture, attendees });
     }
   },
 });
 
-export { updateProfileMethod, addProjectMethod, addSessionMethod };
+export { joinSessionMethod, updateProfileMethod, addSessionMethod, addProjectMethod };
