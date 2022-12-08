@@ -15,6 +15,7 @@ class SessionsCollection {
       text: String,
       start: String,
       end: String,
+      picture: { type: String, optional: true, defaultValue: 'images/meteor-logo.png' },
     }, { tracker: Tracker });
     // Ensure collection documents obey schema.
     this.collection.attachSchema(this.schema);
