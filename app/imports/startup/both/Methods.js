@@ -87,6 +87,8 @@ Meteor.methods({
     endDate.setTime(startDate.getTime() + durationMinutesInMillis);
     if (duration < 1) {
       throw new Meteor.Error('Duration cannot be 0 or lower');
+    } else if (Meteor.user() === null) {
+      throw new Meteor.Error('You must be logged in');
     } else {
       // Ex: 2001-12-10T-10:15:30
       const start = startDate.toISOString().slice(0, -5);
