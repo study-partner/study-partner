@@ -15,7 +15,7 @@ const makeSchema = new SimpleSchema({
   duration: Number,
 });
 // TODO: change idCount to the number of sessions
-let idCount = 2;
+let idCount = 3;
 const getNextID = () => {
   idCount += 1;
   return idCount;
