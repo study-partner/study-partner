@@ -5,28 +5,15 @@
   },
   "defaultAccounts": [
     { "email": "admin@foo.com", "password": "changeme", "role": "admin" },
-    { "email": "john@foo.com", "password": "changeme" },
-    { "email": "rowlet@314.com", "password": "changeme" },
-    { "email": "cyndaquil@314.com", "password": "changeme" },
-    { "email": "oshawott@314.com", "password": "changeme" },
-    { "email": "dartrix@314.com", "password": "changeme" },
-    { "email": "quilava@314.com", "password": "changeme" },
-    { "email": "dewott@314.com", "password": "changeme" }
+    { "email": "john@foo.com", "password": "changeme" }
   ],
 
   "defaultSessions": [
-    { "id": 0, "text": "ICS 101 (Demo)", "start": "2022-12-09T10:15:30", "end": "2022-12-09T12:20:30","attendees": ["admin@foo.com", "john@foo.com"], "picture": "https://legends.pokemon.com/assets/pokemon/pokemon_rowlet.png"},
-    { "id": 1, "text": "ICS 111 (Demo)", "start": "2022-12-10T11:15:30", "end": "2022-12-10T13:20:30","attendees": ["admin@foo.com", "john@foo.com", "rowlet@314.com"], "picture": "https://legends.pokemon.com/assets/pokemon/pokemon_cyndaquil.png"},
-    { "id": 2, "text": "ICS 141 (Demo)", "start": "2022-12-11T20:15:30", "end": "2022-12-11T21:20:30","attendees": ["admin@foo.com", "john@foo.com","cyndaquil@314.com"],  "picture": "https://legends.pokemon.com/assets/pokemon/pokemon_oshawott.png"},
-    { "id": 3, "text": "ICS 211 (Demo)", "start": "2022-12-12T09:15:30", "end": "2022-12-12T10:20:30","attendees": ["admin@foo.com", "john@foo.com","cyndaquil@314.com"], "picture": "https://legends.pokemon.com/assets/pokemon/pokemon_dartrix.png"},
-    { "id": 4, "text": "ICS 212 (Demo)", "start": "2022-12-13T10:15:30", "end": "2022-12-13T12:20:30","attendees": ["admin@foo.com", "john@foo.com","oshawott@314.com"], "picture": "https://legends.pokemon.com/assets/pokemon/pokemon_dewott.png"},
-    { "id": 5, "text": "ICS 222 (Demo)", "start": "2022-12-14T10:15:30", "end": "2022-12-14T12:20:30","attendees": ["admin@foo.com", "john@foo.com","dartrix@314.com"], "picture": "https://legends.pokemon.com/assets/pokemon/pokemon_samurott.png"},
-    { "id": 6, "text": "ICS 311 (Demo)", "start": "2022-12-15T10:15:30", "end": "2022-12-15T12:20:30","attendees": ["admin@foo.com", "john@foo.com","oshawott@314.com"], "picture": "https://legends.pokemon.com/assets/pokemon/pokemon_zorua.png"},
-    { "id": 7, "text": "ICS 314 (Demo)", "start": "2022-12-14T09:15:30", "end": "2022-12-14T10:20:30","attendees": ["admin@foo.com", "john@foo.com","cyndaquil@314.com","dartrix@314.com"], "picture": "https://legends.pokemon.com/assets/pokemon/pokemon_dialga.png"},
-    { "id": 8, "text": "ICS 321 (Demo)", "start": "2022-12-13T20:15:30", "end": "2022-12-13T21:20:30","attendees": ["admin@foo.com", "john@foo.com","cyndaquil@314.com"], "picture": "https://legends.pokemon.com/assets/pokemon/pokemon_shaymin.png"},
-    { "id": 9, "text": "ICS 414 (Demo)", "start": "2022-12-12T06:15:30", "end": "2022-12-12T09:20:30","attendees": ["admin@foo.com", "john@foo.com","dewott@314.com"], "picture": "https://legends.pokemon.com/assets/pokemon/pokemon_darkrai.png"},
-    { "id": 10, "text": "ICS 426 (Demo)", "start": "2022-12-11T16:15:30", "end": "2022-12-11T17:20:30","attendees": ["admin@foo.com", "john@foo.com","dewott@314.com"], "picture": "https://legends.pokemon.com/assets/pokemon/pokemon_new_b_1.png"},
-    { "id": 11, "text": "ICS 428 (Demo)", "start": "2022-12-10T22:15:30", "end": "2022-12-10T23:20:30","attendees": ["admin@foo.com", "john@foo.com","dewott@314.com"], "picture": "https://legends.pokemon.com/assets/pokemon/pokemon_arceus.png"}
+    { "id": 0,
+      "text": "ICS 314 (Demo)",
+      "start": "2022-12-06T10:15:30",
+      "end": "2022-12-06T12:20:30"
+    }
   ],
 
   "defaultNeedHelpClasses": [
@@ -136,147 +123,6 @@
       "picture": "https://github.com/philipmjohnson.png",
       "email": "admin@foo.com",
       "role": "admin"
-    },
-    {
-      "firstName": "Rowlet",
-      "lastName": " ",
-      "bio": "It uses photosynthesis to store up energy during the day, while becoming active at night. Silently it glides, drawing near its targets. Before they even notice it, it begins to pelt them with vicious kicks.",
-      "title": "Professor",
-      "interests": [
-
-      ],
-      "projects":[
-
-      ],
-      "needHelpClasses": [
-        "ICS 311",
-        "ICS 314"
-      ],
-      "helpOthersClasses": [
-        "ICS 101",
-        "ICS 111",
-        "ICS 211"
-      ],
-      "sessions": [
-
-      ],
-      "picture": "https://legends.pokemon.com/assets/pokemon/pokemon_rowlet.png",
-      "email": "rowlet@314.com"
-    },
-    {
-      "firstName": "Cyndaquil",
-      "lastName": "",
-      "bio": "I am a Professor and like to paddle outrigger canoes.",
-      "title": "Professor",
-      "interests": [
-
-      ],
-      "projects":[
-
-      ],
-      "needHelpClasses": [
-        "ICS 211"
-      ],
-      "helpOthersClasses": [
-        "ICS 101"
-      ],
-      "sessions": [
-        0
-      ],
-      "picture": "https://legends.pokemon.com/assets/pokemon/pokemon_cyndaquil.png",
-      "email": "cyndaquil@314.com"
-    },
-    {
-      "firstName": "Oshawott",
-      "lastName": "",
-      "bio": "I am a Professor and like to paddle outrigger canoes.",
-      "title": "Professor",
-      "interests": [
-
-      ],
-      "projects":[
-
-      ],
-      "needHelpClasses": [
-        "ICS 211"
-      ],
-      "helpOthersClasses": [
-        "ICS 101"
-      ],
-      "sessions": [
-        0
-      ],
-      "picture": "https://legends.pokemon.com/assets/pokemon/pokemon_oshawott.png",
-      "email": "oshawott@314.com"
-    },
-    {
-      "firstName": "Dartrix",
-      "lastName": "",
-      "bio": "I am a Professor and like to paddle outrigger canoes.",
-      "title": "Professor",
-      "interests": [
-
-      ],
-      "projects":[
-
-      ],
-      "needHelpClasses": [
-        "ICS 211"
-      ],
-      "helpOthersClasses": [
-        "ICS 101"
-      ],
-      "sessions": [
-        0
-      ],
-      "picture": "https://legends.pokemon.com/assets/pokemon/pokemon_dartrix.png",
-      "email": "dratrix@314.com"
-    },
-    {
-      "firstName": "Quilava",
-      "lastName": "",
-      "bio": "I am a Professor and like to paddle outrigger canoes.",
-      "title": "Professor",
-      "interests": [
-
-      ],
-      "projects":[
-
-      ],
-      "needHelpClasses": [
-        "ICS 211"
-      ],
-      "helpOthersClasses": [
-        "ICS 101"
-      ],
-      "sessions": [
-        0
-      ],
-      "picture": "https://legends.pokemon.com/assets/pokemon/pokemon_quilava.png",
-      "email": "quilava@314.com"
-    },
-    {
-      "firstName": "Dewott",
-      "lastName": "",
-      "bio": "I am a Professor and like to paddle outrigger canoes.",
-      "title": "Professor",
-      "interests": [
-
-      ],
-      "projects":[
-
-      ],
-      "needHelpClasses": [
-        "ICS 211"
-      ],
-      "helpOthersClasses": [
-        "ICS 101"
-      ],
-      "sessions": [
-        0
-      ],
-      "picture": "https://legends.pokemon.com/assets/pokemon/pokemon_dewott.png",
-      "email": "dewott@314.com"
     }
   ],
 
