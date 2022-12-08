@@ -23,6 +23,7 @@ export const ComponentIDs = {
   viewReportMenuItem: 'viewReportMenuItem',
 
   addSessionMenuItem: 'addSessionMenuItem',
+  joinSessionMenuItem: 'addSessionMenuItem',
   addSessionFormCourse: 'addSessionFormCourse',
   addSessionStartDate: 'addSessionDateAndTime',
   addSessionDuration: 'addSessionDuration',
@@ -57,6 +58,7 @@ export const ComponentIDs = {
 export const PageIDs = {
   addProjectPage: 'addProjectPage',
   addSessionPage: 'addSessionPage',
+  joinSessionPage: 'joinSessionPage',
   calendarPage: 'calendarPage',
   filterPage: 'filterPage',
   homePage: 'homePage',

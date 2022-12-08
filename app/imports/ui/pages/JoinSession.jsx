@@ -47,7 +47,7 @@ const JoinSessionPage = () => {
   // This returns an array of all session objects
   const sessions = Sessions.collection.find().fetch();
   return ready ? (
-    <Container id={PageIDs.profilesPage} className="page">
+    <Container id={PageIDs.joinSessionPage} className="page">
       <Row xs={1} md={2} lg={4} className="g-2">
         {sessions.map((session) => <MakeCard session={session} />)}
       </Row>
