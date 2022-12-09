@@ -47,7 +47,7 @@ const AddSession = () => {
     return {
       ready: sub1.ready(),
     };
-  }, []); 
+  }, []);
 
   /* Render the form. Use Uniforms: https://github.com/vazco/uniforms */
   let fRef = null;
