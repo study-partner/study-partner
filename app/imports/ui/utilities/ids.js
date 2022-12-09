@@ -23,13 +23,12 @@ export const ComponentIDs = {
   viewReportMenuItem: 'viewReportMenuItem',
 
   addSessionMenuItem: 'addSessionMenuItem',
+  joinSessionMenuItem: 'addSessionMenuItem',
   addSessionFormCourse: 'addSessionFormCourse',
   addSessionStartDate: 'addSessionDateAndTime',
   addSessionDuration: 'addSessionDuration',
+  addSessionFormPicture: 'addSessionFormPicture',
   addSessionFormSubmit: 'addSessionFormSubmit',
-  joinSessionMenuItem: 'joinSessionMenuItem',
-  joinSessionFormSubmit: 'joinSessionFormSubmit',
-  joinSessionSubmit: 'joinSessionSubmit',
 
   interestsMenuItem: 'interestsMenuItem',
   loginDropdown: 'loginDropdown',
@@ -57,9 +56,9 @@ export const ComponentIDs = {
 };
 
 export const PageIDs = {
-  joinSessionsPage: 'joinSessionsPage',
   addProjectPage: 'addProjectPage',
   addSessionPage: 'addSessionPage',
+  joinSessionPage: 'joinSessionPage',
   calendarPage: 'calendarPage',
   filterPage: 'filterPage',
   homePage: 'homePage',
