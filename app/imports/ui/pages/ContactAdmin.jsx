@@ -7,6 +7,7 @@ import SimpleSchema2Bridge from 'uniforms-bridge-simple-schema-2';
 import SimpleSchema from 'simpl-schema';
 import { Reports } from '../../api/report/Reports';
 import { ComponentIDs, PageIDs } from '../utilities/ids';
+import { Point } from '../../api/point/Point';
 
 // Create a schema to specify the structure of the data to appear in the form.
 const formSchema = new SimpleSchema({
@@ -26,6 +27,16 @@ const ContactAdmin = () => {
   const submit = (data, formRef) => {
     const { firstName, lastName, email, subject, description } = data;
     const owner = Meteor.user().username;
+
+    const doc = Point.collection.findOne({ owner: Meteor.user().username });
+    let point = 0;
+    if (doc == null) {
+      Point.collection.insert({ firstName, lastName, point, owner });
+    } else {
+      point = doc.point + 10;
+      Point.collection.update(doc._id, { $set: { firstName, lastName, point, owner } });
+    }
+
     Reports.collection.insert(
       { firstName, lastName, email, subject, description, owner },
       (error) => {

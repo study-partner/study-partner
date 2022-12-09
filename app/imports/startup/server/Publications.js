@@ -13,6 +13,7 @@ import { Sessions } from '../../api/sessions/Sessions';
 import { Projects } from '../../api/projects/Projects';
 import { ProjectsInterests } from '../../api/projects/ProjectsInterests';
 import { JoinSessions } from '../../api/profiles/JoinSessions';
+import { Point } from '../../api/point/Point';
 
 /** Define a publication to publish all interests. */
 Meteor.publish(Interests.userPublicationName, () => Interests.collection.find());
@@ -61,6 +62,13 @@ Meteor.publish(Reports.userPublicationName, function () {
 Meteor.publish(Reports.adminPublicationName, function () {
   if (this.userId && Roles.userIsInRole(this.userId, 'admin')) {
     return Reports.collection.find();
+  }
+  return this.ready();
+});
+
+Meteor.publish(Point.userPublicationName, function () {
+  if (this.userId) {
+    return Point.collection.find();
   }
   return this.ready();
 });
