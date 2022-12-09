@@ -85,15 +85,32 @@ Meteor.methods({
     const endDate = new Date();
     const durationMinutesInMillis = duration * 60 * 1000;
     endDate.setTime(startDate.getTime() + durationMinutesInMillis);
+    const attendees = Meteor.user().username;
     if (duration < 1) {
       throw new Meteor.Error('Duration cannot be 0 or lower');
     } else {
       // Ex: 2001-12-10T-10:15:30
       const start = startDate.toISOString().slice(0, -5);
       const end = endDate.toISOString().slice(0, -5);
-      Sessions.collection.insert({ id, text, start, end, picture });
+      Sessions.collection.insert({ id, text, start, end, picture, attendees });
     }
   },
 });
 
-export { joinSessionMethod, updateProfileMethod, addSessionMethod, addProjectMethod };
+const SessionUpdateMethod = 'Sessions.update';
+
+Meteor.methods({
+  'Sessions.update'({ email, _id }) {
+    const attendeesArray = Sessions.collection.findOne({ _id: _id }).attendees;
+    attendeesArray.push(email);
+    Sessions.collection.updateOne(
+      { _id: _id },
+      {
+        $set: { attendees: attendeesArray },
+        $currentDate: { lastModified: true },
+      },
+    );
+  },
+});
+
+export { joinSessionMethod, updateProfileMethod, addSessionMethod, addProjectMethod, SessionUpdateMethod };

@@ -4,9 +4,15 @@ import { Container, Card, Row, Col, Button } from 'react-bootstrap';
 import { useTracker } from 'meteor/react-meteor-data';
 import PropTypes from 'prop-types';
 import { _ } from 'meteor/underscore';
+// import swal from 'sweetalert';
+// import { AutoForm } from 'uniforms-bootstrap5';
+import { useParams } from 'react-router';
 import LoadingSpinner from '../components/LoadingSpinner';
-import { PageIDs } from '../utilities/ids';
+import { ComponentIDs, PageIDs } from '../utilities/ids';
 import { Sessions } from '../../api/sessions/Sessions';
+import { JoinSessions } from '../../api/profiles/JoinSessions';
+import Profiles from './Profiles';
+// import { SessionUpdateMethod } from '../../startup/both/Methods';
 
 /* Gets the Project data as well as Profiles and HelpWithClasses associated with the passed Project name. */
 function getSessionData(text) {
@@ -14,7 +20,9 @@ function getSessionData(text) {
   const evenId = _.pluck(Sessions.collection.find({ session: text }).fetch(), 'id');
   const startDate = _.pluck(Sessions.collection.find({ session: text }).fetch(), 'star');
   const endDate = _.pluck(Sessions.collection.find({ session: text }).fetch(), 'end');
-  return _.extend({}, data, { evenId, text, startDate, endDate });
+  const profiles = _.pluck(JoinSessions.collection.find({ session: text }).fetch(), 'profile');
+  const profilePictures = profiles.map(profile => Profiles.collection.findOne({ email: profile })?.picture);
+  return _.extend({}, data, { evenId, text, startDate, endDate, attendees: profilePictures });
 }
 
 /* Component for layout out a Project Card. */
@@ -45,10 +53,10 @@ const MakeCard = ({ session }) => (
           </Col>
         </Row>
         <h5>Attendees:</h5>
+
       </Card.Body>
       <Card.Body>
         <Row>
-          <Col><Button variant="primary">Join</Button></Col>
           <Col><Button variant="primary">Attendees</Button></Col>
         </Row>
       </Card.Body>
@@ -68,13 +76,41 @@ MakeCard.propTypes = {
 
 /* Renders the Project Collection as a set of Cards. */
 const JoinSession = () => {
-  const { ready } = useTracker(() => {
+  const { ready, user_email } = useTracker(() => {
     // Ensure that minimongo is populated with all collections prior to running render().
     const sub1 = Meteor.subscribe(Sessions.userPublicationName);
     return {
       ready: sub1.ready(),
+      email: Meteor.user()?.username,
     };
   }, []);
+  const { _id } = useParams();
+  function SessionsUpdate(email, documentID) {
+    // const attendeesArray = Sessions.collection.findOne({ _id: documentID }).attendees;
+    const attendeesArray = Sessions.collection.findOne({ _id: documentID });
+    console.log(attendeesArray);
+    // attendeesArray.push(email);
+    // Sessions.collection.updateOne(
+    //   { _id: documentID },
+    //   {
+    //     $set: { attendees: attendeesArray },
+    //     $currentDate: { lastModified: true },
+    //   },
+    // );
+  }
+  // const joinSession = (formRef) => {
+  //   const email = Meteor.user().username;
+  //   const { _id } = useParams();
+  //   const alert = (error) => {
+  //     if (error) {
+  //       swal('Error', error.message, 'error');
+  //     } else {
+  //       swal('Success', 'Successfully Joined', 'success').then(() => formRef.reset());
+  //     }
+  //   };
+  //   Meteor.call(SessionUpdateMethod(email, _id), alert);
+  // };
+
   const sessions = _.pluck(Sessions.collection.find().fetch(), 'text');
   const sessionData = sessions.map(session => getSessionData(session));
   return ready ? (
@@ -82,6 +118,7 @@ const JoinSession = () => {
       <Row xs={1} md={2} lg={4} className="g-2">
         {sessionData.map((session, index) => <MakeCard key={index} session={session} />)}
       </Row>
+      <Button size="lg" id={ComponentIDs.joinSessionSubmit} value="Join" onClick={SessionsUpdate(user_email, _id)} />
     </Container>
   ) : <LoadingSpinner />;
 };

@@ -13,7 +13,8 @@
       "text": "ICS 314 (Demo)",
       "start": "2022-12-06T10:15:30",
       "end": "2022-12-06T12:20:30",
-      "picture": "https://legends.pokemon.com/assets/pokemon/pokemon_new_b_1.png"
+      "picture": "https://legends.pokemon.com/assets/pokemon/pokemon_new_b_1.png",
+      "attendees": "john@foo.com"
     }
   ],
 

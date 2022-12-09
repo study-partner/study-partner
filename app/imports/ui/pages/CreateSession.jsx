@@ -5,8 +5,12 @@ import swal from 'sweetalert';
 import SimpleSchema2Bridge from 'uniforms-bridge-simple-schema-2';
 import SimpleSchema from 'simpl-schema';
 import { Meteor } from 'meteor/meteor';
+import { _ } from 'meteor/underscore';
+import { useTracker } from 'meteor/react-meteor-data';
 import { addSessionMethod } from '../../startup/both/Methods';
 import { ComponentIDs, PageIDs } from '../utilities/ids';
+import { Sessions } from '../../api/sessions/Sessions';
+import LoadingSpinner from '../components/LoadingSpinner';
 
 /* Create a schema to specify the structure of the data to appear in the form. */
 const makeSchema = new SimpleSchema({
@@ -18,11 +22,6 @@ const makeSchema = new SimpleSchema({
     optional: true,
   },
 });
-let idCount = 0;
-const getNextID = () => {
-  idCount += 1;
-  return idCount;
-};
 
 const bridge = new SimpleSchema2Bridge(makeSchema);
 /* Renders the YourProfile Page: what appears after the user logs in. */
@@ -31,7 +30,7 @@ const AddSession = () => {
   /* On submit, insert the data. */
   const submit = (data, formRef) => {
     const doc = data;
-    doc.id = getNextID();
+    doc.id = _.size(Sessions.collection.find().fetch(), 'id');
 
     const alert = (error) => {
       if (error) {
@@ -42,9 +41,17 @@ const AddSession = () => {
     };
     Meteor.call(addSessionMethod, doc, alert);
   };
+  const { ready } = useTracker(() => {
+    // Ensure that minimongo is populated with all collections prior to running render().
+    const sub1 = Meteor.subscribe(Sessions.userPublicationName);
+    return {
+      ready: sub1.ready(),
+    };
+  }, []); 
+
   /* Render the form. Use Uniforms: https://github.com/vazco/uniforms */
   let fRef = null;
-  return (
+  return ready ? (
     <Container id={PageIDs.addSessionPage} className="justify-content-center page">
       <Col>
         <Col className="justify-content-center text-center">
@@ -65,7 +72,7 @@ const AddSession = () => {
         </AutoForm>
       </Col>
     </Container>
-  );
+  ) : <LoadingSpinner />;
 };
 
 export default AddSession;
