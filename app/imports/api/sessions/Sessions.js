@@ -15,6 +15,7 @@ class SessionsCollection {
       text: String,
       start: String,
       end: String,
+      picture: { type: String, optional: true, defaultValue: 'images/meteor-logo.png' },
       attendees: Array, // This will contain an array of the students' emails attending the session
       'attendees.$': String,
     }, { tracker: Tracker });
