@@ -28,7 +28,7 @@ const ContactAdmin = () => {
     const { firstName, lastName, email, subject, description } = data;
     const owner = Meteor.user().username;
 
-    const doc = Point.collection.findOne({ owner: Meteor.user().username });
+    const doc = Point.collection.findOne({ firstName, lastName });
     let point = 0;
     if (doc == null) {
       Point.collection.insert({ firstName, lastName, point, owner });
