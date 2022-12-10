@@ -6,6 +6,7 @@ import LoadingSpinner from '../components/LoadingSpinner';
 import { PageIDs } from '../utilities/ids';
 import { Point } from '../../api/point/Point';
 import PointItem from '../components/PointItem';
+import { Profiles } from '../../api/profiles/Profiles';
 
 /* A simple static component to render the top 5. */
 const LeaderBoard = () => {
@@ -14,11 +15,11 @@ const LeaderBoard = () => {
     // Note that this subscription will get cleaned up
     // when your component is unmounted or deps change.
     // Get access to Stuff documents.
-    const subscription = Meteor.subscribe(Point.userPublicationName);
+    const subscription = Meteor.subscribe(Profiles.userPublicationName);
     // Determine if the subscription is ready
     const rdy = subscription.ready();
     // Get the Stuff documents
-    const pointItems = Point.collection.find({}).fetch();
+    const pointItems = Profiles.collection.find({}).fetch();
     return {
       points: pointItems,
       ready: rdy,

@@ -11,6 +11,7 @@ import { addSessionMethod } from '../../startup/both/Methods';
 import { ComponentIDs, PageIDs } from '../utilities/ids';
 import { Sessions } from '../../api/sessions/Sessions';
 import LoadingSpinner from '../components/LoadingSpinner';
+import { Profiles } from '../../api/profiles/Profiles';
 
 /* Create a schema to specify the structure of the data to appear in the form. */
 const makeSchema = new SimpleSchema({
@@ -36,6 +37,9 @@ const AddSession = () => {
       if (error) {
         swal('Error', error.message, 'error');
       } else {
+        const pointDoc = Profiles.collection.findOne({ email: Meteor.user().username });
+        const newPoint = pointDoc.point + 10;
+        Profiles.collection.update(pointDoc._id, { $set: { point: newPoint } });
         swal('Success', 'Session added successfully', 'success').then(() => formRef.reset());
       }
     };
@@ -45,8 +49,9 @@ const AddSession = () => {
   const { ready } = useTracker(() => {
     // Ensure that minimongo is populated with all collections prior to running render().
     const sub1 = Meteor.subscribe(Sessions.userPublicationName);
+    const sub2 = Meteor.subscribe(Profiles.userPublicationName);
     return {
-      ready: sub1.ready(),
+      ready: sub1.ready() && sub2,
     };
   }, []);
 
