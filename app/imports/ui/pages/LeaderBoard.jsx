@@ -4,7 +4,6 @@ import { Col, Container, Row, Table } from 'react-bootstrap';
 import { useTracker } from 'meteor/react-meteor-data';
 import LoadingSpinner from '../components/LoadingSpinner';
 import { PageIDs } from '../utilities/ids';
-import { Point } from '../../api/point/Point';
 import PointItem from '../components/PointItem';
 import { Profiles } from '../../api/profiles/Profiles';
 
