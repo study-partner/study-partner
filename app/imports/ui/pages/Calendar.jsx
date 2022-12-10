@@ -4,7 +4,6 @@ import { DayPilot, DayPilotCalendar, DayPilotNavigator } from '@daypilot/daypilo
 import './CalendarStyles.css';
 import { PageIDs } from '../utilities/ids';
 import { Sessions } from '../../api/sessions/Sessions';
-import { JoinSessions } from '../../api/profiles/JoinSessions';
 
 const styles = {
   wrap: {
@@ -17,6 +16,52 @@ const styles = {
     flexGrow: '1',
   },
 };
+
+// function getEvents() {
+//   // Get access to Stuff documents.
+//   const subscription = Meteor.subscribe(Sessions.userPublicationName);
+//   // Determine if the subscription is ready
+//   const ready = subscription.ready();
+//   const events_data = [];
+//   // if (ready === false) {
+//   //   window.setTimeout(ready, 100); /* this checks the flag every 100 milliseconds */
+//   //   ready = subscription.ready();
+//   // } else {
+//   //   /* do something */
+//   //   const email = Meteor.user().username;
+//   //   console.log(email);
+//   //   const session_data = Sessions.collection.find({ attendees: email }).fetch();
+//   //   for (let i = 0; i < session_data.length; i++) {
+//   //     if (session_data != null) {
+//   //       delete session_data[i]._id;
+//   //       delete session_data[i].picture;
+//   //       delete session_data[i].attendees;
+//   //       events_data.push(session_data[i]);
+//   //     }
+//   //   }
+//   // }
+//   console.log('check ready');
+//   while (ready === false) {
+//     // 1 second wait
+//     setTimeout(function () {
+//       console.log('Third log message - after 1 second');
+//     }, 1000);
+//   }
+//   console.log('is ready');
+//   const email = Meteor.user().username;
+//   console.log(email);
+//   const session_data = Sessions.collection.find({ attendees: email }).fetch();
+//   for (let i = 0; i < session_data.length; i++) {
+//     if (session_data != null) {
+//       delete session_data[i]._id;
+//       delete session_data[i].picture;
+//       delete session_data[i].attendees;
+//       events_data.push(session_data[i]);
+//     }
+//   }
+//   console.log(`here is events sent: ${events_data}`);
+//   return events_data;
+// }
 
 class Calendar extends Component {
 
@@ -49,8 +94,6 @@ class Calendar extends Component {
         dp.events.update(e);
       },
     };
-    Meteor.subscribe(Sessions.userPublicationName);
-    Meteor.subscribe(JoinSessions.userPublicationName);
   }
 
   componentDidMount() {
@@ -84,22 +127,22 @@ class Calendar extends Component {
     //     backColor: '#cc4125',
     //   },
     // ];
-
-    const event_id = ['0', '1', '2'];
+    Meteor.subscribe(Sessions.userPublicationName);
     const events = [];
-
-    for (let i = 0; i < event_id.length; i++) {
-      console.log(`--------here is doc id: ${event_id[i]}`);
-      const event_data = Sessions.collection.findOne({ id: Number(event_id[i]) });
-      if (event_data != null) {
-        delete event_data._id;
-        events.push(event_data);
+    console.log(1);
+    setTimeout(function () {
+      const email = Meteor.user().username;
+      const session_data = Sessions.collection.find({ attendees: email }).fetch();
+      for (let i = 0; i < session_data.length; i++) {
+        if (session_data != null) {
+          delete session_data[i]._id;
+          delete session_data[i].picture;
+          delete session_data[i].attendees;
+          events.push(session_data[i]);
+        }
       }
-      console.log(event_data);
-    }
-    console.log('here is events:');
-    console.log(JSON.stringify(events));
-
+      console.log(events);
+    }, 500);
     // Get current date
     const date = new Date();
 
@@ -111,7 +154,6 @@ class Calendar extends Component {
     const currentDate = `${year}-${month}-${day}`;
     const startDate = currentDate;
     this.calendar.update({ startDate, events });
-
   }
 
   get calendar() {
