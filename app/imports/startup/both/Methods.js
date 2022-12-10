@@ -81,10 +81,12 @@ const addSessionMethod = 'Sessions.add';
 
 /** Creates a new project in the Projects collection, and also updates ProfilesProjects and SessionsCourses. */
 Meteor.methods({
-  'Sessions.add'({ id, text, startDate, duration }) {
+  'Sessions.add'({ id, text, startDate, duration, picture }) {
     const endDate = new Date();
     const durationMinutesInMillis = duration * 60 * 1000;
     endDate.setTime(startDate.getTime() + durationMinutesInMillis);
+    const attendees = [];
+    attendees.push(Meteor.user().username);
     if (duration < 1) {
       throw new Meteor.Error('Duration cannot be 0 or lower');
     } else if (Meteor.user() === null) {
@@ -99,4 +101,20 @@ Meteor.methods({
   },
 });
 
-export { joinSessionMethod, updateProfileMethod, addSessionMethod, addProjectMethod };
+const SessionUpdateMethod = 'Sessions.update';
+
+Meteor.methods({
+  'Sessions.update'({ email, _id }) {
+    const attendeesArray = Sessions.collection.findOne({ _id: _id }).attendees;
+    attendeesArray.push(email);
+    Sessions.collection.updateOne(
+      { _id: _id },
+      {
+        $set: { attendees: attendeesArray },
+        $currentDate: { lastModified: true },
+      },
+    );
+  },
+});
+
+export { joinSessionMethod, updateProfileMethod, addSessionMethod, addProjectMethod, SessionUpdateMethod };

@@ -1,55 +1,48 @@
 import React from 'react';
 import { Meteor } from 'meteor/meteor';
-import { Container, Card, Row, Col, Button } from 'react-bootstrap';
+import { Container, Row } from 'react-bootstrap';
 import { useTracker } from 'meteor/react-meteor-data';
-import PropTypes from 'prop-types';
+import { _ } from 'meteor/underscore';
+import { useParams } from 'react-router';
 import LoadingSpinner from '../components/LoadingSpinner';
 import { PageIDs } from '../utilities/ids';
 import { Sessions } from '../../api/sessions/Sessions';
+import { JoinSessions } from '../../api/profiles/JoinSessions';
+import Profiles from './Profiles';
+import MakeJoinSessionCard from '../components/MakeJoinSessionCard';
+// import { SessionUpdateMethod } from '../../startup/both/Methods';
 
-/* Component for layout out a Profile Card. */
-const MakeCard = ({ session }) => (
-  <Col>
-    <Card className="h-100">
-      <Card.Header>
-        <Card.Title>{session.text}</Card.Title>
-      </Card.Header>
-      <Card.Body>
-        <div>Start: {session.start}</div>
-        <div>End: {session.end}</div>
-        <div>Attendees: {session.attendees}</div>
-        <Button>Join Session</Button>
-      </Card.Body>
-    </Card>
-  </Col>
-);
+/* Gets the Project data as well as Profiles and HelpWithClasses associated with the passed Project name. */
+function getSessionData(text) {
+  const data = Sessions.collection.findOne({ text });
+  const evenId = _.pluck(Sessions.collection.find({ session: text }).fetch(), 'id');
+  const startDate = _.pluck(Sessions.collection.find({ session: text }).fetch(), 'star');
+  const endDate = _.pluck(Sessions.collection.find({ session: text }).fetch(), 'end');
+  const profiles = _.pluck(JoinSessions.collection.find({ session: text }).fetch(), 'profile');
+  const profilePictures = profiles.map(profile => Profiles.collection.findOne({ email: profile })?.picture);
+  return _.extend({}, data, { evenId, text, startDate, endDate, attendees: profilePictures });
+}
 
-MakeCard.propTypes = {
-  session: PropTypes.shape({
-    text: PropTypes.string,
-    start: PropTypes.string,
-    end: PropTypes.string,
-    attendees: PropTypes.arrayOf(PropTypes.string),
-  }).isRequired,
-};
-
-/* Renders the Profile Collection as a set of Cards. */
-const JoinSessionPage = () => {
+/* Renders the Project Collection as a set of Cards. */
+const JoinSession = () => {
+  const { _id } = useParams();
 
   const { ready } = useTracker(() => {
     // Ensure that minimongo is populated with all collections prior to running render().
     const sub1 = Meteor.subscribe(Sessions.userPublicationName);
+    // Get the document
     return {
       ready: sub1.ready(),
     };
-  }, []);
+  }, [_id]);
 
-  // This returns an array of all session objects
-  const sessions = Sessions.collection.find().fetch();
+  const sessions = _.pluck(Sessions.collection.find().fetch(), 'text');
+  const sessionData = sessions.map(session => getSessionData(session));
+
   return ready ? (
     <Container id={PageIDs.joinSessionPage} className="page">
       <Row xs={1} md={2} lg={4} className="g-2">
-        {sessions.map((session) => <MakeCard session={session} />)}
+        {sessionData.map((session, index) => <MakeJoinSessionCard key={index} session={session} />)}
       </Row>
     </Container>
   ) : <LoadingSpinner />;
