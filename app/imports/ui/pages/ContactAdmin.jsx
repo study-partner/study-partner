@@ -5,9 +5,11 @@ import swal from 'sweetalert';
 import { Meteor } from 'meteor/meteor';
 import SimpleSchema2Bridge from 'uniforms-bridge-simple-schema-2';
 import SimpleSchema from 'simpl-schema';
+import { useTracker } from 'meteor/react-meteor-data';
 import { Reports } from '../../api/report/Reports';
 import { ComponentIDs, PageIDs } from '../utilities/ids';
 import { Point } from '../../api/point/Point';
+import LoadingSpinner from '../components/LoadingSpinner';
 
 // Create a schema to specify the structure of the data to appear in the form.
 const formSchema = new SimpleSchema({
@@ -28,21 +30,20 @@ const ContactAdmin = () => {
     const { firstName, lastName, email, subject, description } = data;
     const owner = Meteor.user().username;
 
-    const doc = Point.collection.findOne({ firstName, lastName });
-    let point = 0;
-    if (doc == null) {
-      Point.collection.insert({ firstName, lastName, point, owner });
-    } else {
-      point = doc.point + 10;
-      Point.collection.update(doc._id, { $set: { firstName, lastName, point, owner } });
-    }
-
     Reports.collection.insert(
       { firstName, lastName, email, subject, description, owner },
       (error) => {
         if (error) {
           swal('Error', error.message, 'error');
         } else {
+          const pointDoc = Point.collection.findOne({ owner: Meteor.user().username });
+          let newPoint = 0;
+          if (pointDoc == null) {
+            Point.collection.insert({ firstName, lastName, newPoint, owner });
+          } else {
+            newPoint = pointDoc.point + 10;
+            Point.collection.update(pointDoc._id, { $set: { point: newPoint } });
+          }
           swal('Success', 'Report is filed successfully', 'success');
           formRef.reset();
         }
@@ -50,9 +51,17 @@ const ContactAdmin = () => {
     );
   };
 
+  const { ready } = useTracker(() => {
+    // Ensure that minimongo is populated with all collections prior to running render().
+    const sub = Meteor.subscribe(Point.userPublicationName);
+    return {
+      ready: sub.ready(),
+    };
+  }, []);
+
   // Render the form. Use Uniforms: https://github.com/vazco/uniforms
   let fRef = null;
-  return (
+  return ready ? (
     <Container id={PageIDs.contactAdminPage} className="py-3 page">
       <Row className="justify-content-center">
         <Col xs={10}>
@@ -75,7 +84,7 @@ const ContactAdmin = () => {
         </Col>
       </Row>
     </Container>
-  );
+  ) : <LoadingSpinner />;
 };
 
 export default ContactAdmin;

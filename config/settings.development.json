@@ -105,7 +105,8 @@
         0
       ],
       "picture": "https://github.com/philipmjohnson.png",
-      "email": "john@foo.com"
+      "email": "john@foo.com",
+      "point": 10
     },
     {
       "firstName": "Admin",
@@ -131,7 +132,8 @@
       ],
       "picture": "https://github.com/philipmjohnson.png",
       "email": "admin@foo.com",
-      "role": "admin"
+      "role": "admin",
+      "point": 100
     }
   ],
 

@@ -48,4 +48,4 @@ const JoinSession = () => {
   ) : <LoadingSpinner />;
 };
 
-export default JoinSessionPage;
+export default JoinSession;

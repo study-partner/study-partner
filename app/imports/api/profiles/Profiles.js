@@ -17,6 +17,7 @@ class ProfilesCollection {
       bio: { type: String, optional: true },
       title: { type: String, optional: true },
       picture: { type: String, optional: true },
+      point: { type: Number, optional: true },
     }, { tracker: Tracker });
     // Ensure collection documents obey schema.
     this.collection.attachSchema(this.schema);
