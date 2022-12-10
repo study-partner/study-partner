@@ -23,7 +23,7 @@ export const ComponentIDs = {
   viewReportMenuItem: 'viewReportMenuItem',
 
   addSessionMenuItem: 'addSessionMenuItem',
-  joinSessionMenuItem: 'addSessionMenuItem',
+  joinSessionMenuItem: 'joinSessionMenuItem',
   addSessionFormCourse: 'addSessionFormCourse',
   addSessionStartDate: 'addSessionDateAndTime',
   addSessionDuration: 'addSessionDuration',
