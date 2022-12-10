@@ -6,7 +6,6 @@ import { Card, Col, Row } from 'react-bootstrap';
 import { AutoForm, SubmitField } from 'uniforms-bootstrap5';
 import SimpleSchema from 'simpl-schema';
 import SimpleSchema2Bridge from 'uniforms-bridge-simple-schema-2';
-import { useParams } from 'react-router';
 import { useTracker } from 'meteor/react-meteor-data';
 import LoadingSpinner from './LoadingSpinner';
 import { Sessions } from '../../api/sessions/Sessions';
@@ -36,17 +35,26 @@ const MakeJoinSessionCard = ({ session }) => {
   const submit = () => {
     const document = Sessions.collection.find(session._id).fetch();
     const attendeesArray = document[0].attendees;
-    attendeesArray.push(userEmail);
-    Sessions.collection.update(
-      session._id,
-      {
-        $set: { attendees: attendeesArray },
-      },
-      (error) => (error ?
-        swal('Error', error.message, 'error') :
-        swal('Success', 'Item updated successfully', 'success')),
-    );
+    // check if user is already joined the session, if not add user email in attendee array
+    if (attendeesArray.includes(userEmail) === false) {
+      attendeesArray.push(userEmail);
+      Sessions.collection.update(
+        session._id,
+        {
+          $set: { attendees: attendeesArray },
+        },
+        (error) => (error ?
+          swal('Error', error.message, 'error') :
+          swal('Success', 'Item updated successfully', 'success')),
+      );
+    } else {
+      swal('Error', 'You have already joined this session', 'error');
+    }
   };
+
+  // temporial solution for session.attendee array not display
+  const document = Sessions.collection.find(session._id).fetch();
+  const attendeesArray = document[0].attendees;
 
   return ready ? (
     <Col>
@@ -74,14 +82,13 @@ const MakeJoinSessionCard = ({ session }) => {
               <h5>END DATE:</h5> {session.end.slice(11, 20)}
             </Col>
           </Row>
-          <h5>Attendees: {session.attendees}</h5>
+          <h5>Attendees: </h5>
+          {attendeesArray.map((item) => <li>{item}</li>)}
         </Card.Body>
-        <Card.Body>
+        <Card.Body className="justify-content-center">
           <Row>
-            {/* <Col><Button variant="primary">Attendees</Button></Col> */}
-            {/* <Button size="lg" id={ComponentIDs.joinSessionSubmit} value="Join" onClick={SessionsUpdate(user_email, _id)} /> */}
             <AutoForm schema={bridge} onClick={submit}>
-              <SubmitField value="Join" />
+              <SubmitField style={{ display: 'flex', justifyContent: 'center' }} value="Join" />
             </AutoForm>
           </Row>
         </Card.Body>

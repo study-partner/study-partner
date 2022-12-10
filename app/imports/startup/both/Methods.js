@@ -85,7 +85,8 @@ Meteor.methods({
     const endDate = new Date();
     const durationMinutesInMillis = duration * 60 * 1000;
     endDate.setTime(startDate.getTime() + durationMinutesInMillis);
-    const attendees = Meteor.user().username;
+    const attendees = [];
+    attendees.push(Meteor.user().username);
     if (duration < 1) {
       throw new Meteor.Error('Duration cannot be 0 or lower');
     } else {
