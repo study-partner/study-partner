@@ -6,6 +6,7 @@ import { ProfilesHelpOthersClasses } from '../../api/profiles/ProfilesHelpOthers
 import { Sessions } from '../../api/sessions/Sessions';
 import { Projects } from '../../api/projects/Projects';
 import { ProjectsInterests } from '../../api/projects/ProjectsInterests';
+import { JoinSessions } from '../../api/profiles/JoinSessions';
 
 /**
  * In Bowfolios, insecure mode is enabled, so it is possible to update the server's Mongo database by making
@@ -48,6 +49,15 @@ Meteor.methods({
   },
 });
 
+const joinSessionMethod = 'Sessions.join';
+/** Updates a user's profile when they join a session */
+Meteor.methods({
+  'Sessions.join'({ email, sessions }) {
+    JoinSessions.collection.remove({ profile: email });
+    sessions.map((session) => JoinSessions.collection.insert({ profile: email, session }));
+  },
+});
+
 const addProjectMethod = 'Projects.add';
 
 /** Creates a new project in the Projects collection, and also updates ProfilesProjects and SessionsCourses. */
@@ -75,15 +85,36 @@ Meteor.methods({
     const endDate = new Date();
     const durationMinutesInMillis = duration * 60 * 1000;
     endDate.setTime(startDate.getTime() + durationMinutesInMillis);
+    let attendees = [];
+    attendees.push(Meteor.user().username);
     if (duration < 1) {
       throw new Meteor.Error('Duration cannot be 0 or lower');
+    } else if (Meteor.user() === null) {
+      throw new Meteor.Error('You must be logged in');
     } else {
       // Ex: 2001-12-10T-10:15:30
       const start = startDate.toISOString().slice(0, -5);
       const end = endDate.toISOString().slice(0, -5);
-      Sessions.collection.insert({ id, text, start, end });
+      attendees = [Meteor.user().username];
+      Sessions.collection.insert({ id, text, start, end, attendees });
     }
   },
 });
 
-export { updateProfileMethod, addSessionMethod, addProjectMethod };
+const SessionUpdateMethod = 'Sessions.update';
+
+Meteor.methods({
+  'Sessions.update'({ email, _id }) {
+    const attendeesArray = Sessions.collection.findOne({ _id: _id }).attendees;
+    attendeesArray.push(email);
+    Sessions.collection.updateOne(
+      { _id: _id },
+      {
+        $set: { attendees: attendeesArray },
+        $currentDate: { lastModified: true },
+      },
+    );
+  },
+});
+
+export { joinSessionMethod, updateProfileMethod, addSessionMethod, addProjectMethod, SessionUpdateMethod };

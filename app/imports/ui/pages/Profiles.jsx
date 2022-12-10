@@ -6,7 +6,6 @@ import PropTypes from 'prop-types';
 import { _ } from 'meteor/underscore';
 import { Profiles } from '../../api/profiles/Profiles';
 import LoadingSpinner from '../components/LoadingSpinner';
-import { pageStyle } from './pageStyles';
 import { PageIDs } from '../utilities/ids';
 import { ProfilesHelpOthersClasses } from '../../api/profiles/ProfilesHelpOthersClasses';
 import { ProfilesNeedHelpClasses } from '../../api/profiles/ProfilesNeedHelpClasses';
@@ -74,7 +73,7 @@ const ProfilesPage = () => {
   // Need to ensure that getProfileData doesn't throw an error on line 18.
   const profileData = emails.map(email => getProfileData(email));
   return ready ? (
-    <Container id={PageIDs.profilesPage} style={pageStyle} className="page">
+    <Container id={PageIDs.profilesPage} className="page">
       <Row xs={1} md={2} lg={4} className="g-2">
         {profileData.map((profile, index) => <MakeCard key={index} profile={profile} />)}
       </Row>

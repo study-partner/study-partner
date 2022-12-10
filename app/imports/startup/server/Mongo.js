@@ -12,6 +12,7 @@ import { HelpOthersClasses } from '../../api/HelpOthersClasses/HelpOthersClasses
 import { ProfilesHelpOthersClasses } from '../../api/profiles/ProfilesHelpOthersClasses';
 import { Projects } from '../../api/projects/Projects';
 import { ProjectsInterests } from '../../api/projects/ProjectsInterests';
+import { JoinSessions } from '../../api/profiles/JoinSessions';
 
 /** Define a user in the Meteor accounts package. This enables login. Username is the email address. */
 function createUser(email, role) {
@@ -38,7 +39,7 @@ function addHelpOthersClass(helpOthersClass) {
 }
 
 /** Defines a new user and associated profile. Error if user already exists. */
-function addProfile({ firstName, lastName, bio, title, interests, projects, needHelpClasses, helpOthersClasses, picture, email, role }) {
+function addProfile({ firstName, lastName, bio, title, interests, projects, needHelpClasses, helpOthersClasses, sessions, picture, email, role }) {
   console.log(`Defining profile ${email}`);
   // Define the user in the Meteor accounts package.
   createUser(email, role);
@@ -50,12 +51,16 @@ function addProfile({ firstName, lastName, bio, title, interests, projects, need
   // Add needHelpClasses and helpOthersClasses
   needHelpClasses.map(needHelpClass => ProfilesNeedHelpClasses.collection.insert({ profile: email, needHelpClass }));
   helpOthersClasses.map(helpOthersClass => ProfilesHelpOthersClasses.collection.insert({ profile: email, helpOthersClass }));
+  // Add sessions
+  sessions.map(session => JoinSessions.collection.insert({ profile: email, session }));
   // Make sure interests are defined in the Interests collection if they weren't already.
   interests.map(interest => addInterest(interest));
   // Make sure needHelpClasses are defined in the NeedHelpClasses collection if they weren't already.
   needHelpClasses.map(needHelpClass => addNeedHelpClass(needHelpClass));
   // Make sure helpOthersClasses are defined in the HelpOthersClasses collection if they weren't already.
   helpOthersClasses.map(helpOthersClass => addHelpOthersClass(helpOthersClass));
+  // Make sure sessions are defined in the Sessions collection if they weren't already.
+  // sessions.map(session => addSession(session));
 }
 
 /** Define a new project. Error if project already exists.  */
@@ -67,9 +72,9 @@ function addProject({ name, homepage, description, interests, picture }) {
   interests.map(interest => addInterest(interest));
 }
 
-function addSession({ id, text, start, end }) {
+function addSession({ id, text, start, end, attendees }) {
   console.log(`Defining session ${text}`);
-  Sessions.collection.insert({ id, text, start, end });
+  Sessions.collection.insert({ id, text, start, end, attendees });
 }
 
 /** Initialize DB if it appears to be empty (i.e. no users defined.) */

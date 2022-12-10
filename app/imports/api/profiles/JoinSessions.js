@@ -3,21 +3,16 @@ import SimpleSchema from 'simpl-schema';
 import { Tracker } from 'meteor/tracker';
 
 /** Encapsulates state and variable values for this collection. */
-class SessionsCollection {
+class JoinSessionsCollection {
   constructor() {
     // The name of this collection.
-    this.name = 'SessionsCollection';
+    this.name = 'JoinSessionsCollection';
     // Define the Mongo collection.
     this.collection = new Mongo.Collection(this.name);
     // Define the structure of each document in the collection.
     this.schema = new SimpleSchema({
-      id: { type: Number, index: true, unique: true },
-      text: String,
-      start: String,
-      end: String,
-      picture: { type: String, optional: true, defaultValue: 'images/meteor-logo.png' },
-      attendees: Array, // This will contain an array of the students' emails attending the session
-      'attendees.$': String,
+      profile: String,
+      session: Number,
     }, { tracker: Tracker });
     // Ensure collection documents obey schema.
     this.collection.attachSchema(this.schema);
@@ -27,4 +22,4 @@ class SessionsCollection {
   }
 }
 
-export const Sessions = new SessionsCollection();
+export const JoinSessions = new JoinSessionsCollection();

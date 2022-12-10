@@ -10,9 +10,18 @@
 
   "defaultSessions": [
     { "id": 0,
-      "text": "ICS 314 (Demo)",
-      "start": "2022-12-06T10:15:30",
-      "end": "2022-12-06T12:20:30"
+      "text": "ICS 101 (Demo)",
+      "start": "2022-12-12T10:15:30",
+      "end": "2022-12-12T12:20:30",
+      "picture": "https://legends.pokemon.com/assets/pokemon/pokemon_new_b_1.png",
+      "attendees": ["john@foo.com", "admin@foo.com"]
+    },
+    { "id": 1,
+      "text": "ICS 111 (Demo)",
+      "start": "2022-12-13T10:15:30",
+      "end": "2022-12-13T12:20:30",
+      "picture": "https://legends.pokemon.com/assets/pokemon/pokemon_new_b_1.png",
+      "attendees": ["john@foo.com"]
     }
   ],
 
@@ -92,8 +101,12 @@
       "helpOthersClasses": [
         "ICS 101"
       ],
+      "sessions": [
+        0
+      ],
       "picture": "https://github.com/philipmjohnson.png",
-      "email": "john@foo.com"
+      "email": "john@foo.com",
+      "point": 10
     },
     {
       "firstName": "Admin",
@@ -114,9 +127,13 @@
         "ICS 111",
         "ICS 211"
       ],
+      "sessions": [
+
+      ],
       "picture": "https://github.com/philipmjohnson.png",
       "email": "admin@foo.com",
-      "role": "admin"
+      "role": "admin",
+      "point": 100
     }
   ],
 

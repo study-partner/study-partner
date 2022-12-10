@@ -33,7 +33,7 @@ const SignUp = () => {
       }
     });
     // Create the profile.
-    Profiles.collection.insert({ firstName: '', lastName: '', bio: '', title: '', picture: '', email });
+    Profiles.collection.insert({ firstName: '', lastName: '', bio: '', title: '', picture: '', point: 0, email });
   };
 
   // if correct authentication, redirect to from: page instead of signup screen

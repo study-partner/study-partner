@@ -10,7 +10,6 @@ import { useTracker } from 'meteor/react-meteor-data';
 import { Profiles } from '../../api/profiles/Profiles';
 import { updateProfileMethod } from '../../startup/both/Methods';
 import LoadingSpinner from '../components/LoadingSpinner';
-import { pageStyle } from './pageStyles';
 import { ComponentIDs, PageIDs } from '../utilities/ids';
 import { NeedHelpClasses } from '../../api/NeedHelpClasses/NeedHelpClasses';
 import { ProfilesNeedHelpClasses } from '../../api/profiles/ProfilesNeedHelpClasses';
@@ -52,6 +51,9 @@ const YourProfile = () => {
     const sub3 = Meteor.subscribe(ProfilesNeedHelpClasses.userPublicationName);
     const sub4 = Meteor.subscribe(HelpOthersClasses.userPublicationName);
     const sub5 = Meteor.subscribe(ProfilesHelpOthersClasses.userPublicationName);
+    // delete sub6 and sub7 later
+    /* const sub6 = Meteor.subscribe(Sessions.userPublicationName);
+    const sub7 = Meteor.subscribe(JoinSessions.userPublicationName); */
     return {
       ready: sub1.ready() && sub2.ready() && sub3.ready() && sub4.ready() && sub5.ready(),
       email: Meteor.user()?.username,
@@ -68,7 +70,7 @@ const YourProfile = () => {
   const profile = Profiles.collection.findOne({ email });
   const model = _.extend({}, profile, { needHelpClasses, helpOthersClasses });
   return ready ? (
-    <Container id={PageIDs.yourProfilePage} className="justify-content-center page" style={pageStyle}>
+    <Container id={PageIDs.yourProfilePage} className="justify-content-center page">
       <Col>
         <Col className="justify-content-center text-center"><h2>Your Profile</h2></Col>
         <AutoForm model={model} schema={bridge} onSubmit={data => submit(data)}>
