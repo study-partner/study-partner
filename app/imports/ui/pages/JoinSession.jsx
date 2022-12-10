@@ -10,7 +10,6 @@ import { Sessions } from '../../api/sessions/Sessions';
 import { JoinSessions } from '../../api/profiles/JoinSessions';
 import Profiles from './Profiles';
 import MakeJoinSessionCard from '../components/MakeJoinSessionCard';
-// import { SessionUpdateMethod } from '../../startup/both/Methods';
 
 /* Gets the Project data as well as Profiles and HelpWithClasses associated with the passed Project name. */
 function getSessionData(text) {
@@ -48,4 +47,4 @@ const JoinSession = () => {
   ) : <LoadingSpinner />;
 };
 
-export default JoinSessionPage;
+export default JoinSession;
