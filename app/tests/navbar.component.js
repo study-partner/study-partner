@@ -66,6 +66,14 @@ class NavBar {
     await testController.click(`#${ComponentIDs.viewReportMenuItem}`);
   }
 
+  async gotoLeaderboardPage(testController) {
+    const visible = await Selector(`#${ComponentIDs.basicNavbarNav}`).visible;
+    if (!visible) {
+      await testController.click('button.navbar-toggler');
+    }
+    await testController.click(`#${ComponentIDs.leaderboardMenuItem}`);
+  }
+
   /** Check that the specified user is currently logged in. */
   async isLoggedIn(testController, username) {
     const visible = await Selector(`#${ComponentIDs.basicNavbarNav}`).visible;

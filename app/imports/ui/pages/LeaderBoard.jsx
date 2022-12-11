@@ -18,7 +18,6 @@ const LeaderBoard = () => {
     const rdy = subscription.ready();
     // Get the Profiles documents
     const pointItems = Profiles.collection.find({}).fetch().sort((a, b) => parseFloat(b.point) - parseFloat(a.point));
-    console.log(pointItems);
     return {
       points: pointItems,
       ready: rdy,
@@ -32,7 +31,7 @@ const LeaderBoard = () => {
             <h2>Leaderboard</h2>
           </Col>
           <Row xs={1} md={2} lg={3} className="g-4">
-            <Col>
+            <Col key={points[0]._id}>
               <Card className="h-100">
                 <Card.Header>
                   <Card.Title>#1 {points[0].firstName} {points[0].lastName}</Card.Title>
@@ -46,7 +45,7 @@ const LeaderBoard = () => {
                 </Card.Body>
               </Card>
             </Col>
-            <Col>
+            <Col key={points[1]._id}>
               <Card className="h-100">
                 <Card.Header>
                   <Card.Title>#2 {points[1].firstName} {points[1].lastName}</Card.Title>
@@ -57,6 +56,20 @@ const LeaderBoard = () => {
                   <Card.Text>Biographical Statement:</Card.Text>
                   <Card.Text>{points[1].bio}</Card.Text>
                   <Card.Subtitle>Email: {points[1].email}</Card.Subtitle>
+                </Card.Body>
+              </Card>
+            </Col>
+            <Col key={points[2]._id}>
+              <Card className="h-100">
+                <Card.Header>
+                  <Card.Title>#3 {points[2].firstName} {points[2].lastName}</Card.Title>
+                  <Card.Text>Points: {points[2].point}</Card.Text>
+                  <Image src={points[2].picture} width={75} />
+                </Card.Header>
+                <Card.Body>
+                  <Card.Text>Biographical Statement:</Card.Text>
+                  <Card.Text>{points[2].bio}</Card.Text>
+                  <Card.Subtitle>Email: {points[2].email}</Card.Subtitle>
                 </Card.Body>
               </Card>
             </Col>
