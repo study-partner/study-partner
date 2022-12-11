@@ -140,9 +140,366 @@
       "sessions": [
         0
       ],
-      "picture": "https://github.com/philipmjohnson.png",
+      "picture": "/images/study-partner-logo.png",
       "email": "amy@foo.com",
       "point": 50
+    },
+    {
+      "firstName": "Clyde",
+      "lastName": "Richards",
+      "bio": "I am a computer science major and I enjoy swimming and diving.",
+      "title": "Student",
+      "needHelpClasses": [
+        "ICS 141",
+        "ICS 211"
+      ],
+      "helpOthersClasses": [
+        "ICS 111"
+      ],
+      "sessions": [
+
+      ],
+      "picture": "/images/study-partner-logo.png",
+      "email": "clyder@foo.com",
+      "point": 10
+    },
+    {
+      "firstName": "Tabitha",
+      "lastName": "Hill",
+      "bio": "I am a computer science major and I enjoy going out with friends.",
+      "title": "Student",
+      "needHelpClasses": [
+        "ICS 241",
+        "ICS 211"
+      ],
+      "helpOthersClasses": [
+        "ICS 111",
+        "ICS 141"
+      ],
+      "sessions": [
+
+      ],
+      "picture": "/images/study-partner-logo.png",
+      "email": "tabhill@foo.com",
+      "point": 30
+    },
+    {
+      "firstName": "Kristen",
+      "lastName": "Pham",
+      "bio": "I am a computer engineering major and I enjoy baking.",
+      "title": "Student",
+      "needHelpClasses": [
+        "ICS 311",
+        "ICS 314"
+      ],
+      "helpOthersClasses": [
+        "ICS 141",
+        "ICS 241"
+      ],
+      "sessions": [
+
+      ],
+      "picture": "/images/study-partner-logo.png",
+      "email": "kpham@foo.com",
+      "point": 70
+    },
+    {
+      "firstName": "Jimmy",
+      "lastName": "Ramsey",
+      "bio": "I am a computer science major and I like watching movies.",
+      "title": "Student",
+      "needHelpClasses": [
+        "ICS 414",
+        "ICS 432"
+      ],
+      "helpOthersClasses": [
+        "ICS 321",
+        "ICS 314"
+      ],
+      "sessions": [
+
+      ],
+      "picture": "/images/study-partner-logo.png",
+      "email": "jimmyrams@foo.com",
+      "point": 90
+    },
+    {
+      "firstName": "Carlton",
+      "lastName": "Newton",
+      "bio": "I am a computer science major and I enjoy reading.",
+      "title": "Student",
+      "needHelpClasses": [
+        "ICS 141",
+        "ICS 111"
+      ],
+      "helpOthersClasses": [
+
+      ],
+      "sessions": [
+
+      ],
+      "picture": "/images/study-partner-logo.png",
+      "email": "carltonnew@foo.com",
+      "point": 0
+    },
+    {
+      "firstName": "Dave",
+      "lastName": "Grant",
+      "bio": "I am a computer science major and I enjoy eating at different restaurants.",
+      "title": "Student",
+      "needHelpClasses": [
+        "ICS 241"
+      ],
+      "helpOthersClasses": [
+        "ICS 111",
+        "ICS 141",
+        "ICS 211"
+      ],
+      "sessions": [
+
+      ],
+      "picture": "/images/study-partner-logo.png",
+      "email": "dgrant@foo.com",
+      "point": 40
+    },
+    {
+      "firstName": "Kelli",
+      "lastName": "Garcia",
+      "bio": "I am a computer science major and I enjoy hiking and the outdoors.",
+      "title": "Student",
+      "needHelpClasses": [
+        "ICS 311"
+      ],
+      "helpOthersClasses": [
+        "ICS 111",
+        "ICS 211",
+        "ICS 212"
+      ],
+      "sessions": [
+
+      ],
+      "picture": "/images/study-partner-logo.png",
+      "email": "kellig@foo.com",
+      "point": 50
+    },
+    {
+      "firstName": "Tom",
+      "lastName": "Chavez",
+      "bio": "I am a computer engineering major and I enjoy biking.",
+      "title": "Student",
+      "needHelpClasses": [
+        "ICS 331",
+        "ICS 313"
+      ],
+      "helpOthersClasses": [
+        "ICS 311",
+        "ICS 211"
+      ],
+      "sessions": [
+
+      ],
+      "picture": "/images/study-partner-logo.png",
+      "email": "tchavez1@foo.com",
+      "point": 60
+    },
+    {
+      "firstName": "Lauren",
+      "lastName": "Hamilton",
+      "bio": "I am a computer science major and I enjoy shopping.",
+      "title": "Student",
+      "needHelpClasses": [
+        "ICS 111"
+      ],
+      "helpOthersClasses": [
+
+      ],
+      "sessions": [
+
+      ],
+      "picture": "/images/study-partner-logo.png",
+      "email": "laurenh@foo.com",
+      "point": 10
+    },
+    {
+      "firstName": "Edith",
+      "lastName": "Chun",
+      "bio": "I am a computer science major and I enjoy drawing and painting.",
+      "title": "Student",
+      "needHelpClasses": [
+        "ICS 311",
+        "ICS 314"
+      ],
+      "helpOthersClasses": [
+        "ICS 111",
+        "ICS 141",
+        "ICS 211",
+        "ICS 241"
+      ],
+      "sessions": [
+
+      ],
+      "picture": "/images/study-partner-logo.png",
+      "email": "echun8@foo.com",
+      "point": 70
+    },
+    {
+      "firstName": "Leo",
+      "lastName": "Blanchet",
+      "bio": "I am a computer engineering major and I enjoy photography.",
+      "title": "Student",
+      "needHelpClasses": [
+        "ICS 222",
+        "ICS 211"
+      ],
+      "helpOthersClasses": [
+        "ICS 111"
+      ],
+      "sessions": [
+
+      ],
+      "picture": "/images/study-partner-logo.png",
+      "email": "lblanchet@foo.com",
+      "point": 20
+    },
+    {
+      "firstName": "Micah",
+      "lastName": "Matsumoto",
+      "bio": "I am a computer science major and I enjoy football and baseball.",
+      "title": "Student",
+      "needHelpClasses": [
+        "ICS 414",
+        "ICS 331"
+      ],
+      "helpOthersClasses": [
+        "ICS 241",
+        "ICS 141"
+      ],
+      "sessions": [
+
+      ],
+      "picture": "/images/study-partner-logo.png",
+      "email": "micahmats@foo.com",
+      "point": 80
+    },
+    {
+      "firstName": "Daisy",
+      "lastName": "Kellogg",
+      "bio": "I am a computer science major and I enjoy watching anime.",
+      "title": "Student",
+      "needHelpClasses": [
+        "ICS 241",
+        "ICS 211"
+      ],
+      "helpOthersClasses": [
+        "ICS 141",
+        "ICS 111"
+      ],
+      "sessions": [
+
+      ],
+      "picture": "/images/study-partner-logo.png",
+      "email": "daisykel@foo.com",
+      "point": 40
+    },
+    {
+      "firstName": "Alberto",
+      "lastName": "Ramirez",
+      "bio": "I am a computer science major and I enjoy playing video games.",
+      "title": "Student",
+      "needHelpClasses": [
+        "ICS 483"
+      ],
+      "helpOthersClasses": [
+        "ICS 331",
+        "ICS 332",
+        "ICS 414"
+      ],
+      "sessions": [
+
+      ],
+      "picture": "/images/study-partner-logo.png",
+      "email": "aramirez6@foo.com",
+      "point": 100
+    },
+    {
+      "firstName": "Howard",
+      "lastName": "Krueger",
+      "bio": "I am a computer engineering major and I enjoy playing piano.",
+      "title": "Student",
+      "needHelpClasses": [
+        "ICS 311"
+      ],
+      "helpOthersClasses": [
+        "ICS 111",
+        "ICS 211"
+      ],
+      "sessions": [
+
+      ],
+      "picture": "/images/study-partner-logo.png",
+      "email": "howardkru@foo.com",
+      "point": 30
+    },
+    {
+      "firstName": "Nellie",
+      "lastName": "Curry",
+      "bio": "I am a computer science major and I enjoy playing with my dog.",
+      "title": "Student",
+      "needHelpClasses": [
+        "ICS 241",
+        "ICS 211"
+      ],
+      "helpOthersClasses": [
+        "ICS 111"
+      ],
+      "sessions": [
+
+      ],
+      "picture": "/images/study-partner-logo.png",
+      "email": "ncurry5@foo.com",
+      "point": 30
+    },
+    {
+      "firstName": "Christian",
+      "lastName": "Reyes",
+      "bio": "I am a computer science major and I enjoy fishing and grilling.",
+      "title": "Student",
+      "needHelpClasses": [
+        "ICS 313"
+      ],
+      "helpOthersClasses": [
+        "ICS 211",
+        "ICS 311",
+        "ICS 314"
+      ],
+      "sessions": [
+
+      ],
+      "picture": "/images/study-partner-logo.png",
+      "email": "chreyes3@foo.com",
+      "point": 70
+    },
+    {
+      "firstName": "Jordan",
+      "lastName": "Jacobson",
+      "bio": "I am a computer science major and I enjoy surfing and paddling.",
+      "title": "Student",
+      "needHelpClasses": [
+        "ICS 314",
+        "ICS 321",
+        "ICS 331"
+      ],
+      "helpOthersClasses": [
+        "ICS 111",
+        "ICS 211",
+        "ICS 311"
+      ],
+      "sessions": [
+
+      ],
+      "picture": "/images/study-partner-logo.png",
+      "email": "jordanjacobson@foo.com",
+      "point": 80
     }
   ],
   "loadAssetsFile":  false
