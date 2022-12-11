@@ -10,9 +10,18 @@
 
   "defaultSessions": [
     { "id": 0,
-      "text": "ICS 314 (Demo)",
-      "start": "2022-12-06T10:15:30",
-      "end": "2022-12-06T12:20:30"
+      "text": "ICS 101 (Demo)",
+      "start": "2022-12-12T10:15:30",
+      "end": "2022-12-12T12:20:30",
+      "picture": "https://legends.pokemon.com/assets/pokemon/pokemon_new_b_1.png",
+      "attendees": ["john@foo.com", "admin@foo.com"]
+    },
+    { "id": 1,
+      "text": "ICS 111 (Demo)",
+      "start": "2022-12-13T10:15:30",
+      "end": "2022-12-13T12:20:30",
+      "picture": "https://legends.pokemon.com/assets/pokemon/pokemon_new_b_1.png",
+      "attendees": ["john@foo.com"]
     }
   ],
 
@@ -80,12 +89,6 @@
       "lastName": "Foo",
       "bio": "I am a Professor and like to paddle outrigger canoes.",
       "title": "Professor",
-      "interests": [
-
-      ],
-      "projects":[
-
-      ],
       "needHelpClasses": [
         "ICS 211"
       ],
@@ -96,20 +99,16 @@
         0
       ],
       "picture": "https://github.com/philipmjohnson.png",
-      "email": "john@foo.com"
+      "email": "john@foo.com",
+      "point": 10
     },
     {
       "firstName": "Admin",
       "lastName": "Foo",
       "bio": "I am a Professor and like to paddle outrigger canoes.",
       "title": "Professor",
-      "interests": [
-
-      ],
-      "projects":[
-
-      ],
       "needHelpClasses": [
+        "ICS 235",
         "ICS 311"
       ],
       "helpOthersClasses": [
@@ -122,48 +121,28 @@
       ],
       "picture": "https://github.com/philipmjohnson.png",
       "email": "admin@foo.com",
-      "role": "admin"
-    }
-  ],
-
-  "defaultProjects": [
-    {
-      "name": "Open Power Quality",
-      "homepage": "https://openpowerquality.org",
-      "description": "Open source hardware and software for distributed power quality data collection, analysis, and visualization.",
-      "interests": [
-        "Software Engineering",
-        "Renewable Energy"
-      ],
-      "picture": "https://avatars0.githubusercontent.com/u/4641939"
+      "role": "admin",
+      "point": 100
     },
     {
-      "name": "RadGrad",
-      "homepage": "https://radgrad.org",
-      "description": "Growing awesome computer scientists, one graduate at a time.",
-      "interests": [
-        "Educational Technology"
+      "firstName": "Amy",
+      "lastName": "White",
+      "bio": "I am a computer science major and I love to listen to music.",
+      "title": "Student",
+      "needHelpClasses": [
+        "ICS 241",
+        "ICS 311"
       ],
-      "picture": "https://www.radgrad.org/img/radgrad_logo.png"
-    },
-    {
-      "name": "WRENCH",
-      "homepage": "https://wrench-project.org",
-      "description": "WRENCH is an open-source library for developing simulators for large-scale scientific computation",
-      "interests": [
-        "Distributed computing"
+      "helpOthersClasses": [
+        "ICS 101",
+        "ICS 111"
       ],
-      "picture": "https://wrench-project.org/images/logo-vertical.png"
-    },
-    {
-      "name": "Cyber Canoe",
-      "homepage": "http://lava.manoa.hawaii.edu/blog/2014/07/11/cyber-canoe-cyber-infrastructure-enabled-collaborative-analysis-navigation-and-observation-environment/",
-      "description": "Software for Unity projects involving stereoscopic resolution driven by 9 PCs with a GeForce 980 graphics card.",
-      "interests": [
-        "Unity",
-        "Visualization"
+      "sessions": [
+        0
       ],
-      "picture": "https://www.hawaii.edu/its/wp-content/uploads/sites/2/2019/01/LAVAlogo-300x192-300x192.png"
+      "picture": "https://github.com/philipmjohnson.png",
+      "email": "amy@foo.com",
+      "point": 50
     }
   ],
   "loadAssetsFile":  false
