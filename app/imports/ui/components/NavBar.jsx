@@ -31,7 +31,7 @@ const NavBar = () => {
                 <Nav.Link as={NavLink} to="/joinsession" id={ComponentIDs.joinSessionMenuItem} key="joinSession">Join Session</Nav.Link>,
                 <Nav.Link as={NavLink} to="/calendar" id={ComponentIDs.calendarMenuItem} key="calendar">Calendar</Nav.Link>,
                 <Nav.Link as={NavLink} to="/profiles" id={ComponentIDs.profilesMenuItem} key="viewProfiles">All Profiles</Nav.Link>,
-                <Nav.Link as={NavLink} to="/leaderboard" key="leaderboard">Leaderboard</Nav.Link>,
+                <Nav.Link as={NavLink} to="/leaderboard" id={ComponentIDs.leaderboardMenuItem} key="leaderboard">Leaderboard</Nav.Link>,
               ]
             ) : ''}
             {currentUser && !Roles.userIsInRole(Meteor.userId(), 'admin') ? (

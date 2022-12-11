@@ -10,6 +10,7 @@ export const ComponentIDs = {
   calendarMenuItem: 'calendarMenuItem',
   contactAdminMenuItem: 'contactAdminMenuItem',
   viewReportMenuItem: 'viewReportMenuItem',
+  leaderboardMenuItem: 'leaderboardMenuItem',
 
   addSessionMenuItem: 'addSessionMenuItem',
   joinSessionMenuItem: 'joinSessionMenuItem',
