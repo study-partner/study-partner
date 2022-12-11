@@ -4,8 +4,8 @@ import { Col, Container, Row, Table } from 'react-bootstrap';
 import { useTracker } from 'meteor/react-meteor-data';
 import LoadingSpinner from '../components/LoadingSpinner';
 import { PageIDs } from '../utilities/ids';
-import PointItem from '../components/PointItem';
 import { Profiles } from '../../api/profiles/Profiles';
+import PointItem from '../components/PointItem';
 
 /* A simple static component to render the top 5. */
 const LeaderBoard = () => {
@@ -17,7 +17,7 @@ const LeaderBoard = () => {
     const subscription = Meteor.subscribe(Profiles.userPublicationName);
     // Determine if the subscription is ready
     const rdy = subscription.ready();
-    // Get the Stuff documents
+    // Get the Profiles documents
     const pointItems = Profiles.collection.find({}).fetch();
     return {
       points: pointItems,
