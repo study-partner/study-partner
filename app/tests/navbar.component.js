@@ -34,6 +34,22 @@ class NavBar {
     await testController.click(`#${ComponentIDs.yourProfileMenuItem}`);
   }
 
+  // async gotoCreateSessionPage(testController) {
+  //   const visible = await Selector(`#${ComponentIDs.basicNavbarNav}`).visible;
+  //   if (!visible) {
+  //     await testController.click('button.navbar-toggler');
+  //   }
+  //   await testController.click(`#${ComponentIDs.addSessionMenuItem}`);
+  // }
+
+  async gotoJoinSessionsPage(testController) {
+    const visible = await Selector(`#${ComponentIDs.basicNavbarNav}`).visible;
+    if (!visible) {
+      await testController.click('button.navbar-toggler');
+    }
+    await testController.click(`#${ComponentIDs.joinSessionMenuItem}`);
+  }
+
   async gotoProfilesPage(testController) {
     const visible = await Selector(`#${ComponentIDs.basicNavbarNav}`).visible;
     if (!visible) {

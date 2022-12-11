@@ -97,7 +97,9 @@ const MakeJoinSessionCard = ({ session }) => {
             </Col>
           </Row>
           <h5>Attendees: </h5>
-          {attendeesArray.map((item) => <li>{item}</li>)}
+          <div className="overflow-auto" style={{ maxHeight: '80px', maxWidth: '300px' }}>
+            {attendeesArray.map((item) => <li>{item}</li>)}
+          </div>
         </Card.Body>
         <Card.Body className="justify-content-center">
           <Row>
