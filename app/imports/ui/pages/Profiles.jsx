@@ -29,6 +29,9 @@ const MakeCard = ({ profile }) => (
       </Card.Header>
       <Card.Body>
         <Card.Text>
+          Points: {profile.point}
+        </Card.Text>
+        <Card.Text>
           {profile.bio}
         </Card.Text>
         <span>Can help with:</span>
@@ -53,6 +56,7 @@ MakeCard.propTypes = {
     title: PropTypes.string,
     needHelpClasses: PropTypes.arrayOf(PropTypes.string),
     helpOtherClasses: PropTypes.arrayOf(PropTypes.string),
+    point: PropTypes.number,
   }).isRequired,
 };
 
