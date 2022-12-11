@@ -56,7 +56,7 @@ const AddSession = () => {
     const sub1 = Meteor.subscribe(Sessions.userPublicationName);
     const sub2 = Meteor.subscribe(Profiles.userPublicationName);
     return {
-      ready: sub1.ready() && sub2,
+      ready: sub1.ready() && sub2.ready(),
     };
   }, []);
 

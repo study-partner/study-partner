@@ -18,7 +18,6 @@ const LeaderBoard = () => {
     const rdy = subscription.ready();
     // Get the Profiles documents
     const pointItems = Profiles.collection.find({}).fetch().sort((a, b) => parseFloat(b.point) - parseFloat(a.point));
-    console.log(pointItems);
     return {
       points: pointItems,
       ready: rdy,
@@ -57,6 +56,20 @@ const LeaderBoard = () => {
                   <Card.Text>Biographical Statement:</Card.Text>
                   <Card.Text>{points[1].bio}</Card.Text>
                   <Card.Subtitle>Email: {points[1].email}</Card.Subtitle>
+                </Card.Body>
+              </Card>
+            </Col>
+            <Col>
+              <Card className="h-100">
+                <Card.Header>
+                  <Card.Title>#3 {points[2].firstName} {points[2].lastName}</Card.Title>
+                  <Card.Text>Points: {points[2].point}</Card.Text>
+                  <Image src={points[2].picture} width={75} />
+                </Card.Header>
+                <Card.Body>
+                  <Card.Text>Biographical Statement:</Card.Text>
+                  <Card.Text>{points[2].bio}</Card.Text>
+                  <Card.Subtitle>Email: {points[2].email}</Card.Subtitle>
                 </Card.Body>
               </Card>
             </Col>

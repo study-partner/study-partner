@@ -9,6 +9,7 @@ import SimpleSchema2Bridge from 'uniforms-bridge-simple-schema-2';
 import { useTracker } from 'meteor/react-meteor-data';
 import LoadingSpinner from './LoadingSpinner';
 import { Sessions } from '../../api/sessions/Sessions';
+import { Profiles } from '../../api/profiles/Profiles';
 
 /* Create a schema to specify the structure of the data to appear in the form. */
 const makeSchema = new SimpleSchema({});
@@ -19,10 +20,11 @@ const bridge = new SimpleSchema2Bridge(makeSchema);
 const MakeJoinSessionCard = ({ session }) => {
   // useTracker connects Meteor data to React components. https://guide.meteor.com/react.html#using-withTracker
   const { userEmail, ready } = useTracker(() => {
-    // Get access to Contact documents.
-    const subscription = Meteor.subscribe(Sessions.userPublicationName);
+    // Get access to needed documents.
+    const sub1 = Meteor.subscribe(Sessions.userPublicationName);
+    const sub2 = Meteor.subscribe(Profiles.userPublicationName);
     // Determine if the subscription is ready
-    const rdy = subscription.ready();
+    const rdy = sub1.ready() && sub2.ready();
     // Get the document
     const email = Meteor.user().username;
     return {
@@ -43,9 +45,21 @@ const MakeJoinSessionCard = ({ session }) => {
         {
           $set: { attendees: attendeesArray },
         },
-        (error) => (error ?
-          swal('Error', error.message, 'error') :
-          swal('Success', 'Item updated successfully', 'success')),
+        (error) => {
+          if (error) {
+            swal('Error', error.message, 'error');
+          } else {
+            const pointDoc = Profiles.collection.findOne({ email: Meteor.user().username });
+            let newPoint = pointDoc.point;
+            if (newPoint == null || newPoint === '') {
+              newPoint = 10;
+            } else {
+              newPoint += 10;
+            }
+            Profiles.collection.update(pointDoc._id, { $set: { point: newPoint } });
+            swal('Success', 'You successfully joined this session', 'success');
+          }
+        },
       );
     } else {
       swal('Error', 'You have already joined this session', 'error');
