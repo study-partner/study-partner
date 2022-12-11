@@ -38,7 +38,12 @@ const AddSession = () => {
         swal('Error', error.message, 'error');
       } else {
         const pointDoc = Profiles.collection.findOne({ email: Meteor.user().username });
-        const newPoint = pointDoc.point + 10;
+        let newPoint = pointDoc.point;
+        if (newPoint == null || newPoint === '') {
+          newPoint = 10;
+        } else {
+          newPoint += 10;
+        }
         Profiles.collection.update(pointDoc._id, { $set: { point: newPoint } });
         swal('Success', 'Session added successfully', 'success').then(() => formRef.reset());
       }
