@@ -12,14 +12,15 @@ import Profiles from './Profiles';
 import MakeJoinSessionCard from '../components/MakeJoinSessionCard';
 
 /* Gets the Project data as well as Profiles and HelpWithClasses associated with the passed Project name. */
-function getSessionData(text) {
-  const data = Sessions.collection.findOne({ text });
-  const evenId = _.pluck(Sessions.collection.find({ session: text }).fetch(), 'id');
-  const startDate = _.pluck(Sessions.collection.find({ session: text }).fetch(), 'star');
-  const endDate = _.pluck(Sessions.collection.find({ session: text }).fetch(), 'end');
-  const profiles = _.pluck(JoinSessions.collection.find({ session: text }).fetch(), 'profile');
+function getSessionData(id) {
+  const data = Sessions.collection.findOne({ id });
+  // const evenId = _.pluck(Sessions.collection.find({ session: id }).fetch(), 'id');
+  const startDate = _.pluck(Sessions.collection.find({ session: id }).fetch(), 'star');
+  const endDate = _.pluck(Sessions.collection.find({ session: id }).fetch(), 'end');
+  const profiles = _.pluck(JoinSessions.collection.find({ session: id }).fetch(), 'profile');
+  // console.log(profiles);
   const profilePictures = profiles.map(profile => Profiles.collection.findOne({ email: profile })?.picture);
-  return _.extend({}, data, { evenId, text, startDate, endDate, attendees: profilePictures });
+  return _.extend({}, data, { id, startDate, endDate, attendees: profilePictures });
 }
 
 /* Renders the Project Collection as a set of Cards. */
@@ -35,7 +36,7 @@ const JoinSession = () => {
     };
   }, [_id]);
 
-  const sessions = _.pluck(Sessions.collection.find().fetch(), 'text');
+  const sessions = _.pluck(Sessions.collection.find().fetch(), 'id');
   const sessionData = sessions.map(session => getSessionData(session));
 
   return ready ? (

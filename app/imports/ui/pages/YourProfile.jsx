@@ -22,7 +22,7 @@ const makeSchema = (allNeedHelpClasses, allHelpOthersClasses) => new SimpleSchem
   firstName: { type: String, label: 'First', optional: true },
   lastName: { type: String, label: 'Last', optional: true },
   bio: { type: String, label: 'Biographical statement', optional: true },
-  title: { type: String, label: 'Class standing', optional: true },
+  title: { type: String, label: 'Title', optional: true },
   picture: { type: String, label: 'Picture URL', optional: true },
   needHelpClasses: { type: Array, label: 'Classes you need help with', optional: true },
   'needHelpClasses.$': { type: String, allowedValues: allNeedHelpClasses },
@@ -83,7 +83,7 @@ const YourProfile = () => {
               </Row>
               <LongTextField id={ComponentIDs.yourProfileFormBio} name="bio" placeholder="Write a little bit about yourself." />
               <Row>
-                <Col xs={6}><TextField name="title" showInlineError placeholder="Class standing" /></Col>
+                <Col xs={6}><TextField name="title" showInlineError placeholder="Title" /></Col>
                 <Col xs={6}><TextField name="picture" showInlineError placeholder="URL to picture" /></Col>
               </Row>
               <Row>

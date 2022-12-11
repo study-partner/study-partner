@@ -9,7 +9,7 @@ class HomePage {
 
   /* Checks that this page is currently displayed. */
   async isDisplayed(testController) {
-    await testController.wait(30000).expect(this.pageSelector.exists).ok();
+    await testController.wait(50000).expect(this.pageSelector.exists).ok();
   }
 }
 
