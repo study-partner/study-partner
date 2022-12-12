@@ -10,8 +10,8 @@ import { calendarPage } from './calendar.page';
 import { contactAdminPage } from './contactadmin.page';
 import { viewReportPage } from './viewreport.page';
 import { leaderboardPage } from './leaderboard.page';
-// import { addSessionPage } from './createsession.page';
 import { joinSessionPage } from './joinsession.page';
+import { createSessionPage } from './create-session.page';
 /* global fixture:false, test:false */
 
 /** Credentials for one of the sample users defined in settings.development.json. */
@@ -26,6 +26,13 @@ const credentials = {
 
 /** Credentials for one of the admin users defined in settings.development.json. */
 const admin = { username: 'admin@foo.com', password: 'changeme' };
+
+const session = {
+  course: 'ICS 311',
+  date: '2030-12-12T05:45',
+  duration: '30',
+  picture: 'https://legends.pokemon.com/assets/pokemon/pokemon_new_b_1.png',
+};
 
 fixture('Study Partner localhost test with default db')
   .page('http://localhost:3000');
@@ -123,15 +130,6 @@ test('Test that leaderboard works', async (testController) => {
   await navBar.ensureLogout(testController);
 });
 
-// test.only('Test that create session page works', async (testController) => {
-//   await navBar.ensureLogout(testController);
-//   await navBar.gotoSignInPage(testController);
-//   await signInPage.signin(testController, credentials.username, credentials.password);
-//   await navBar.gotoCreateSessionPage(testController);
-//   await addSessionPage.isDisplayed(testController);
-//   await addSessionPage.createSession(testController);
-// });
-
 test('Test that join session page displays', async (testController) => {
   await navBar.ensureLogout(testController);
   await navBar.gotoSignInPage(testController);
@@ -139,4 +137,14 @@ test('Test that join session page displays', async (testController) => {
   await navBar.gotoJoinSessionsPage(testController);
   await joinSessionPage.isDisplayed(testController);
   await joinSessionPage.hasDefaultSessions(testController);
+});
+
+test('Test that create session page works', async (testController) => {
+  await navBar.ensureLogout(testController);
+  await navBar.gotoSignInPage(testController);
+  await signInPage.signin(testController, credentials.username, credentials.password);
+  await navBar.gotoCreateSessionPage(testController);
+  await createSessionPage.isDisplayed(testController);
+  await createSessionPage.createSession(testController, session.course, session.date, session.duration, session.picture);
+  await navBar.ensureLogout(testController);
 });

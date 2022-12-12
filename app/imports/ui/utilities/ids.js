@@ -15,7 +15,7 @@ export const ComponentIDs = {
   addSessionMenuItem: 'addSessionMenuItem',
   joinSessionMenuItem: 'joinSessionMenuItem',
   addSessionFormCourse: 'addSessionFormCourse',
-  addSessionStartDate: 'addSessionDateAndTime',
+  addSessionDateAndTime: 'addSessionDateAndTime',
   addSessionDuration: 'addSessionDuration',
   addSessionFormPicture: 'addSessionFormPicture',
   addSessionFormSubmit: 'addSessionFormSubmit',

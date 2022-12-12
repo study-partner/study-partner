@@ -46,19 +46,19 @@ const Home = () => (
                 <Card.Text>
                   Create a study session event that will be added to the event calendar.
                 </Card.Text>
-                <Button variant="primary"><Card.Link href="#" style={{ color: 'white' }}>Click here to get started</Card.Link></Button>
+                <Button variant="primary"><Card.Link href="/createsession" style={{ color: 'white' }}>Create Session</Card.Link></Button>
               </Card.Body>
             </Card>
           </Col>
           <Col xs={6}>
             <Card style={{ paddingTop: '20px', marginBottom: '20px' }}>
-              <Card.Title><h3>I need help right now!</h3></Card.Title>
+              <Card.Title><h3>Join any study session</h3></Card.Title>
               <Card.Img variant="top" src="/images/projects-page.png" />
               <Card.Body>
                 <Card.Text>
-                  Notify all other members of your course to form a group right now.
+                  Take a look at all the available sessions and join any session you want.
                 </Card.Text>
-                <Button variant="primary"><Card.Link href="#" style={{ color: 'white' }}>Click here to get started</Card.Link></Button>
+                <Button variant="primary"><Card.Link href="/joinsession" style={{ color: 'white' }}>Join Session</Card.Link></Button>
               </Card.Body>
             </Card>
           </Col>
@@ -66,10 +66,11 @@ const Home = () => (
       </Container>
     </div>
     <div className="landing-white-background text-center">
-      <h2 style={Roles.userIsInRole(Meteor.userId(), 'admin') ? { color: '#F08000' } : { color: '#6495ED' }}>
-        Earning points by... Feel free to take a look at Leaderboard rankings.
-      </h2>
       <Container>
+        <h2 style={Roles.userIsInRole(Meteor.userId(), 'admin') ? { color: '#F08000' } : { color: '#6495ED' }}>
+          Each time you join or create a study session, you&apos;ll earn 10 points. <br />
+          Take a look at Leaderboard rankings.
+        </h2>
         <Row md={1} lg={2}>
           <Col xs={6}>
             <Image src="/images/interests-page.png" width={500} />
