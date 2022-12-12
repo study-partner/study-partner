@@ -82,18 +82,12 @@ const MakeJoinSessionCard = ({ session }) => {
           <hr size="10" color="#0D6EFD" className="hrstyle" />
           <Row>
             <Col>
-              <h5>START DATE:</h5> {session.start.slice(0, 10)}
-              <br />
-              <br />
-              <h5>START TIME:</h5> {session.start.slice(11, 20)}
-              <br />
-              <br />
+              <h5>Date:</h5> {session.start.slice(0, 10)}
             </Col>
             <Col>
-              <h5>END DATE:</h5> {session.end.slice(0, 10)}
+              <h5>Time:</h5> {session.start.slice(11, 16)} - {session.end.slice(11, 16)}
               <br />
               <br />
-              <h5>END DATE:</h5> {session.end.slice(11, 20)}
             </Col>
           </Row>
           <h5>Attendees: </h5>
