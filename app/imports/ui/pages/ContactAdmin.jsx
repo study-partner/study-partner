@@ -1,6 +1,6 @@
 import React from 'react';
 import { Card, Col, Container, Row } from 'react-bootstrap';
-import { AutoForm, ErrorsField, LongTextField, SubmitField, TextField } from 'uniforms-bootstrap5';
+import { AutoForm, ErrorsField, HiddenField, LongTextField, SubmitField, TextField } from 'uniforms-bootstrap5';
 import swal from 'sweetalert';
 import { Meteor } from 'meteor/meteor';
 import SimpleSchema2Bridge from 'uniforms-bridge-simple-schema-2';
@@ -15,6 +15,7 @@ const formSchema = new SimpleSchema({
   email: { type: String, optional: true },
   subject: String,
   description: { type: String, label: 'Message' },
+  createdAt: { type: Date, optional: true },
 });
 
 const bridge = new SimpleSchema2Bridge(formSchema);
@@ -24,10 +25,10 @@ const ContactAdmin = () => {
 
   // On submit, insert the data.
   const submit = (data, formRef) => {
-    const { firstName, lastName, email, subject, description } = data;
+    const { firstName, lastName, subject, description, createdAt } = data;
     const owner = Meteor.user().username;
     Reports.collection.insert(
-      { firstName, lastName, email, subject, description, owner },
+      { firstName, lastName, subject, description, createdAt, owner },
       (error) => {
         if (error) {
           swal('Error', error.message, 'error');
@@ -58,6 +59,7 @@ const ContactAdmin = () => {
                 <LongTextField name="description" id={ComponentIDs.contactAdminFormDescription} showInlineError />
                 <SubmitField id={ComponentIDs.contactAdminFormSubmit} value="Submit" />
                 <ErrorsField />
+                <HiddenField name="createdAt" value={new Date()} />
               </Card.Body>
             </Card>
           </AutoForm>
