@@ -1,6 +1,6 @@
 import React from 'react';
 import { Meteor } from 'meteor/meteor';
-import { Container, Row } from 'react-bootstrap';
+import { Col, Container, Row } from 'react-bootstrap';
 import { useTracker } from 'meteor/react-meteor-data';
 import { _ } from 'meteor/underscore';
 import { useParams } from 'react-router';
@@ -41,6 +41,9 @@ const JoinSession = () => {
 
   return ready ? (
     <Container id={PageIDs.joinSessionPage} className="page">
+      <Col className="text-center">
+        <h2>Join Session</h2>
+      </Col>
       <Row xs={1} md={2} lg={4} className="g-2">
         {sessionData.map((session, index) => <MakeJoinSessionCard key={index} session={session} />)}
       </Row>
