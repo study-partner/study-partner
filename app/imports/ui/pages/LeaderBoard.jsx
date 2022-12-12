@@ -24,7 +24,7 @@ const LeaderBoard = () => {
     };
   }, []);
   return (ready ? (
-    <Container id={PageIDs.leaderboardPage} className="py-3">
+    <Container id={PageIDs.leaderboardPage} className="py-3 page">
       <Row className="justify-content-center">
         <Col>
           <Col className="text-center">

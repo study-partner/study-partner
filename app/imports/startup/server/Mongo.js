@@ -49,7 +49,7 @@ function addProfile({ firstName, lastName, bio, title, needHelpClasses, helpOthe
 }
 
 function addSession({ id, text, start, end, attendees }) {
-  console.log(`Defining session ${text}`);
+  console.log(`Defining session ${text}, id: ${id}`);
   Sessions.collection.insert({ id, text, start, end, attendees });
 }
 
