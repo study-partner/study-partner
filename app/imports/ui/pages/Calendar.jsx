@@ -129,7 +129,6 @@ class Calendar extends Component {
     // ];
     Meteor.subscribe(Sessions.userPublicationName);
     const events = [];
-    console.log(1);
     setTimeout(function () {
       const email = Meteor.user().username;
       const session_data = Sessions.collection.find({ attendees: email }).fetch();
