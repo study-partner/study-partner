@@ -106,3 +106,26 @@ footer a {
   padding-top: 10px;
   padding-bottom: 20px;
 }
+.join-session-background {
+  background-image: url("https://img.freepik.com/free-photo/empty-sea-beach-background_74190-313.jpg?w=2000");
+  background-position: center;
+  background-repeat: repeat-y;
+}
+.calendar-page-background{
+  background-image: url("https://wallpapercave.com/wp/wp6325773.jpg");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+.create-session-background{
+  background-image: url("https://i.pinimg.com/originals/0f/95/fc/0f95fc4822f000774b5a5ee491aa22d2.jpg");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+.leader-board-background{
+  background-image: url("https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/f702b429-79be-4907-8a8e-1ba8613ebe00/d92hf0x-17be56a4-39c3-4760-a583-841dd9f5d516.jpg?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOjdlMGQxODg5ODIyNjQzNzNhNWYwZDQxNWVhMGQyNmUwIiwiaXNzIjoidXJuOmFwcDo3ZTBkMTg4OTgyMjY0MzczYTVmMGQ0MTVlYTBkMjZlMCIsIm9iaiI6W1t7InBhdGgiOiJcL2ZcL2Y3MDJiNDI5LTc5YmUtNDkwNy04YThlLTFiYTg2MTNlYmUwMFwvZDkyaGYweC0xN2JlNTZhNC0zOWMzLTQ3NjAtYTU4My04NDFkZDlmNWQ1MTYuanBnIn1dXSwiYXVkIjpbInVybjpzZXJ2aWNlOmZpbGUuZG93bmxvYWQiXX0.9HzEomJRkCcxv7XLPh78W1otMyxJE5oK0k138vEZk38");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}

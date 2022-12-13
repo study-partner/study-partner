@@ -65,7 +65,7 @@ const MakeJoinSessionCard = ({ session }) => {
       swal('Error', 'You have already joined this session', 'error');
     }
   };
-
+aswa
   // temporial solution for session.attendee array not display
   const document = Sessions.collection.find(session._id).fetch();
   const attendeesArray = document[0].attendees;
