@@ -30,7 +30,7 @@ const LeaderBoard = () => {
           <Col>
             <Col className="text-center">
               <h1 style={{ color: 'white' }}>Leaderboard</h1>
-              <h2 style={{ color: 'white' }}> &gtTop 3 Study Partners Ranking&lt</h2>
+              <h2 style={{ color: 'white' }}> &lt;Top 3 Study Partners Ranking&gt;</h2>
               <br />
             </Col>
             <Row xs={1} md={2} lg={3} className="g-4">
