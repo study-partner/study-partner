@@ -72,7 +72,10 @@ const YourProfile = () => {
   return ready ? (
     <Container id={PageIDs.yourProfilePage} className="justify-content-center page">
       <Col>
-        <Col className="justify-content-center text-center"><h2>Your Profile</h2></Col>
+        <Col className="justify-content-center text-center">
+          <h2>Your Profile</h2>
+          <br />
+        </Col>
         <AutoForm model={model} schema={bridge} onSubmit={data => submit(data)}>
           <Card>
             <Card.Body>

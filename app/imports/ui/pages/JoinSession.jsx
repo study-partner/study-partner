@@ -43,7 +43,9 @@ const JoinSession = () => {
     <div className="join-session-background">
       <Container id={PageIDs.joinSessionPage} className="page">
         <Col className="text-center">
+          <br />
           <h2>Join Session</h2>
+          <br />
         </Col>
         <Row xs={1} md={2} lg={4} className="g-2">
           {sessionData.map((session, index) => <MakeJoinSessionCard key={index} session={session} />)}

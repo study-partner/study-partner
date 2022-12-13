@@ -80,6 +80,7 @@ const ProfilesPage = () => {
     <Container id={PageIDs.profilesPage} className="page">
       <Col className="text-center">
         <h2>All Profiles</h2>
+        <br />
       </Col>
       <Row xs={1} md={2} lg={4} className="g-2">
         {profileData.map((profile, index) => <MakeCard key={index} profile={profile} />)}
