@@ -29,6 +29,7 @@ const LeaderBoard = () => {
         <Col>
           <Col className="text-center">
             <h2>Leaderboard</h2>
+            <h4 style={{ paddingBottom: '20px' }}>Here are our top 3 students! Great Job!</h4>
           </Col>
           <Row xs={1} md={2} lg={3} className="g-4">
             <Col key={points[0]._id}>
