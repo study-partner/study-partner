@@ -69,7 +69,8 @@ const Home = () => (
       <Container>
         <h2 style={Roles.userIsInRole(Meteor.userId(), 'admin') ? { color: '#F08000' } : { color: '#6495ED' }}>
           Each time you join or create a study session, you&apos;ll earn 10 points. <br />
-          Take a look at Leaderboard rankings.
+          Take a look at the top 3 rankers in the Leaderboard! <br />
+          (You can view anyone&apos;s points under &apos;All Profiles&apos;)
         </h2>
         <Row md={1} lg={2}>
           <Col xs={6}>
