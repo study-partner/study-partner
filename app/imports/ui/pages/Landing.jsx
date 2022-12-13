@@ -22,22 +22,25 @@ const Landing = () => (
     <div className={Roles.userIsInRole(Meteor.userId(), 'admin') ? 'landing-color-background-admin' : 'landing-color-background'}>
       <Container className="justify-content-center text-center">
         <h2 style={{ color: 'white' }}>Start by making your profile...</h2>
-        <Row>
-          <Col>
-            <Image src="/images/profile.png" width={600} className="page-pics" />
+        <Row md={1} lg={2}>
+          <Col xs={6}>
+            <Image src="/images/home-page.png" width={500} />
+          </Col>
+          <Col xs={6}>
+            <Image src="/images/profiles-page.png" width={500} />
           </Col>
         </Row>
       </Container>
     </div>
     <div className="landing-white-background">
       <Container className="justify-content-center text-center">
-        <h2 style={{ color: 'black' }}>...then join or create a session</h2>
+        <h2 style={{ color: 'black' }}>...then go to calendar to join or create a session</h2>
         <Row md={1} lg={2}>
           <Col xs={6}>
-            <Image src="/images/join-session.png" width={500} className="page-pics" />
+            <Image src="/images/add-project-page.png" width={500} />
           </Col>
           <Col xs={6}>
-            <Image src="/images/create-session.png" width={500} className="page-pics" />
+            <Image src="/images/projects-page.png" width={500} />
           </Col>
         </Row>
       </Container>
@@ -49,10 +52,10 @@ const Landing = () => (
       <Container>
         <Row md={1} lg={2}>
           <Col xs={6}>
-            <Image src="/images/leaderboard.png" width={500} className="page-pics" />
+            <Image src="/images/interests-page.png" width={500} />
           </Col>
           <Col xs={6}>
-            <Image src="/images/contact-admin.png" width={500} className="page-pics" />
+            <Image src="/images/filter-page.png" width={500} />
           </Col>
         </Row>
       </Container>
