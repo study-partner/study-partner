@@ -26,17 +26,19 @@ const NavBar = () => {
           <Nav className="me-auto justify-content-start">
             {currentUser ? (
               [
-                <Nav.Link as={NavLink} to="/yourprofile" id={ComponentIDs.yourProfileMenuItem} key="yourProfile">Profile</Nav.Link>,
-                <Nav.Link as={NavLink} to="/profiles" id={ComponentIDs.profilesMenuItem} key="viewProfiles">Profiles</Nav.Link>,
+                <Nav.Link as={NavLink} to="/yourprofile" id={ComponentIDs.yourProfileMenuItem} key="yourProfile">My Profile</Nav.Link>,
+                <Nav.Link as={NavLink} to="/createsession" id={ComponentIDs.addSessionMenuItem} key="createSession">Create Session</Nav.Link>,
+                <Nav.Link as={NavLink} to="/joinsession" id={ComponentIDs.joinSessionMenuItem} key="joinSession">Join Session</Nav.Link>,
                 <Nav.Link as={NavLink} to="/calendar" id={ComponentIDs.calendarMenuItem} key="calendar">Calendar</Nav.Link>,
-                <Nav.Link as={NavLink} to="/leaderboard" key="leaderboard">Leaderboard</Nav.Link>,
+                <Nav.Link as={NavLink} to="/profiles" id={ComponentIDs.profilesMenuItem} key="viewProfiles">All Profiles</Nav.Link>,
+                <Nav.Link as={NavLink} to="/leaderboard" id={ComponentIDs.leaderboardMenuItem} key="leaderboard">Leaderboard</Nav.Link>,
               ]
             ) : ''}
             {currentUser && !Roles.userIsInRole(Meteor.userId(), 'admin') ? (
-              <Nav.Link as={NavLink} to="/contact-admin" key="contact-admin">Contact Admin</Nav.Link>
+              <Nav.Link as={NavLink} to="/contact-admin" id={ComponentIDs.contactAdminMenuItem} key="contact-admin">Contact Admin</Nav.Link>
             ) : ''}
             {Roles.userIsInRole(Meteor.userId(), 'admin') ? (
-              <Nav.Link as={NavLink} to="/view-reports" key="admin">View Report</Nav.Link>
+              <Nav.Link as={NavLink} to="/view-reports" id={ComponentIDs.viewReportMenuItem} key="admin">View Report</Nav.Link>
             ) : ''}
           </Nav>
           <Nav className="justify-content-end">

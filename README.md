@@ -1,3 +1,3 @@
-[![ci-bowfolios](https://github.com/bowfolios/bowfolios/actions/workflows/ci.yml/badge.svg)](https://github.com/bowfolios/bowfolios/actions/workflows/ci.yml)
+![ci-badge](https://github.com/study-partner/study-partner/workflows/ci-study-partner/badge.svg)
 
-For details, please see [http://bowfolios.github.io/](https://bowfolios.github.io/).
+For details, please see [https://study-partner.github.io/](https://study-partner.github.io/).

@@ -8,6 +8,7 @@ const Report = ({ report }) => (
     <Card.Header>
       <Card.Title>{report.firstName} {report.lastName}</Card.Title>
       <Card.Text>From: {report.owner}</Card.Text>
+      <Card.Text>Date: {report.createdAt.toLocaleDateString('en-US')}</Card.Text>
     </Card.Header>
     <Card.Body>
       <Card.Text>Subject: {report.subject}</Card.Text>
@@ -23,6 +24,7 @@ Report.propTypes = {
     lastName: PropTypes.string,
     subject: PropTypes.string,
     description: PropTypes.string,
+    createdAt: PropTypes.instanceOf(Date),
     owner: PropTypes.string,
   }).isRequired,
 };

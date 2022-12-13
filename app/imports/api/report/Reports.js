@@ -15,6 +15,7 @@ class ReportsCollection {
       lastName: { type: String, optional: true },
       subject: { type: String, optional: true },
       description: { type: String, optional: true },
+      createdAt: { type: Date, optional: true },
       owner: { type: String, optional: true },
     }, { tracker: Tracker });
     // Ensure collection documents obey schema.

@@ -34,6 +34,22 @@ class NavBar {
     await testController.click(`#${ComponentIDs.yourProfileMenuItem}`);
   }
 
+  // async gotoCreateSessionPage(testController) {
+  //   const visible = await Selector(`#${ComponentIDs.basicNavbarNav}`).visible;
+  //   if (!visible) {
+  //     await testController.click('button.navbar-toggler');
+  //   }
+  //   await testController.click(`#${ComponentIDs.addSessionMenuItem}`);
+  // }
+
+  async gotoJoinSessionsPage(testController) {
+    const visible = await Selector(`#${ComponentIDs.basicNavbarNav}`).visible;
+    if (!visible) {
+      await testController.click('button.navbar-toggler');
+    }
+    await testController.click(`#${ComponentIDs.joinSessionMenuItem}`);
+  }
+
   async gotoProfilesPage(testController) {
     const visible = await Selector(`#${ComponentIDs.basicNavbarNav}`).visible;
     if (!visible) {
@@ -42,44 +58,36 @@ class NavBar {
     await testController.click(`#${ComponentIDs.profilesMenuItem}`);
   }
 
-  async gotoInterestsPage(testController) {
-    const visible = await Selector(`#${ComponentIDs.basicNavbarNav}`).visible;
-    if (!visible) {
-      await testController.click('button.navbar-toggler');
-    }
-    await testController.click(`#${ComponentIDs.interestsMenuItem}`);
-  }
-
-  async gotoProjectsPage(testController) {
-    const visible = await Selector(`#${ComponentIDs.basicNavbarNav}`).visible;
-    if (!visible) {
-      await testController.click('button.navbar-toggler');
-    }
-    await testController.click(`#${ComponentIDs.projectsMenuItem}`);
-  }
-
-  async gotoAddProjectPage(testController) {
-    const visible = await Selector(`#${ComponentIDs.basicNavbarNav}`).visible;
-    if (!visible) {
-      await testController.click('button.navbar-toggler');
-    }
-    await testController.click(`#${ComponentIDs.addProjectMenuItem}`);
-  }
-
-  async gotoFilterPage(testController) {
-    const visible = await Selector(`#${ComponentIDs.basicNavbarNav}`).visible;
-    if (!visible) {
-      await testController.click('button.navbar-toggler');
-    }
-    await testController.click(`#${ComponentIDs.filterMenuItem}`);
-  }
-
   async gotoCalendarPage(testController) {
     const visible = await Selector(`#${ComponentIDs.basicNavbarNav}`).visible;
     if (!visible) {
       await testController.click('button.navbar-toggler');
     }
     await testController.click(`#${ComponentIDs.calendarMenuItem}`);
+  }
+
+  async gotoContactAdminPage(testController) {
+    const visible = await Selector(`#${ComponentIDs.basicNavbarNav}`).visible;
+    if (!visible) {
+      await testController.click('button.navbar-toggler');
+    }
+    await testController.click(`#${ComponentIDs.contactAdminMenuItem}`);
+  }
+
+  async gotoViewReportPage(testController) {
+    const visible = await Selector(`#${ComponentIDs.basicNavbarNav}`).visible;
+    if (!visible) {
+      await testController.click('button.navbar-toggler');
+    }
+    await testController.click(`#${ComponentIDs.viewReportMenuItem}`);
+  }
+
+  async gotoLeaderboardPage(testController) {
+    const visible = await Selector(`#${ComponentIDs.basicNavbarNav}`).visible;
+    if (!visible) {
+      await testController.click('button.navbar-toggler');
+    }
+    await testController.click(`#${ComponentIDs.leaderboardMenuItem}`);
   }
 
   /** Check that the specified user is currently logged in. */
@@ -111,6 +119,14 @@ class NavBar {
     }
     await testController.click(`#${ComponentIDs.loginDropdown}`);
     await testController.click(`#${ComponentIDs.loginDropdownSignUp}`);
+  }
+
+  async gotoCreateSessionPage(testController) {
+    const visible = await Selector(`#${ComponentIDs.basicNavbarNav}`).visible;
+    if (!visible) {
+      await testController.click('button.navbar-toggler');
+    }
+    await testController.click(`#${ComponentIDs.addSessionMenuItem}`);
   }
 }
 

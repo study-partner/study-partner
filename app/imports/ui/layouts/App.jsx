@@ -11,17 +11,14 @@ import NavBar from '../components/NavBar';
 import SignIn from '../pages/SignIn';
 import NotAuthorized from '../pages/NotAuthorized';
 import Profiles from '../pages/Profiles';
-import Projects from '../pages/Projects';
-import Interests from '../pages/Interests';
 import Home from '../pages/Home';
-import Filter from '../pages/Filter';
-import AddProject from '../pages/AddProject';
 import YourProfile from '../pages/YourProfile';
 import ContactAdmin from '../pages/ContactAdmin';
 import ViewReports from '../pages/ViewReports';
 import CreateSession from '../pages/CreateSession';
 import JoinSession from '../pages/JoinSession';
 import Calendar from '../pages/Calendar';
+import LeaderBoard from '../pages/LeaderBoard';
 
 function isLogged() {
   return Meteor.userId() !== null;
@@ -37,16 +34,13 @@ const App = () => (
         <Route path="/signin" element={<SignIn />} />
         <Route path="/signup" element={<SignUp />} />
         <Route path="/signout" element={<SignOut />} />
-        <Route path="/interests" element={<Interests />} />
         <Route path="/profiles" element={<Profiles />} />
-        <Route path="/projects" element={<Projects />} />
         <Route path="/home" element={<ProtectedRoute><Home /></ProtectedRoute>} />
-        <Route path="/yourprofile" element={<YourProfile />} />
-        <Route path="/contact-admin" element={<ContactAdmin />} />
-        <Route path="/view-reports" element={<ViewReports />} />
+        <Route path="/yourprofile" element={<ProtectedRoute><YourProfile /></ProtectedRoute>} />
+        <Route path="/leaderboard" element={<ProtectedRoute><LeaderBoard /></ProtectedRoute>} />
+        <Route path="/contact-admin" element={<ProtectedRoute><ContactAdmin /></ProtectedRoute>} />
+        <Route path="/view-reports" element={<ProtectedRoute><ViewReports /></ProtectedRoute>} />
         <Route path="/calendar" element={<ProtectedRoute><Calendar /></ProtectedRoute>} />
-        <Route path="/filter" element={<ProtectedRoute><Filter /></ProtectedRoute>} />
-        <Route path="/addproject" element={<ProtectedRoute><AddProject /></ProtectedRoute>} />
         <Route path="/createsession" element={<ProtectedRoute><CreateSession /></ProtectedRoute>} />
         <Route path="/joinsession" element={<ProtectedRoute><JoinSession /></ProtectedRoute>} />
         <Route path="/notauthorized" element={<NotAuthorized />} />
