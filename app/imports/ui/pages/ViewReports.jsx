@@ -26,18 +26,21 @@ const ViewReports = () => {
   }, []);
 
   return (ready ? (
-    <Container id={PageIDs.viewReportPage} className="py-3">
-      <Row className="justify-content-center">
-        <Col>
-          <Col className="text-center">
-            <h2>View Reports</h2>
+    <div className="viewReport-background">
+      <Container id={PageIDs.viewReportPage} className="py-3">
+        <Row className="justify-content-center">
+          <Col>
+            <Col className="text-center">
+              <h1 className="text-center text-outline" style={{ color: 'white' }}>View Reports</h1>
+              <br />
+            </Col>
+            <Row xs={1} md={2} lg={3} className="g-4">
+              {reports.map((report) => (<Col key={report._id}><Report report={report} /></Col>))}
+            </Row>
           </Col>
-          <Row xs={1} md={2} lg={3} className="g-4">
-            {reports.map((report) => (<Col key={report._id}><Report report={report} /></Col>))}
-          </Row>
-        </Col>
-      </Row>
-    </Container>
+        </Row>
+      </Container>
+    </div>
   ) : <LoadingSpinner />);
 };
 
