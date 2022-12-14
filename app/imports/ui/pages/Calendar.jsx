@@ -171,7 +171,7 @@ class Calendar extends Component {
     return (
       <div className="calendar-page-background">
         <br />
-        <h1 className="text-center" style={{ color: 'white' }}>Calendar</h1>
+        <h1 className="text-center text-outline" style={{ color: 'white' }}>Calendar</h1>
         <br />
         <div style={styles.wrap} id={PageIDs.calendarPage} className="page">
           <div style={styles.left}>

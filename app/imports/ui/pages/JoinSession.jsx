@@ -44,7 +44,7 @@ const JoinSession = () => {
       <Container id={PageIDs.joinSessionPage} className="page">
         <Col className="text-center">
           <br />
-          <h2>Join Session</h2>
+          <h1 className="text-center text-outline" style={{ color: 'white' }}>Join Session</h1>
           <br />
         </Col>
         <Row xs={1} md={2} lg={4} className="g-2">
