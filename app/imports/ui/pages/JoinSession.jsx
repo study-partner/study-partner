@@ -40,14 +40,18 @@ const JoinSession = () => {
   const sessionData = sessions.map(session => getSessionData(session));
 
   return ready ? (
-    <Container id={PageIDs.joinSessionPage} className="page">
-      <Col className="text-center">
-        <h2>Join Session</h2>
-      </Col>
-      <Row xs={1} md={2} lg={4} className="g-2">
-        {sessionData.map((session, index) => <MakeJoinSessionCard key={index} session={session} />)}
-      </Row>
-    </Container>
+    <div className="join-session-background">
+      <Container id={PageIDs.joinSessionPage} className="page">
+        <Col className="text-center">
+          <br />
+          <h1 className="text-center text-outline" style={{ color: 'white' }}>Join Session</h1>
+          <br />
+        </Col>
+        <Row xs={1} md={2} lg={4} className="g-2">
+          {sessionData.map((session, index) => <MakeJoinSessionCard key={index} session={session} />)}
+        </Row>
+      </Container>
+    </div>
   ) : <LoadingSpinner />;
 };
 

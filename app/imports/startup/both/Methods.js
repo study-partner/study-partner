@@ -59,7 +59,7 @@ const addSessionMethod = 'Sessions.add';
 
 /** Creates a new session in the Sessions collection, and also updates SessionsCourses. */
 Meteor.methods({
-  'Sessions.add'({ id, text, startDate, duration }) {
+  'Sessions.add'({ id, text, startDate, duration, picture }) {
     const endDate = new Date();
     const durationMinutesInMillis = duration * 60 * 1000;
     endDate.setTime(startDate.getTime() + durationMinutesInMillis);
@@ -74,7 +74,7 @@ Meteor.methods({
       const start = startDate.toISOString().slice(0, -5);
       const end = endDate.toISOString().slice(0, -5);
       attendees = [Meteor.user().username];
-      Sessions.collection.insert({ id, text, start, end, attendees });
+      Sessions.collection.insert({ id, text, start, end, attendees, picture });
     }
   },
 });

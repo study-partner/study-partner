@@ -169,27 +169,32 @@ class Calendar extends Component {
     // This arrangement can be altered based on how we want the date's format to appear.
     const currentDate = `${year}-${month}-${day}`;
     return (
-      <div style={styles.wrap} id={PageIDs.calendarPage} className="page">
-        <div style={styles.left}>
-          <DayPilotNavigator
-            selectMode="week"
-            showMonths={3}
-            skipMonths={3}
-            startDate={currentDate}
-            selectionDay={currentDate}
-            onTimeRangeSelected={args => {
-              this.calendar.update({
-                startDate: args.day,
-              });
-            }}
-          />
-        </div>
-        <div style={styles.main}>
-          <DayPilotCalendar
+      <div className="calendar-page-background">
+        <br />
+        <h1 className="text-center text-outline" style={{ color: 'white' }}>Calendar</h1>
+        <br />
+        <div style={styles.wrap} id={PageIDs.calendarPage} className="page">
+          <div style={styles.left}>
+            <DayPilotNavigator
+              selectMode="week"
+              showMonths={3}
+              skipMonths={3}
+              startDate={currentDate}
+              selectionDay={currentDate}
+              onTimeRangeSelected={args => {
+                this.calendar.update({
+                  startDate: args.day,
+                });
+              }}
+            />
+          </div>
+          <div style={styles.main}>
+            <DayPilotCalendar
             /* eslint-disable-next-line react/jsx-props-no-spreading */
-            {...this.state}
-            ref={this.calendarRef}
-          />
+              {...this.state}
+              ref={this.calendarRef}
+            />
+          </div>
         </div>
       </div>
     );

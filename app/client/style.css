@@ -107,6 +107,67 @@ footer a {
   padding-bottom: 20px;
 }
 
+.join-session-background {
+  background-image: url("https://cdnb.artstation.com/p/assets/images/images/046/349/541/large/h-i-long-study01.jpg?1644917169");
+  background-position: center;
+  background-repeat: repeat-y;
+}
+
+.calendar-page-background{
+  background-image: url("https://wallpapercave.com/wp/wp6325773.jpg");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.create-session-background{
+  background-image: url("https://i.pinimg.com/originals/0f/95/fc/0f95fc4822f000774b5a5ee491aa22d2.jpg");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.leader-board-background {
+  background-image: url("https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/f702b429-79be-4907-8a8e-1ba8613ebe00/d92hf0x-17be56a4-39c3-4760-a583-841dd9f5d516.jpg?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOjdlMGQxODg5ODIyNjQzNzNhNWYwZDQxNWVhMGQyNmUwIiwiaXNzIjoidXJuOmFwcDo3ZTBkMTg4OTgyMjY0MzczYTVmMGQ0MTVlYTBkMjZlMCIsIm9iaiI6W1t7InBhdGgiOiJcL2ZcL2Y3MDJiNDI5LTc5YmUtNDkwNy04YThlLTFiYTg2MTNlYmUwMFwvZDkyaGYweC0xN2JlNTZhNC0zOWMzLTQ3NjAtYTU4My04NDFkZDlmNWQ1MTYuanBnIn1dXSwiYXVkIjpbInVybjpzZXJ2aWNlOmZpbGUuZG93bmxvYWQiXX0.9HzEomJRkCcxv7XLPh78W1otMyxJE5oK0k138vEZk38");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+.profile-picture-size {
+  max-height: 80px;
+  overflow: hidden;
+  padding-bottom: 0.5em;
+}
+
+.session-picture-size {
+  height: 200px;
+  overflow: hidden;
+  padding-bottom: 0.5em;
+}
 .page-pics {
   box-shadow: 0 0 5px 2px rgba(0, 0, 0, 0.1);
+}
+
+.text-outline{
+  -webkit-text-stroke: 0.8px black;
+}
+
+.allProfiles-background{
+  background-image: url("../images/japanese_street.jpg");
+  background-position: center;
+  background-repeat: repeat-y;
+}
+
+.contactAdmin-background{
+  background-image: url("https://i.pinimg.com/originals/ee/47/dc/ee47dc6689af806b8ea2022c2da5cde3.jpg");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.yourProfile-background{
+  background-image: url("https://cdnb.artstation.com/p/assets/images/images/024/389/465/large/tarcisio-campos-anime-background.jpg?1582242034");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
 }

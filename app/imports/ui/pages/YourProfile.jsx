@@ -70,32 +70,38 @@ const YourProfile = () => {
   const profile = Profiles.collection.findOne({ email });
   const model = _.extend({}, profile, { needHelpClasses, helpOthersClasses });
   return ready ? (
-    <Container id={PageIDs.yourProfilePage} className="justify-content-center page">
-      <Col>
-        <Col className="justify-content-center text-center"><h2>Your Profile</h2></Col>
-        <AutoForm model={model} schema={bridge} onSubmit={data => submit(data)}>
-          <Card>
-            <Card.Body>
-              <Row>
-                <Col xs={4}><TextField id={ComponentIDs.yourProfileFormFirstName} name="firstName" showInlineError placeholder="First Name" /></Col>
-                <Col xs={4}><TextField id={ComponentIDs.yourProfileFormLastName} name="lastName" showInlineError placeholder="Last Name" /></Col>
-                <Col xs={4}><TextField name="email" showInlineError placeholder={Meteor.user().username} disabled /></Col>
-              </Row>
-              <LongTextField id={ComponentIDs.yourProfileFormBio} name="bio" placeholder="Write a little bit about yourself." />
-              <Row>
-                <Col xs={6}><TextField name="title" showInlineError placeholder="Title" /></Col>
-                <Col xs={6}><TextField name="picture" showInlineError placeholder="URL to picture" /></Col>
-              </Row>
-              <Row>
-                <Col xs={6}><SelectField name="needHelpClasses" showInlineError multiple /></Col>
-                <Col xs={6}><SelectField name="helpOthersClasses" showInlineError multiple /></Col>
-              </Row>
-              <SubmitField id={ComponentIDs.yourProfileFormSubmit} value="Update" />
-            </Card.Body>
-          </Card>
-        </AutoForm>
-      </Col>
-    </Container>
+    <div className="yourProfile-background">
+      <Container id={PageIDs.yourProfilePage} className="justify-content-center page">
+        <Col>
+          <Col className="justify-content-center text-center">
+            <br />
+            <h1 className="text-center text-outline" style={{ color: 'white' }}>Your Profile</h1>
+            <br />
+          </Col>
+          <AutoForm model={model} schema={bridge} onSubmit={data => submit(data)}>
+            <Card>
+              <Card.Body>
+                <Row>
+                  <Col xs={4}><TextField id={ComponentIDs.yourProfileFormFirstName} name="firstName" showInlineError placeholder="First Name" /></Col>
+                  <Col xs={4}><TextField id={ComponentIDs.yourProfileFormLastName} name="lastName" showInlineError placeholder="Last Name" /></Col>
+                  <Col xs={4}><TextField name="email" showInlineError placeholder={Meteor.user().username} disabled /></Col>
+                </Row>
+                <LongTextField id={ComponentIDs.yourProfileFormBio} name="bio" placeholder="Write a little bit about yourself." />
+                <Row>
+                  <Col xs={6}><TextField name="title" showInlineError placeholder="Title" /></Col>
+                  <Col xs={6}><TextField name="picture" showInlineError placeholder="URL to picture" /></Col>
+                </Row>
+                <Row>
+                  <Col xs={6}><SelectField name="needHelpClasses" showInlineError multiple /></Col>
+                  <Col xs={6}><SelectField name="helpOthersClasses" showInlineError multiple /></Col>
+                </Row>
+                <SubmitField id={ComponentIDs.yourProfileFormSubmit} value="Update" />
+              </Card.Body>
+            </Card>
+          </AutoForm>
+        </Col>
+      </Container>
+    </div>
   ) : <LoadingSpinner />;
 };
 

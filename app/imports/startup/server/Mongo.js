@@ -48,9 +48,9 @@ function addProfile({ firstName, lastName, bio, title, needHelpClasses, helpOthe
   // sessions.map(session => addSession(session));
 }
 
-function addSession({ id, text, start, end, attendees }) {
+function addSession({ id, text, start, end, attendees, picture }) {
   console.log(`Defining session ${text}, id: ${id}`);
-  Sessions.collection.insert({ id, text, start, end, attendees });
+  Sessions.collection.insert({ id, text, start, end, attendees, picture });
 }
 
 /** Initialize DB if it appears to be empty (i.e. no users defined.) */

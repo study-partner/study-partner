@@ -69,12 +69,12 @@ const MakeJoinSessionCard = ({ session }) => {
   // temporial solution for session.attendee array not display
   const document = Sessions.collection.find(session._id).fetch();
   const attendeesArray = document[0].attendees;
-
+  console.log(JSON.stringify(session.picture));
   return ready ? (
     <Col>
       <Card className="h-100">
         <Card.Body>
-          <Card.Img src={session.picture} width={50} />
+          <Card.Img src={session.picture} className="session-picture-size" />
           <Card.Title style={{ marginTop: '0px' }}>{session.text}</Card.Title>
           <Card.Subtitle className="mb-2 text-muted">
             ID: <span className="date">{session.id}</span>
