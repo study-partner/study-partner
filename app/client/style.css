@@ -129,6 +129,17 @@ footer a {
   background-repeat: no-repeat;
   background-size: cover;
 }
+.profile-picture-size {
+  max-height: 80px;
+  overflow: hidden;
+  padding-bottom: 0.5em;
+}
+
+.session-picture-size {
+  height: 200px;
+  overflow: hidden;
+  padding-bottom: 0.5em;
+}
 .page-pics {
   box-shadow: 0 0 5px 2px rgba(0, 0, 0, 0.1);
 }

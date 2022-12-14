@@ -39,7 +39,7 @@ const LeaderBoard = () => {
                   <Card.Header>
                     <Card.Title>#1 {points[0].firstName} {points[0].lastName}</Card.Title>
                     <Card.Text>Points: {points[0].point}</Card.Text>
-                    <Image src={points[0].picture} width={75} />
+                    <Image src={points[0].picture} className="profile-picture-size" />
                   </Card.Header>
                   <Card.Body>
                     <Card.Text>Biographical Statement:</Card.Text>

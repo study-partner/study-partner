@@ -23,7 +23,7 @@ const MakeCard = ({ profile }) => (
   <Col>
     <Card className="h-100">
       <Card.Header>
-        <Image src={profile.picture} width={50} />
+        <Image src={profile.picture} className="profile-picture-size" />
         <Card.Title>{profile.firstName} {profile.lastName}</Card.Title>
         <Card.Subtitle><span className="date">{profile.title}</span></Card.Subtitle>
       </Card.Header>
