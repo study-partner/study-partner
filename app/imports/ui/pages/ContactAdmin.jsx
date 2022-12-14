@@ -43,29 +43,34 @@ const ContactAdmin = () => {
   // Render the form. Use Uniforms: https://github.com/vazco/uniforms
   let fRef = null;
   return (
-    <Container id={PageIDs.contactAdminPage} className="py-3 page">
-      <Row className="justify-content-center">
-        <Col xs={10}>
-          <Col className="text-center"><h2>Contact Admin</h2></Col>
-          <AutoForm ref={ref => { fRef = ref; }} schema={bridge} onSubmit={data => submit(data, fRef)}>
-            <Card>
-              <Card.Body>
-                <Row>
-                  <Col xs={6}><TextField id={ComponentIDs.contactAdminFormFirstName} name="firstName" showInlineError /></Col>
-                  <Col xs={6}><TextField id={ComponentIDs.contactAdminFormLastName} name="lastName" showInlineError /></Col>
-                </Row>
-                <TextField name="email" placeholder={Meteor.user().username} showInlineError disabled />
-                <TextField name="subject" id={ComponentIDs.contactAdminFormSubject} showInlineError />
-                <LongTextField name="description" id={ComponentIDs.contactAdminFormDescription} showInlineError />
-                <SubmitField id={ComponentIDs.contactAdminFormSubmit} value="Submit" />
-                <ErrorsField />
-                <HiddenField name="createdAt" value={new Date()} />
-              </Card.Body>
-            </Card>
-          </AutoForm>
-        </Col>
-      </Row>
-    </Container>
+    <div className="contactAdmin-background">
+      <Container id={PageIDs.contactAdminPage} className="py-3 page">
+        <Row className="justify-content-center">
+          <Col xs={10}>
+            <Col className="text-center text-outline" style={{ color: 'white' }}>
+              <h1>Contact Admin</h1>
+              <br />
+            </Col>
+            <AutoForm ref={ref => { fRef = ref; }} schema={bridge} onSubmit={data => submit(data, fRef)}>
+              <Card>
+                <Card.Body>
+                  <Row>
+                    <Col xs={6}><TextField id={ComponentIDs.contactAdminFormFirstName} name="firstName" showInlineError /></Col>
+                    <Col xs={6}><TextField id={ComponentIDs.contactAdminFormLastName} name="lastName" showInlineError /></Col>
+                  </Row>
+                  <TextField name="email" placeholder={Meteor.user().username} showInlineError disabled />
+                  <TextField name="subject" id={ComponentIDs.contactAdminFormSubject} showInlineError />
+                  <LongTextField name="description" id={ComponentIDs.contactAdminFormDescription} showInlineError />
+                  <SubmitField id={ComponentIDs.contactAdminFormSubmit} value="Submit" />
+                  <ErrorsField />
+                  <HiddenField name="createdAt" value={new Date()} />
+                </Card.Body>
+              </Card>
+            </AutoForm>
+          </Col>
+        </Row>
+      </Container>
+    </div>
   );
 };
 

@@ -77,15 +77,18 @@ const ProfilesPage = () => {
   // Need to ensure that getProfileData doesn't throw an error on line 18.
   const profileData = emails.map(email => getProfileData(email));
   return ready ? (
-    <Container id={PageIDs.profilesPage} className="page">
-      <Col className="text-center">
-        <h2>All Profiles</h2>
-        <br />
-      </Col>
-      <Row xs={1} md={2} lg={4} className="g-2">
-        {profileData.map((profile, index) => <MakeCard key={index} profile={profile} />)}
-      </Row>
-    </Container>
+    <div className="allProfiles-background">
+      <Container id={PageIDs.profilesPage} className="page">
+        <Col className="text-center">
+          <br />
+          <h1 className="text-outline" style={{ color: 'white' }}>All Profiles</h1>
+          <br />
+        </Col>
+        <Row xs={1} md={2} lg={4} className="g-2">
+          {profileData.map((profile, index) => <MakeCard key={index} profile={profile} />)}
+        </Row>
+      </Container>
+    </div>
   ) : <LoadingSpinner />;
 };
 
