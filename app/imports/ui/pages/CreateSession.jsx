@@ -78,7 +78,7 @@ const AddSession = () => {
                   <Col xs={6}><TextField id={ComponentIDs.addSessionFormCourse} name="text" label="Course" showInlineError placeholder="Course" /></Col>
                   <Col xs={4}><DateField id={ComponentIDs.addSessionDateAndTime} name="startDate" min={new Date()} label="Date" showInlineError /></Col>
                   <Col xs={2}><NumField id={ComponentIDs.addSessionDuration} name="duration" min={1} label="Duration (minutes)" step={30} showInlineError /></Col>
-                  <Col><TextField name="picture" showInlineError placeholder="Session picture URL(optional)" /></Col>
+                  <Col><TextField id={ComponentIDs.addSessionFormPicture} name="picture" showInlineError placeholder="Session picture URL(optional)" /></Col>
                 </Row>
                 <SubmitField id={ComponentIDs.addSessionFormSubmit} className="justify-content-center text-center" value="Schedule Session" />
               </Card.Body>
